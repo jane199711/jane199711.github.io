@@ -1,0 +1,21 @@
+{
+  "name": "mingweiwo-naming-app",
+  "version": "1.0.0",
+  "description": "名为我 — AI 自我命名测试",
+  "private": true,
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "naming",
+    "name-generator",
+    "chinese-name",
+    "static-site"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "vercel": "latest"
+  }
+}

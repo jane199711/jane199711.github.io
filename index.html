@@ -1,0 +1,2210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>自名得意 — Namself</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+:root{
+  --bg:#FAF8F2; --text:#26231F; --text2:#7B746A; --accent:#9A6A4F;
+  --aux:#E9DED3; --line:#DED4C6; --shadow:rgba(38,35,31,0.08);
+  --serif:'Noto Serif SC','Songti SC','STSong','SimSun',serif;
+  --sans:'PingFang SC','Noto Serif SC',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--bg);color:var(--text);font-family:var(--serif);font-weight:400;line-height:1.7;overflow-x:hidden}
+body{min-height:100vh}
+#app{max-width:480px;margin:0 auto;min-height:100vh;position:relative;background:var(--bg)}
+.page{display:none;min-height:100vh;padding:40px 28px;animation:fadeIn .5s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeOut{from{opacity:1}to{opacity:0}}
+
+/* ===== HOME ===== */
+.home-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:90vh;text-align:center}
+.home-icon{width:64px;height:64px;margin-bottom:32px;opacity:.7}
+.home-brand{display:flex;flex-direction:column;align-items:center;margin-bottom:24px}
+.home-en{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;font-weight:500}
+.home-title{font-size:34px;font-weight:600;letter-spacing:6px;line-height:1.3;margin-bottom:10px}
+.home-slogan{font-size:15px;color:var(--text2);letter-spacing:2px;margin-bottom:6px}
+.home-sub{font-size:15px;color:var(--text2);line-height:2;max-width:320px;margin-bottom:48px}
+.btn-primary{display:inline-block;padding:14px 48px;background:var(--text);color:var(--bg);border:none;font-family:var(--serif);font-size:17px;font-weight:500;letter-spacing:4px;cursor:pointer;border-radius:2px;transition:all .3s}
+.btn-primary:hover{background:var(--accent);transform:translateY(-2px);box-shadow:0 6px 20px var(--shadow)}
+.btn-primary:active{transform:translateY(0)}
+.home-aux{margin-top:32px;display:flex;flex-direction:column;gap:14px}
+.home-aux a{font-size:13px;color:var(--text2);text-decoration:none;cursor:pointer;transition:color .2s;letter-spacing:1px}
+.home-aux a:hover{color:var(--accent)}
+.home-note{margin-top:60px;font-size:11px;color:var(--text2);opacity:.6;letter-spacing:1px}
+
+/* ===== SETTINGS ===== */
+.settings-title{font-size:22px;font-weight:600;text-align:center;margin-bottom:8px;letter-spacing:2px}
+.settings-sub{text-align:center;color:var(--text2);font-size:13px;margin-bottom:36px}
+.setting-group{margin-bottom:32px}
+.setting-label{font-size:14px;font-weight:500;margin-bottom:12px;color:var(--text);letter-spacing:1px}
+.setting-options{display:flex;flex-wrap:wrap;gap:10px}
+.capsule{padding:8px 18px;border:1px solid var(--line);border-radius:24px;font-size:13px;cursor:pointer;transition:all .25s;background:transparent;color:var(--text2);font-family:var(--serif)}
+.capsule.selected{background:var(--text);color:var(--bg);border-color:var(--text)}
+.capsule:hover:not(.selected){border-color:var(--accent);color:var(--accent)}
+.surname-input-wrap{display:none;margin-top:12px}
+.surname-input-wrap.show{display:block}
+.surname-input{width:80px;padding:8px 12px;border:1px solid var(--line);border-radius:4px;font-family:var(--serif);font-size:16px;text-align:center;background:var(--bg);color:var(--text)}
+.surname-input:focus{outline:none;border-color:var(--accent)}
+.settings-actions{margin-top:40px;display:flex;gap:12px}
+.btn-secondary{padding:12px 28px;border:1px solid var(--line);background:transparent;color:var(--text2);font-family:var(--serif);font-size:14px;cursor:pointer;border-radius:2px;transition:all .2s}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+.btn-next{flex:1;padding:14px;background:var(--text);color:var(--bg);border:none;font-family:var(--serif);font-size:16px;letter-spacing:3px;cursor:pointer;border-radius:2px;transition:all .3s}
+.btn-next:hover{background:var(--accent)}
+.privacy-note{font-size:11px;color:var(--text2);margin-top:20px;line-height:1.8;opacity:.7}
+
+/* ===== QUIZ ===== */
+.quiz-progress{text-align:center;margin-bottom:32px}
+.quiz-progress-num{font-size:13px;color:var(--text2);letter-spacing:2px;margin-bottom:12px}
+.quiz-bar{width:100%;height:2px;background:var(--aux);border-radius:1px;overflow:hidden}
+.quiz-bar-fill{height:100%;background:var(--accent);transition:width .4s ease}
+.quiz-guide{font-size:13px;color:var(--text2);margin-bottom:10px;font-style:italic}
+.quiz-question{font-size:21px;font-weight:500;line-height:1.6;margin-bottom:28px;letter-spacing:1px}
+.quiz-hint{font-size:12px;color:var(--text2);margin-bottom:20px;opacity:.7}
+.quiz-options{display:flex;flex-direction:column;gap:12px}
+.quiz-option{padding:16px 20px;border:1px solid var(--line);border-radius:6px;cursor:pointer;transition:all .2s;font-size:15px;line-height:1.5;background:transparent;color:var(--text);font-family:var(--serif);text-align:left;position:relative}
+.quiz-option:hover{border-color:var(--accent);background:rgba(154,106,79,.04)}
+.quiz-option.selected{border-color:var(--text);background:rgba(38,35,31,.05);font-weight:500}
+.quiz-option.selected::after{content:'✓';position:absolute;right:18px;top:50%;transform:translateY(-50%);color:var(--accent);font-size:16px}
+.quiz-skip{margin-top:16px;text-align:center;font-size:13px;color:var(--text2);cursor:pointer;transition:color .2s;opacity:.6}
+.quiz-skip:hover{color:var(--accent);opacity:1}
+.quiz-nav{margin-top:28px;display:flex;justify-content:space-between;align-items:center}
+.quiz-back{font-size:13px;color:var(--text2);cursor:pointer;background:none;border:none;font-family:var(--serif)}
+.quiz-back:hover{color:var(--accent)}
+
+/* ===== THINKING ===== */
+.thinking-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:90vh;text-align:center}
+.thinking-dots{display:flex;gap:8px;margin-bottom:32px}
+.thinking-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:thinkingPulse 1.4s infinite ease-in-out}
+.thinking-dot:nth-child(2){animation-delay:.2s}
+.thinking-dot:nth-child(3){animation-delay:.4s}
+@keyframes thinkingPulse{0%,80%,100%{opacity:.3;transform:scale(.8)}40%{opacity:1;transform:scale(1.2)}}
+.thinking-text{font-size:16px;color:var(--text);letter-spacing:2px;min-height:28px;transition:opacity .4s}
+
+/* ===== PROFILE ===== */
+.profile-header{text-align:center;margin-bottom:36px}
+.profile-title{font-size:24px;font-weight:600;letter-spacing:2px;margin-bottom:8px}
+.profile-sub{font-size:13px;color:var(--text2)}
+.profile-portrait{width:140px;height:140px;margin:0 auto 36px;border-radius:50%;overflow:hidden;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;background:var(--aux)}
+.profile-section{margin-bottom:28px;padding:20px;border-left:2px solid var(--accent);background:rgba(233,222,211,.3);border-radius:0 6px 6px 0}
+.profile-section-title{font-size:13px;color:var(--accent);font-weight:500;margin-bottom:10px;letter-spacing:2px}
+.profile-section-text{font-size:15px;line-height:1.9;color:var(--text)}
+.profile-actions{margin-top:40px;text-align:center}
+.profile-feedback{text-align:center;margin-top:24px;font-size:13px;color:var(--text2)}
+.profile-feedback-label{margin-bottom:12px}
+.feedback-btns{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.feedback-btn{padding:6px 14px;border:1px solid var(--line);border-radius:20px;font-size:12px;cursor:pointer;background:transparent;color:var(--text2);font-family:var(--serif);transition:all .2s}
+.feedback-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ===== GASHAPON ===== */
+.gashapon-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:90vh;text-align:center}
+.gashapon-machine{width:160px;height:220px;position:relative;margin-bottom:36px}
+.gashapon-body{width:120px;height:140px;border:3px solid var(--text);border-radius:12px 12px 60px 60px;margin:0 auto;position:relative;overflow:hidden;background:rgba(233,222,211,.2)}
+.gashapon-dome{width:100px;height:100px;border:3px solid var(--text);border-radius:50%;margin:0 auto;position:relative;top:5px;overflow:hidden;background:rgba(250,248,242,.5)}
+.gashapon-base{width:140px;height:30px;background:var(--text);border-radius:4px;margin:0 auto;position:relative;top:-5px}
+.gashapon-capsule{position:absolute;width:40px;height:40px;border-radius:50%;left:50%;transform:translateX(-50%);top:30px;transition:none}
+.gashapon-capsule-top{width:100%;height:50%;border-radius:40px 40px 0 0;background:var(--accent)}
+.gashapon-capsule-bottom{width:100%;height:50%;border-radius:0 0 40px 40px;background:var(--aux);border-top:1px solid var(--line)}
+.gashapon-shake{animation:gashaponShake .5s infinite}
+@keyframes gashaponShake{0%,100%{transform:translateX(-50%) rotate(0)}25%{transform:translateX(-55%) rotate(-3deg)}75%{transform:translateX(-45%) rotate(3deg)}}
+.gashapon-drop{animation:gashaponDrop .8s ease-in forwards}
+@keyframes gashaponDrop{0%{top:30px;opacity:1}100%{top:120px;opacity:0}}
+.gashapon-reveal{font-size:42px;font-weight:700;letter-spacing:6px;opacity:0;transition:opacity .5s;margin-bottom:8px}
+.gashapon-reveal.show{opacity:1;animation:nameReveal .6s ease}
+@keyframes nameReveal{0%{transform:scale(.6);opacity:0}50%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+.gashapon-reveal-pinyin{font-size:14px;color:var(--text2);letter-spacing:2px;opacity:0;transition:opacity .5s}
+.gashapon-reveal-pinyin.show{opacity:.7}
+.gashapon-hint{font-size:14px;color:var(--text2);margin-top:24px;min-height:20px;transition:opacity .3s}
+.gashapon-count{font-size:12px;color:var(--text2);margin-top:16px;letter-spacing:2px}
+
+/* ===== NAMES ===== */
+.names-header{text-align:center;margin-bottom:28px}
+.names-title{font-size:22px;font-weight:600;letter-spacing:2px;margin-bottom:8px}
+.names-sub{font-size:13px;color:var(--text2)}
+.name-card{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:24px;margin-bottom:20px;transition:all .3s;cursor:pointer;position:relative}
+.name-card:hover{box-shadow:0 4px 16px var(--shadow);border-color:var(--accent)}
+.name-card-name{font-size:28px;font-weight:700;letter-spacing:4px;margin-bottom:4px}
+.name-card-pinyin{font-size:13px;color:var(--text2);letter-spacing:2px;margin-bottom:16px}
+.name-card-line{font-size:14px;color:var(--accent);font-style:italic;margin-bottom:12px;line-height:1.6}
+.name-card-explain{font-size:14px;line-height:1.8;color:var(--text);margin-bottom:16px}
+.name-card-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.name-tag{padding:3px 10px;background:var(--aux);border-radius:12px;font-size:11px;color:var(--text2)}
+.name-card-usage{font-size:12px;color:var(--text2);margin-bottom:14px}
+.name-card-usage span{margin-right:8px}
+.name-card-feedback{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.fb-btn{padding:4px 10px;border:1px solid var(--line);border-radius:14px;font-size:11px;cursor:pointer;background:transparent;color:var(--text2);font-family:var(--serif);transition:all .2s}
+.fb-btn:hover{border-color:var(--accent);color:var(--accent)}
+.fb-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.name-card-select{display:block;width:100%;padding:12px;margin-top:14px;background:var(--text);color:var(--bg);border:none;font-family:var(--serif);font-size:15px;letter-spacing:3px;cursor:pointer;border-radius:4px;transition:all .3s}
+.name-card-select:hover{background:var(--accent)}
+.name-card-select.selected{background:var(--accent)}
+.names-actions{margin-top:28px;text-align:center}
+.regenerate-options{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:20px}
+
+/* ===== RESULT / POSTER ===== */
+.result-header{text-align:center;margin-bottom:24px}
+.result-title{font-size:20px;font-weight:600;letter-spacing:2px;margin-bottom:6px}
+.result-sub{font-size:13px;color:var(--text2)}
+.poster-container{margin:0 auto 24px;position:relative;overflow-x:auto;padding-bottom:8px}
+.poster-canvas{border-radius:6px;overflow:hidden;box-shadow:0 4px 24px var(--shadow);position:relative}
+/* Template A: 唯美风 — 水彩、柔焦、花火点缀 */
+.poster-a{background:linear-gradient(160deg,#F8E8E8 0%,#FFF5F0 55%,#FDF8F4 100%);color:#4A3F3A;align-items:flex-start}
+.poster-a .poster-top{color:#8B7B72}
+.poster-a .poster-name{color:#3D322C;z-index:1}
+.poster-a .poster-keyword{background:#C9AFA3;color:#FFF;border-radius:20px;padding:5px 12px;font-size:11px}
+.poster-a-highlight{position:absolute;left:22px;top:118px;width:82%;height:64px;background:linear-gradient(90deg,#FFC9C9 0%,#FFE4D6 100%);opacity:.65;border-radius:8px;z-index:0;transform:rotate(-2deg);filter:blur(8px)}
+.poster-a-blob{position:absolute;border-radius:50%;filter:blur(28px);opacity:.35;z-index:0}
+.poster-a-blob.b1{top:10%;right:-20px;width:120px;height:120px;background:#E8A5A5}
+.poster-a-blob.b2{bottom:20%;left:-30px;width:140px;height:140px;background:#C9B8E8}
+.poster-a .poster-decoration.sparkle-1{top:90px;right:42px}
+.poster-a .poster-decoration.sparkle-2{bottom:130px;left:28px}
+.poster-a .poster-decoration.wave{bottom:90px;right:24px;width:70px;height:20px;opacity:.25}
+.poster-a .poster-decl{font-style:italic;z-index:1}
+.poster-a .poster-pinyin{position:relative;z-index:1}
+.poster-a .poster-keywords{position:relative;z-index:1}
+.poster-a .poster-bottom{position:relative;z-index:1}
+
+/* Template B: 简约风 — 留白、细线、克制 */
+.poster-b{background:#FFFFFF;color:#2A2A2A;justify-content:center;align-items:center;text-align:center}
+.poster-b .poster-top{position:absolute;top:36px;left:30px;right:30px}
+.poster-b .poster-top-label{letter-spacing:3px;font-weight:400}
+.poster-b .poster-name{font-size:54px;letter-spacing:10px;font-weight:300;margin-bottom:16px}
+.poster-b .poster-pinyin{margin-bottom:40px;opacity:.5}
+.poster-b .poster-decl{max-width:250px;margin:0 auto 44px;font-size:15px;line-height:2;color:#5A5A5A}
+.poster-b .poster-keywords{justify-content:center;margin-bottom:0}
+.poster-b .poster-keyword{background:transparent;color:#2A2A2A;border:1px solid #D0D0D0;border-radius:0;padding:5px 12px}
+.poster-b-ring{position:absolute;top:60px;right:40px;width:50px;height:50px;border:1px solid #E0E0E0;border-radius:50%;opacity:.6}
+.poster-b-line{position:absolute;bottom:110px;left:50%;transform:translateX(-50%);width:40px;height:1px;background:#2A2A2A;opacity:.2}
+.poster-b .poster-bottom{position:absolute;bottom:36px;left:30px;right:30px;justify-content:center}
+
+/* Template C: 酷炫风 — 深色、霓虹、几何 */
+.poster-c{background:linear-gradient(145deg,#0D0D12 0%,#1A1A2E 50%,#0F0F18 100%);color:#F0F0F0}
+.poster-c .poster-top{color:#00F0FF;opacity:.8}
+.poster-c .poster-name{color:#FFFFFF;text-shadow:0 0 20px rgba(0,240,255,.3);letter-spacing:6px;z-index:1}
+.poster-c .poster-pinyin{color:#00F0FF;opacity:.7;z-index:1}
+.poster-c .poster-decl{color:#B8B8C8;z-index:1}
+.poster-c .poster-keyword{background:rgba(255,46,106,.15);color:#FF2E6A;border:1px solid rgba(255,46,106,.4);border-radius:2px;z-index:1}
+.poster-c-grid{position:absolute;top:0;left:0;right:0;bottom:0;background-image:linear-gradient(rgba(0,240,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,240,255,.05) 1px,transparent 1px);background-size:30px 30px;z-index:0}
+.poster-c-geo{position:absolute;z-index:0}
+.poster-c-geo.tri-1{top:50px;right:30px;width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-bottom:32px solid rgba(0,240,255,.25)}
+.poster-c-geo.tri-2{bottom:120px;left:24px;width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:26px solid rgba(255,46,106,.25)}
+.poster-c-geo.circle-1{bottom:60px;right:50px;width:10px;height:10px;border-radius:50%;background:#00F0FF;box-shadow:0 0 12px #00F0FF}
+.poster-c .poster-barcode{opacity:.4;margin-top:auto;z-index:1}
+.poster-c .poster-bottom{color:#00F0FF;opacity:.7;z-index:1}
+
+/* Template D: 古典风 — 宣纸、墨黑、朱红印 */
+.poster-d{background:#F5F0E6;color:#2B2622;align-items:flex-start;position:relative}
+.poster-d::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 30% 30%,rgba(139,69,19,.04) 0%,transparent 60%),radial-gradient(circle at 70% 80%,rgba(139,69,19,.06) 0%,transparent 50%);pointer-events:none;z-index:0}
+.poster-d .poster-top{color:#5C4A3A;opacity:.8;z-index:1}
+.poster-d .poster-name{font-weight:600;letter-spacing:10px;z-index:1}
+.poster-d .poster-pinyin{color:#7A6A5A;z-index:1}
+.poster-d .poster-decl{color:#4A3F3A;border-left:2px solid #B93838;padding-left:14px;margin-left:-2px;z-index:1}
+.poster-d .poster-keyword{background:#2B2622;color:#F5F0E6;border-radius:2px;z-index:1}
+.poster-d-seal{position:absolute;bottom:40px;right:30px;width:48px;height:48px;border:2px solid #B93838;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#B93838;font-size:10px;font-weight:700;letter-spacing:1px;transform:rotate(-6deg);z-index:1}
+.poster-d-mountain{position:absolute;bottom:0;left:0;right:0;height:90px;opacity:.08;z-index:0}
+.poster-d-mountain svg{width:100%;height:100%}
+.poster-d-vertical{position:absolute;right:28px;top:110px;font-size:11px;letter-spacing:6px;writing-mode:vertical-rl;color:#7A6A5A;opacity:.5;z-index:1}
+.poster-d .poster-bottom{z-index:1}
+.poster-d .poster-keywords{z-index:1}
+
+/* Template E: 中性风 — 暖灰、结构、克制现代 */
+.poster-e{background:#E5E1DC;color:#33302E;align-items:flex-start;position:relative}
+.poster-e .poster-top{color:#5A5652;z-index:1}
+.poster-e .poster-name{font-weight:700;letter-spacing:7px;z-index:1}
+.poster-e .poster-pinyin{color:#6A6560;z-index:1}
+.poster-e-block{background:#33302E;color:#E5E1DC;padding:16px 20px;margin:24px 0 28px;border-radius:2px;position:relative;z-index:1}
+.poster-e-block .poster-decl{color:#E5E1DC;margin:0;font-size:14px;line-height:1.8;max-width:100%}
+.poster-e .poster-keyword{background:transparent;color:#33302E;border:1px solid #9A9590;border-radius:0;z-index:1}
+.poster-e-grid{position:absolute;top:0;left:0;right:0;bottom:0;background-image:radial-gradient(#9A9590 1px,transparent 1px);background-size:18px 18px;opacity:.08;z-index:0}
+.poster-e-rect{position:absolute;z-index:0}
+.poster-e-rect.r1{top:30px;left:24px;width:30px;height:4px;background:#33302E;opacity:.15}
+.poster-e-rect.r2{bottom:50px;right:30px;width:4px;height:40px;background:#33302E;opacity:.15}
+.poster-e .poster-bottom{opacity:.5;z-index:1}
+.poster-e .poster-keywords{z-index:1}
+
+/* Poster commons */
+.poster-card{width:360px;min-height:560px;padding:36px 30px;display:flex;flex-direction:column;position:relative;overflow:hidden;font-family:var(--sans)}
+.poster-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:48px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text2);position:relative;z-index:1}
+.poster-top-left{display:flex;flex-direction:column;gap:4px}
+.poster-top-label{font-weight:600;letter-spacing:2px}
+.poster-top-meta{font-size:10px;opacity:.7}
+.poster-top-icon{width:28px;height:28px;opacity:.6}
+.poster-name{font-size:52px;font-weight:700;letter-spacing:8px;line-height:1.2;margin-bottom:10px;font-family:var(--serif);position:relative;z-index:1}
+.poster-pinyin{font-size:13px;letter-spacing:4px;text-transform:uppercase;margin-bottom:36px;opacity:.7;position:relative;z-index:1}
+.poster-decl{font-size:15px;line-height:1.9;margin-bottom:40px;max-width:260px;position:relative;z-index:1}
+.poster-keywords-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;opacity:.5;margin-bottom:12px;position:relative;z-index:1}
+.poster-keywords{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:auto;position:relative;z-index:1}
+.poster-keyword{font-size:12px;letter-spacing:1px;padding:4px 10px;border-radius:2px;position:relative;z-index:1}
+.poster-bottom{margin-top:48px;display:flex;justify-content:space-between;align-items:center;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;opacity:.5;position:relative;z-index:1}
+.poster-bottom-brand{display:flex;flex-direction:column;gap:3px}
+.poster-bottom-slogan{font-size:9px;letter-spacing:1px;text-transform:none;opacity:.8}
+.poster-bottom-arrow{width:40px;height:1px;background:currentColor;position:relative}
+.poster-bottom-arrow::after{content:'';position:absolute;right:0;top:-2px;width:5px;height:5px;border-right:1px solid currentColor;border-top:1px solid currentColor;transform:rotate(45deg)}
+.poster-decoration{position:absolute;pointer-events:none}
+.poster-star{width:16px;height:16px}
+.poster-smile{width:20px;height:20px}
+.poster-barcode{height:28px;opacity:.5}
+.poster-sparkle{width:18px;height:18px}
+.poster-wave svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round}
+
+.poster-controls{margin-bottom:24px}
+.poster-controls-title{font-size:13px;color:var(--text2);margin-bottom:12px;letter-spacing:1px}
+.poster-templates{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.poster-tpl-btn{padding:10px 4px;border:1px solid var(--line);border-radius:4px;font-size:12px;cursor:pointer;background:transparent;color:var(--text2);font-family:var(--serif);text-align:center;transition:all .2s}
+.poster-tpl-btn.selected{border-color:var(--text);background:rgba(38,35,31,.05);color:var(--text);font-weight:500}
+.poster-bg-colors{display:flex;gap:10px;margin-bottom:16px}
+.poster-bg-color{width:32px;height:32px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all .2s}
+.poster-bg-color.selected{border-color:var(--text)}
+.poster-toggles{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.poster-toggle{display:flex;align-items:center;justify-content:space-between;padding:8px 0;font-size:13px;color:var(--text)}
+.toggle-switch{width:36px;height:20px;background:var(--line);border-radius:10px;position:relative;cursor:pointer;transition:background .2s}
+.toggle-switch.on{background:var(--accent)}
+.toggle-switch::after{content:'';position:absolute;width:16px;height:16px;background:#fff;border-radius:50%;top:2px;left:2px;transition:transform .2s}
+.toggle-switch.on::after{transform:translateX(16px)}
+.poster-decls{margin-bottom:16px}
+.poster-decl-btn{display:block;width:100%;text-align:left;padding:8px 12px;border:1px solid var(--line);border-radius:4px;font-size:12px;color:var(--text2);cursor:pointer;background:transparent;font-family:var(--serif);margin-bottom:6px;transition:all .2s;line-height:1.6}
+.poster-decl-btn.selected{border-color:var(--accent);color:var(--accent)}
+.result-actions{display:flex;gap:10px;margin-top:20px}
+.result-actions .btn-secondary{flex:1;text-align:center}
+.result-bottom-note{text-align:center;font-size:12px;color:var(--text2);margin-top:32px;line-height:1.8;opacity:.7;font-style:italic}
+
+/* Examples modal */
+.examples-modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(38,35,31,.6);display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
+.examples-modal.show{display:flex}
+.examples-content{background:var(--bg);border-radius:10px;padding:32px 24px;max-width:400px;max-height:80vh;overflow-y:auto}
+.examples-close{float:right;cursor:pointer;font-size:20px;color:var(--text2)}
+.examples-title{font-size:18px;font-weight:600;margin-bottom:20px;text-align:center}
+.examples-list{display:flex;flex-direction:column;gap:16px}
+.example-item{padding:12px;border-bottom:1px solid var(--line)}
+.example-name{font-size:18px;font-weight:600;letter-spacing:2px;margin-bottom:4px}
+.example-pinyin{font-size:12px;color:var(--text2);margin-bottom:6px}
+.example-explain{font-size:13px;color:var(--text);line-height:1.7}
+
+/* SVG portrait */
+.portrait-svg{width:100%;height:100%}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-thumb{background:var(--line);border-radius:2px}
+
+/* Responsive */
+@media(max-width:380px){
+  .page{padding:30px 20px}
+  .home-title{font-size:26px}
+  .quiz-question{font-size:19px}
+  .poster-card{width:320px;min-height:520px;padding:32px 24px}
+  .poster-name{font-size:44px;letter-spacing:6px}
+  .poster-pinyin{font-size:12px}
+  .poster-decl{font-size:14px}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+// ===================== DATA =====================
+
+var COLORS = {
+  bg:'#FAF8F2', text:'#26231F', text2:'#7B746A',
+  accent:'#9A6A4F', aux:'#E9DED3', line:'#DED4C6'
+};
+
+var BG_COLORS = [
+  {name:'雾粉', value:'#F8E8E8'},
+  {name:'霜白', value:'#FFFFFF'},
+  {name:'薄荷', value:'#E8F4F1'},
+  {name:'浅藤', value:'#F0E8D8'},
+  {name:'苍青', value:'#E3EBF2'}
+];
+
+var QUESTIONS = [
+  {
+    id:'aesthetic_scene',
+    guide:'先看你的视觉偏好',
+    q:'哪种空间或画面更接近你的审美？',
+    options:[
+      '水泥、金属、少即是少的极简空间',
+      '霓虹、街头、有涂鸦和夜色的城市',
+      '荒野、公路、没有信号的开阔地',
+      '老书店、黑胶墙、有使用痕迹的房间',
+      '整洁、明亮、功能优先的日常空间'
+    ]
+  },
+  {
+    id:'alone_mode',
+    guide:'独处时你更像谁',
+    q:'一个人有空的时候，你最可能做什么？',
+    options:[
+      '运动、骑行、去户外让身体先动起来',
+      '看剧、打游戏、听音乐，彻底放松',
+      '整理信息、学新东西、研究一个具体问题',
+      '画画、拍照、做点什么手工或创作',
+      '约朋友见面，或者线上聊到很晚'
+    ]
+  },
+  {
+    id:'admired_quality',
+    guide:'你欣赏的人身上有什么',
+    q:'你更容易被哪种人吸引？',
+    options:[
+      '话不多，但做事稳、边界清晰',
+      '有风格，审美在线，不随大流',
+      '情绪稳定，能在混乱里保持冷静',
+      '敢说、敢试、敢承担后果',
+      '对某件事特别专注，能钻得很深'
+    ]
+  },
+  {
+    id:'keep_trait',
+    guide:'你最不想丢掉的自己',
+    q:'无论环境怎么变，你最想保留什么？',
+    options:[
+      '敏锐——对人和事的直觉',
+      '锋利——不圆滑，不假装认同',
+      '松弛——不焦虑，有自己的节奏',
+      '好奇——对新鲜事持续上头',
+      '稳定——承诺了就会做到',
+      '反叛——不喜欢被定义'
+    ]
+  },
+  {
+    id:'interest_type',
+    guide:'你的兴趣落在哪一片',
+    q:'长期来看，你更愿意把时间花在什么上？',
+    options:[
+      '音乐、影像、演出、亚文化',
+      '运动、户外、身体与冒险',
+      '技术、产品、系统与效率',
+      '设计、 fashion、视觉与空间',
+      '人、社交、关系与观察'
+    ]
+  },
+  {
+    id:'decision_style',
+    guide:'你怎么做重要决定',
+    q:'面临一个关键选择时，你更依赖什么？',
+    options:[
+      '数据和事实，尽量减少感性干扰',
+      '第一直觉，信自己的第一反应',
+      '和信任的人聊完，再拍板',
+      '算长期收益，选更稳的那条路',
+      '先干起来，边做边调整'
+    ]
+  },
+  {
+    id:'relationship_mode',
+    guide:'你在关系里的默认设置',
+    q:'在亲密或重要关系里，你更像哪种？',
+    options:[
+      '慢热型，需要很久才真正信任',
+      '独立型，太近会喘不过气',
+      '直接型，有问题就摊开了说',
+      '照顾型，习惯把别人安顿好',
+      '共振型，需要被理解而不是被解决'
+    ]
+  },
+  {
+    id:'disliked_state',
+    guide:'你最受不了哪种状态',
+    q:'下面哪种状态你最想避开？',
+    options:[
+      '被别人的期待绑架，做不真实的自己',
+      '陷入重复和无聊，看不到变化',
+      '情绪被牵着走，没法冷静判断',
+      '说了违心的话，或者保持沉默',
+      '生活节奏失控，事情堆成一团'
+    ]
+  },
+  {
+    id:'current_state',
+    guide:'此刻你在哪里',
+    q:'如果用一句话形容现在的你，更像哪个？',
+    options:[
+      '正在重建自己的生活秩序',
+      '表面稳定，内在正在换系统',
+      '比过去更清楚自己要什么',
+      '刚从一个阶段走出来，还在适应',
+      '感觉下一步会很大，但还没动'
+    ]
+  },
+  {
+    id:'name_expectation',
+    guide:'最后，名字的气场',
+    q:'你希望这个名字给人什么第一印象？',
+    options:[
+      '冷——干净、克制、有距离感',
+      '热——直接、有感染力、不藏着',
+      '锐——利落、有棱角、不好惹',
+      '稳——沉着、可信、压得住',
+      '轻——简单、顺口、不费劲'
+    ]
+  }
+];
+
+var THINKING_MSGS = [
+  '正在提取你的标签',
+  '正在过滤掉太普通和太甜腻的字',
+  '正在找一个读起来像你、写起来也成立的名字',
+  '正在把你的选择压缩成几个有力的字'
+];
+
+var SURNAMES = ['李','王','张','刘','陈','杨','赵','黄','周','吴','徐','孙','胡','朱','高','林','何','郭','马','罗','梁','宋','郑','谢','韩','唐','冯','于','董','萧','程','曹','袁','邓','许','傅','沈','曾','彭','吕','苏','蒋','贾','丁','魏','薛','叶','阎','余','潘','杜','戴','夏','钟','汪','田','任','姜','范','方','石','姚','谭','廖','邹','熊','金','陆','郝','孔','白','崔','康','毛','邱','秦','江','史','顾','侯','邵','孟','龙','万','段','雷','钱','汤','尹','黎','易','常','武','乔','贺','赖','龚','文'];
+
+var CHARS = {
+  // 冷 / 克制 / 距离
+  '凛':{py:'lǐn',tone:3,force:4,hard:4,rare:3,temp:'cold',daily:2,themes:['cold','sharp','wild','steady'],m:'凛冽、克制、有边界'},
+  '朔':{py:'shuò',tone:4,force:3,hard:3,rare:4,temp:'cold',daily:2,themes:['cold','new','wild','clear'],m:'朔方、开端、凛冽之气'},
+  '砚':{py:'yàn',tone:4,force:2,hard:1,rare:4,temp:'neutral',daily:2,themes:['craft','deep','quiet','steady'],m:'砚台、书写、沉淀'},
+  '屹':{py:'yì',tone:4,force:4,hard:4,rare:3,temp:'cold',daily:2,themes:['steady','sharp','strong','wild'],m:'屹立、不动、棱角'},
+  '峥':{py:'zhēng',tone:1,force:4,hard:4,rare:4,temp:'cold',daily:2,themes:['sharp','wild','strong','cold'],m:'峥嵘、山势、锋芒'},
+  '铮':{py:'zhēng',tone:1,force:5,hard:5,rare:4,temp:'cold',daily:2,themes:['sharp','strong','indie','clear'],m:'铮铮、刚硬、不妥协'},
+  '泊':{py:'bó',tone:2,force:2,hard:1,rare:3,temp:'cold',daily:2,themes:['calm','cold','water','steady'],m:'停泊、沉稳、静水'},
+  '澄':{py:'chéng',tone:2,force:2,hard:2,rare:3,temp:'cold',daily:2,themes:['clear','cold','water','deep'],m:'澄澈、清醒、见底'},
+  '澈':{py:'chè',tone:4,force:3,hard:3,rare:3,temp:'cold',daily:2,themes:['clear','cold','water','sharp'],m:'清澈、通透、锋利'},
+  '默':{py:'mò',tone:4,force:2,hard:1,rare:2,temp:'cold',daily:3,themes:['quiet','deep','cold','indie'],m:'沉默、不语、内在'},
+  '遥':{py:'yáo',tone:2,force:2,hard:1,rare:2,temp:'cold',daily:3,themes:['distant','cold','quiet','indie'],m:'遥远、抽离、观望'},
+  '远':{py:'yuǎn',tone:3,force:2,hard:1,rare:1,temp:'cold',daily:4,themes:['distant','cold','steady','clear'],m:'远方、深远、不近'},
+  '北':{py:'běi',tone:3,force:2,hard:1,rare:1,temp:'cold',daily:5,themes:['cold','distant','urban','quiet'],m:'北方、冷感、方向'},
+  '冬':{py:'dōng',tone:1,force:1,hard:1,rare:1,temp:'cold',daily:5,themes:['cold','quiet','simple','clear'],m:'冬天、沉静、纯粹'},
+  // 热 / 直接 / 能量
+  '燃':{py:'rán',tone:2,force:4,hard:2,rare:2,temp:'warm',daily:3,themes:['hot','bright','strong','motion'],m:'燃烧、热烈、能量'},
+  '骁':{py:'xiāo',tone:1,force:5,hard:4,rare:4,temp:'warm',daily:2,themes:['sharp','hot','motion','strong'],m:'骁勇、敏捷、锐利'},
+  '驰':{py:'chí',tone:2,force:4,hard:3,rare:2,temp:'warm',daily:3,themes:['motion','hot','free','strong'],m:'奔驰、速度、自由'},
+  '昱':{py:'yù',tone:4,force:3,hard:2,rare:4,temp:'warm',daily:2,themes:['hot','bright','clear','new'],m:'日光、明亮、照耀'},
+  '昭':{py:'zhāo',tone:1,force:3,hard:2,rare:3,temp:'warm',daily:3,themes:['hot','bright','clear','strong'],m:'昭然、明亮、公开'},
+  '朗':{py:'lǎng',tone:3,force:3,hard:1,rare:2,temp:'warm',daily:4,themes:['bright','open','clear','hot'],m:'开朗、明亮、通透'},
+  '夏':{py:'xià',tone:4,force:3,hard:1,rare:1,temp:'warm',daily:5,themes:['hot','bright','nature','free'],m:'夏天、热烈、生长'},
+  '南':{py:'nán',tone:2,force:2,hard:1,rare:1,temp:'warm',daily:5,themes:['hot','warm','distant','urban'],m:'南方、方向、温度'},
+  '阳':{py:'yáng',tone:2,force:3,hard:1,rare:1,temp:'warm',daily:5,themes:['hot','bright','strong','nature'],m:'阳光、阳性、能量'},
+  '跃':{py:'yuè',tone:4,force:4,hard:2,rare:2,temp:'warm',daily:3,themes:['motion','hot','strong','new'],m:'跳跃、突破、行动'},
+  // 锐 / 锋芒 / 力量
+  '锋':{py:'fēng',tone:1,force:5,hard:5,rare:2,temp:'cold',daily:3,themes:['sharp','strong','cold','motion'],m:'锋芒、前锋、锐利'},
+  '锐':{py:'ruì',tone:4,force:5,hard:4,rare:2,temp:'cold',daily:3,themes:['sharp','clear','strong','deep'],m:'锐利、敏锐、进取'},
+  '砺':{py:'lì',tone:4,force:4,hard:4,rare:4,temp:'cold',daily:2,themes:['sharp','steady','deep','strong'],m:'磨砺、淬炼、坚实'},
+  '砥':{py:'dǐ',tone:3,force:4,hard:4,rare:4,temp:'cold',daily:2,themes:['steady','sharp','strong','deep'],m:'砥柱、中流、稳定'},
+  '峻':{py:'jùn',tone:4,force:4,hard:4,rare:3,temp:'cold',daily:2,themes:['sharp','steady','wild','strong'],m:'峻峭、严肃、有力'},
+  '越':{py:'yuè',tone:4,force:4,hard:3,rare:2,temp:'warm',daily:3,themes:['strong','bright','indie','motion'],m:'超越、越过、锐气'},
+  // 稳 / 沉 / 可靠
+  '稳':{py:'wěn',tone:3,force:2,hard:1,rare:1,temp:'neutral',daily:4,themes:['steady','simple','practical','clear'],m:'稳定、稳妥、可靠'},
+  '定':{py:'dìng',tone:4,force:2,hard:1,rare:1,temp:'neutral',daily:5,themes:['steady','calm','simple','strong'],m:'安定、确定、不动摇'},
+  '安':{py:'ān',tone:1,force:1,hard:1,rare:1,temp:'warm',daily:5,themes:['steady','calm','simple','warm'],m:'安稳、安全、根基'},
+  '宁':{py:'níng',tone:2,force:1,hard:1,rare:1,temp:'warm',daily:5,themes:['steady','calm','quiet','simple'],m:'安宁、平静、沉着'},
+  '岩':{py:'yán',tone:2,force:3,hard:3,rare:1,temp:'neutral',daily:4,themes:['steady','wild','strong','cold'],m:'岩石、坚硬、自然'},
+  '岳':{py:'yuè',tone:4,force:3,hard:2,rare:2,temp:'neutral',daily:3,themes:['steady','wild','strong','distant'],m:'山岳、厚重、高远'},
+  '厚':{py:'hòu',tone:4,force:2,hard:1,rare:2,temp:'warm',daily:3,themes:['steady','deep','simple','warm'],m:'厚重、厚道、积累'},
+  '朴':{py:'pǔ',tone:3,force:1,hard:1,rare:2,temp:'neutral',daily:3,themes:['steady','simple','natural','honest'],m:'朴素、朴实、不花'},
+  '淳':{py:'chún',tone:2,force:1,hard:1,rare:3,temp:'warm',daily:2,themes:['steady','simple','honest','clear'],m:'淳朴、纯厚、真实'},
+  '诚':{py:'chéng',tone:2,force:2,hard:1,rare:2,temp:'warm',daily:4,themes:['steady','honest','clear','simple'],m:'真诚、诚实、可信'},
+  '信':{py:'xìn',tone:4,force:2,hard:1,rare:1,temp:'neutral',daily:5,themes:['steady','honest','simple','strong'],m:'信任、信义、可靠'},
+  '恒':{py:'héng',tone:2,force:2,hard:1,rare:2,temp:'neutral',daily:3,themes:['steady','deep','strong','practical'],m:'恒心、持久、不变'},
+  // 轻 / 简 / 松弛
+  '轻':{py:'qīng',tone:1,force:1,hard:1,rare:1,temp:'neutral',daily:5,themes:['light','simple','free','clear'],m:'轻盈、轻松、不沉重'},
+  '浅':{py:'qiǎn',tone:3,force:1,hard:1,rare:1,temp:'neutral',daily:4,themes:['light','simple','gentle','clear'],m:'浅淡、轻松、留白'},
+  '可':{py:'kě',tone:3,force:1,hard:1,rare:1,temp:'warm',daily:5,themes:['light','simple','natural','gentle'],m:'可以、适合、随和'},
+  '一':{py:'yī',tone:1,force:1,hard:1,rare:1,temp:'neutral',daily:5,themes:['light','simple','unique','clean'],m:'唯一、纯粹、极简'},
+  '之':{py:'zhī',tone:1,force:1,hard:1,rare:1,temp:'neutral',daily:4,themes:['light','simple','classical','quiet'],m:'的、连接、余韵'},
+  '也':{py:'yě',tone:3,force:1,hard:1,rare:1,temp:'neutral',daily:4,themes:['light','simple','indie','neutral'],m:'也、语气、松弛'},
+  '以':{py:'yǐ',tone:3,force:1,hard:1,rare:1,temp:'neutral',daily:4,themes:['simple','clear','practical','light'],m:'以、凭借、利落'},
+  '亦':{py:'yì',tone:4,force:1,hard:1,rare:2,temp:'neutral',daily:3,themes:['simple','neutral','indie','light'],m:'亦、同样、不解释'},
+  '且':{py:'qiě',tone:3,force:1,hard:1,rare:2,temp:'neutral',daily:3,themes:['simple','light','indie','practical'],m:'且、暂时、前行'},
+  '白':{py:'bái',tone:2,force:1,hard:1,rare:1,temp:'cold',daily:5,themes:['simple','cold','clean','light'],m:'白色、空白、干净'},
+  '素':{py:'sù',tone:4,force:1,hard:1,rare:2,temp:'cold',daily:4,themes:['simple','cold','clean','quiet'],m:'素色、素颜、不修饰'},
+  '简':{py:'jiǎn',tone:3,force:1,hard:1,rare:1,temp:'neutral',daily:4,themes:['simple','light','clear','cold'],m:'简单、直接、去繁'},
+  '未':{py:'wèi',tone:4,force:1,hard:1,rare:1,temp:'neutral',daily:4,themes:['new','simple','light','indie'],m:'未来、未名、开放'},
+  // 都市 / 街头 / 现代
+  '烁':{py:'shuò',tone:4,force:3,hard:2,rare:3,temp:'warm',daily:2,themes:['urban','hot','bright','sharp'],m:'闪烁、都市、光点'},
+  '霓':{py:'ní',tone:2,force:3,hard:1,rare:4,temp:'warm',daily:2,themes:['urban','hot','art','bright'],m:'霓虹、夜色、城市'},
+  '型':{py:'xíng',tone:2,force:3,hard:2,rare:2,temp:'neutral',daily:3,themes:['craft','urban','sharp','clear'],m:'型格、造型、态度'},
+  // 荒野 / 自然 / 开阔
+  '野':{py:'yě',tone:3,force:3,hard:2,rare:1,temp:'neutral',daily:4,themes:['wild','indie','free','strong'],m:'野外、野性、不羁'},
+  '川':{py:'chuān',tone:1,force:2,hard:1,rare:1,temp:'neutral',daily:5,themes:['wild','water','motion','clear'],m:'河流、川流、不停'},
+  '原':{py:'yuán',tone:2,force:1,hard:1,rare:1,temp:'neutral',daily:5,themes:['wild','nature','simple','open'],m:'原野、原始、开阔'},
+  '池':{py:'chí',tone:2,force:1,hard:1,rare:1,temp:'neutral',daily:5,themes:['wild','water','quiet','simple'],m:'池水、安静、微小'},
+  '岛':{py:'dǎo',tone:3,force:2,hard:1,rare:2,temp:'neutral',daily:3,themes:['wild','indie','quiet','distant'],m:'岛屿、独立、隔绝'},
+  '岭':{py:'lǐng',tone:3,force:3,hard:2,rare:3,temp:'neutral',daily:2,themes:['wild','distant','strong','quiet'],m:'山岭、高远、静默'},
+  '漠':{py:'mò',tone:4,force:2,hard:1,rare:3,temp:'cold',daily:2,themes:['wild','cold','distant','quiet'],m:'沙漠、空旷、疏离'},
+  '途':{py:'tú',tone:2,force:2,hard:1,rare:1,temp:'neutral',daily:4,themes:['wild','motion','practical','new'],m:'路途、途中、前进'},
+  '航':{py:'háng',tone:2,force:2,hard:1,rare:2,temp:'neutral',daily:3,themes:['motion','wild','practical','new'],m:'航行、远航、方向'},
+  '枫':{py:'fēng',tone:1,force:2,hard:1,rare:1,temp:'neutral',daily:4,themes:['nature','bright','simple','urban'],m:'枫树、秋色、鲜明'},
+  '榆':{py:'yú',tone:2,force:1,hard:1,rare:3,temp:'neutral',daily:2,themes:['nature','steady','simple','quiet'],m:'榆树、坚韧、朴实'},
+  '萧':{py:'xiāo',tone:1,force:2,hard:1,rare:3,temp:'cold',daily:2,themes:['nature','cold','quiet','indie'],m:'萧疏、清冷、独立'},
+  '林':{py:'lín',tone:2,force:1,hard:1,rare:1,temp:'neutral',daily:5,themes:['nature','steady','simple','quiet'],m:'树林、成林、生长'},
+  // 手艺 / 创作 / 审美
+  '墨':{py:'mò',tone:4,force:2,hard:1,rare:2,temp:'neutral',daily:4,themes:['craft','deep','quiet','urban'],m:'墨、书写、黑色'},
+  '书':{py:'shū',tone:1,force:1,hard:1,rare:1,temp:'warm',daily:5,themes:['craft','quiet','deep','clear'],m:'书写、记录、知识'},
+  '音':{py:'yīn',tone:1,force:1,hard:1,rare:1,temp:'warm',daily:5,themes:['craft','art','quiet','hot'],m:'声音、音乐、频率'},
+  '影':{py:'yǐng',tone:3,force:2,hard:1,rare:1,temp:'neutral',daily:4,themes:['craft','art','quiet','urban'],m:'影像、影子、氛围'},
+  '格':{py:'gé',tone:2,force:3,hard:2,rare:1,temp:'neutral',daily:4,themes:['craft','indie','sharp','steady'],m:'格调、品格、棱角'},
+  '创':{py:'chuàng',tone:4,force:4,hard:2,rare:2,temp:'warm',daily:3,themes:['craft','hot','new','strong'],m:'创造、开创、敢做'},
+  // 技术 / 秩序 / 系统
+  '序':{py:'xù',tone:4,force:1,hard:1,rare:1,temp:'neutral',daily:3,themes:['tech','clear','simple','steady'],m:'秩序、序列、规则'},
+  '秩':{py:'zhì',tone:4,force:1,hard:1,rare:3,temp:'neutral',daily:2,themes:['tech','clear','steady','practical'],m:'秩序、条理、清晰'},
+  '律':{py:'lǜ',tone:4,force:2,hard:1,rare:2,temp:'neutral',daily:4,themes:['tech','steady','deep','practical'],m:'规律、节奏、法则'},
+  '衡':{py:'héng',tone:2,force:2,hard:1,rare:2,temp:'neutral',daily:3,themes:['tech','steady','clear','simple'],m:'平衡、衡量、稳定'},
+  '准':{py:'zhǔn',tone:3,force:2,hard:1,rare:2,temp:'neutral',daily:4,themes:['tech','clear','practical','steady'],m:'准确、标准、精准'},
+  '析':{py:'xī',tone:1,force:2,hard:1,rare:2,temp:'neutral',daily:3,themes:['tech','clear','deep','practical'],m:'分析、拆解、理性'},
+  '策':{py:'cè',tone:4,force:3,hard:2,rare:2,temp:'neutral',daily:3,themes:['tech','clear','practical','strong'],m:'策略、方案、决断'},
+  // 清晰 / 清醒
+  '清':{py:'qīng',tone:1,force:2,hard:1,rare:1,temp:'cold',daily:5,themes:['clear','cold','water','simple'],m:'清澈、清楚、清醒'},
+  '晰':{py:'xī',tone:1,force:2,hard:2,rare:2,temp:'cold',daily:3,themes:['clear','cold','sharp','simple'],m:'清晰、明晰、利落'},
+  '醒':{py:'xǐng',tone:3,force:3,hard:2,rare:2,temp:'cold',daily:3,themes:['clear','cold','new','deep'],m:'清醒、觉醒、自觉'},
+  '觉':{py:'jué',tone:2,force:2,hard:1,rare:2,temp:'neutral',daily:3,themes:['clear','deep','indie','new'],m:'觉察、觉悟、独立'},
+  // 深 / 专注
+  '深':{py:'shēn',tone:1,force:2,hard:1,rare:1,temp:'neutral',daily:5,themes:['deep','quiet','steady','clear'],m:'深沉、深度、专注'},
+  '笃':{py:'dǔ',tone:3,force:2,hard:1,rare:4,temp:'neutral',daily:2,themes:['deep','steady','strong','quiet'],m:'笃定、专一、深耕'},
+  '专':{py:'zhuān',tone:1,force:2,hard:1,rare:1,temp:'neutral',daily:5,themes:['deep','steady','clear','tech'],m:'专注、专业、深入'},
+  '凝':{py:'níng',tone:2,force:2,hard:1,rare:3,temp:'cold',daily:2,themes:['deep','cold','steady','quiet'],m:'凝视、凝聚、沉静'},
+  '潜':{py:'qián',tone:2,force:2,hard:1,rare:3,temp:'neutral',daily:2,themes:['deep','quiet','new','motion'],m:'潜伏、潜心、蓄势'},
+  '沉':{py:'chén',tone:2,force:2,hard:1,rare:2,temp:'neutral',daily:3,themes:['deep','steady','quiet','water'],m:'沉淀、沉稳、内敛'}
+};
+
+// Answer -> themes mapping
+var ANSWER_THEMES = {
+  'aesthetic_scene':{
+    '水泥、金属、少即是少的极简空间':['cold','simple','urban','clear'],
+    '霓虹、街头、有涂鸦和夜色的城市':['urban','hot','indie','art'],
+    '荒野、公路、没有信号的开阔地':['wild','free','distant','motion'],
+    '老书店、黑胶墙、有使用痕迹的房间':['craft','deep','quiet','indie'],
+    '整洁、明亮、功能优先的日常空间':['simple','clear','steady','light']
+  },
+  'alone_mode':{
+    '运动、骑行、去户外让身体先动起来':['motion','wild','hot','strong'],
+    '看剧、打游戏、听音乐，彻底放松':['light','hot','art','simple'],
+    '整理信息、学新东西、研究一个具体问题':['tech','deep','clear','practical'],
+    '画画、拍照、做点什么手工或创作':['craft','art','indie','quiet'],
+    '约朋友见面，或者线上聊到很晚':['hot','urban','gentle','clear']
+  },
+  'admired_quality':{
+    '话不多，但做事稳、边界清晰':['steady','clear','strong','cold'],
+    '有风格，审美在线，不随大流':['craft','indie','urban','sharp'],
+    '情绪稳定，能在混乱里保持冷静':['steady','calm','clear','deep'],
+    '敢说、敢试、敢承担后果':['sharp','hot','strong','motion'],
+    '对某件事特别专注，能钻得很深':['deep','steady','tech','clear']
+  },
+  'keep_trait':{
+    '敏锐——对人和事的直觉':['sharp','clear','deep','strong'],
+    '锋利——不圆滑，不假装认同':['sharp','indie','strong','cold'],
+    '松弛——不焦虑，有自己的节奏':['light','calm','free','simple'],
+    '好奇——对新鲜事持续上头':['new','motion','hot','curious'],
+    '稳定——承诺了就会做到':['steady','honest','strong','practical'],
+    '反叛——不喜欢被定义':['indie','sharp','strong','free']
+  },
+  'interest_type':{
+    '音乐、影像、演出、亚文化':['art','hot','urban','indie'],
+    '运动、户外、身体与冒险':['motion','wild','strong','hot'],
+    '技术、产品、系统与效率':['tech','clear','steady','practical'],
+    '设计、 fashion、视觉与空间':['craft','urban','sharp','clear'],
+    '人、社交、关系与观察':['deep','gentle','clear','hot']
+  },
+  'decision_style':{
+    '数据和事实，尽量减少感性干扰':['tech','clear','practical','steady'],
+    '第一直觉，信自己的第一反应':['sharp','hot','indie','strong'],
+    '和信任的人聊完，再拍板':['honest','warm','steady','clear'],
+    '算长期收益，选更稳的那条路':['steady','practical','deep','clear'],
+    '先干起来，边做边调整':['motion','new','practical','hot']
+  },
+  'relationship_mode':{
+    '慢热型，需要很久才真正信任':['cold','quiet','deep','steady'],
+    '独立型，太近会喘不过气':['indie','cold','distant','clear'],
+    '直接型，有问题就摊开了说':['sharp','honest','clear','hot'],
+    '照顾型，习惯把别人安顿好':['warm','steady','gentle','strong'],
+    '共振型，需要被理解而不是被解决':['deep','gentle','clear','quiet']
+  },
+  'disliked_state':{
+    '被别人的期待绑架，做不真实的自己':['indie','strong','clear','sharp'],
+    '陷入重复和无聊，看不到变化':['new','motion','hot','indie'],
+    '情绪被牵着走，没法冷静判断':['clear','steady','cold','deep'],
+    '说了违心的话，或者保持沉默':['honest','sharp','strong','indie'],
+    '生活节奏失控，事情堆成一团':['steady','clear','practical','simple']
+  },
+  'current_state':{
+    '正在重建自己的生活秩序':['steady','new','clear','practical'],
+    '表面稳定，内在正在换系统':['deep','new','cold','steady'],
+    '比过去更清楚自己要什么':['clear','strong','indie','steady'],
+    '刚从一个阶段走出来，还在适应':['new','calm','light','practical'],
+    '感觉下一步会很大，但还没动':['deep','hot','motion','new']
+  },
+  'name_expectation':{
+    '冷——干净、克制、有距离感':['cold','simple','clear','distant'],
+    '热——直接、有感染力、不藏着':['hot','bright','strong','clear'],
+    '锐——利落、有棱角、不好惹':['sharp','strong','clear','cold'],
+    '稳——沉着、可信、压得住':['steady','deep','strong','clear'],
+    '轻——简单、顺口、不费劲':['light','simple','clear','gentle']
+  }
+};
+
+// ===================== STATE =====================
+
+var state = {
+  step:'home',
+  preferences:{
+    nameLength:'flexible',
+    surnameMode:'random',
+    surname:'',
+    genderTone:'open',
+    stylePreference:'balanced',
+    userGoal:'curiosity'
+  },
+  answers:[],
+  currentQuestion:0,
+  selectedOptions:[],
+  profile:null,
+  names:[],
+  selectedNameIndex:-1,
+  posterTemplate:'A',
+  posterOptions:{
+    showKeywords:true,
+    showPortrait:false,
+    bgColor:'#FFFFFF',
+    declIndex:0
+  },
+  nameFeedback:{},
+  regenerateCount:0
+};
+
+// ===================== RENDER =====================
+
+function render(){
+  var app = document.getElementById('app');
+  var html = '';
+  switch(state.step){
+    case 'home': html = renderHome(); break;
+    case 'settings': html = renderSettings(); break;
+    case 'quiz': html = renderQuiz(); break;
+    case 'thinking': html = renderThinking(); break;
+    case 'profile': html = renderProfile(); break;
+    case 'gashapon': html = renderGashapon(); break;
+    case 'names': html = renderNames(); break;
+    case 'result': html = renderResult(); break;
+  }
+  app.innerHTML = '<div class="page active" id="page-'+state.step+'">'+html+'</div>';
+  attachEvents();
+}
+
+// ---- HOME ----
+function renderHome(){
+  return '<div class="home-wrap">'+
+    '<svg class="home-icon" viewBox="0 0 64 64" fill="none" stroke="#9A6A4F" stroke-width="1.5">'+
+      '<circle cx="32" cy="32" r="28" stroke-dasharray="4 3" opacity="0.4"/>'+
+      '<path d="M22 28 L22 42 M22 28 Q32 20 42 28 L42 42" />'+
+      '<line x1="22" y1="42" x2="42" y2="42"/>'+
+      '<circle cx="32" cy="35" r="3" fill="#9A6A4F" stroke="none" opacity="0.6"/>'+
+    '</svg>'+
+    '<div class="home-brand">'+
+      '<div class="home-en">Namself</div>'+
+      '<h1 class="home-title">自名得意</h1>'+
+      '<p class="home-slogan">取一个更像你的名字</p>'+
+    '</div>'+
+    '<p class="home-sub">通过 10 个轻松的问题，AI 会从你的兴趣、审美、偏好和价值观里，<br>提炼一个可以代表你的中文名字。</p>'+
+    '<button class="btn-primary" id="btn-start">开始命名</button>'+
+    '<div class="home-aux">'+
+      '<a id="aux-quiz">开始 10 题测试</a>'+
+      '<a id="aux-examples">先看看名字示例</a>'+
+    '</div>'+
+    '<p class="home-note">无需输入真实姓名 · 全部选择题 · 3-5 分钟</p>'+
+  '</div>'+
+  '<div class="examples-modal" id="examples-modal">'+
+    '<div class="examples-content">'+
+      '<span class="examples-close" id="examples-close">&times;</span>'+
+      '<h3 class="examples-title">名字示例</h3>'+
+      '<div class="examples-list">'+
+        '<div class="example-item"><div class="example-name">张璇</div><div class="example-pinyin">zhāng xuán</div><div class="example-explain">"璇"为美玉星光，干净而有辨识度，适合偏自然清爽的气质。</div></div>'+
+        '<div class="example-item"><div class="example-name">周予安</div><div class="example-pinyin">zhōu yǔ ān</div><div class="example-explain">"予"有给予和善意，"安"是安定安稳，适合稳重安静的人。</div></div>'+
+        '<div class="example-item"><div class="example-name">林知夏</div><div class="example-pinyin">lín zhī xià</div><div class="example-explain">"知"是明白和清醒，"夏"对应明亮和温度，适合独立而温暖的人。</div></div>'+
+        '<div class="example-item"><div class="example-name">陈若宁</div><div class="example-pinyin">chén ruò níng</div><div class="example-explain">"若"有柔和自然感，"宁"是安宁平静，适合偏安静克制的气质。</div></div>'+
+        '<div class="example-item"><div class="example-name">顾思宁</div><div class="example-pinyin">gù sī níng</div><div class="example-explain">"思"是思想和深度，"宁"是安定从容，适合独立克制的人。</div></div>'+
+      '</div>'+
+    '</div>'+
+  '</div>';
+}
+
+// ---- SETTINGS ----
+function renderSettings(){
+  var p = state.preferences;
+  function capsules(key, opts){
+    return opts.map(function(o){
+      var val = typeof o === 'string' ? o : o.value;
+      var label = typeof o === 'string' ? o : o.label;
+      var sel = p[key]===val ? ' selected' : '';
+      return '<button class="capsule'+sel+'" data-setting="'+key+'" data-value="'+val+'">'+label+'</button>';
+    }).join('');
+  }
+  var surnameInputShow = (p.surnameMode==='maternal'||p.surnameMode==='paternal'||p.surnameMode==='custom') ? ' show' : '';
+  var surnamePlaceholder = p.surnameMode==='maternal' ? '输入母姓（1个汉字）' : (p.surnameMode==='paternal' ? '输入父姓（1个汉字）' : '输入自定义姓氏（1-2字）');
+
+  return '<div class="settings-title">开始前的小设定</div>'+
+    '<p class="settings-sub">这些设置帮助 AI 更好地为你命名</p>'+
+
+    '<div class="setting-group">'+
+      '<div class="setting-label">名字长度</div>'+
+      '<div class="setting-options">'+capsules('nameLength',[
+        {value:'two_chars',label:'2 字'},
+        {value:'three_chars',label:'3 字'},
+        {value:'flexible',label:'都可以'}
+      ])+'</div>'+
+    '</div>'+
+
+    '<div class="setting-group">'+
+      '<div class="setting-label">姓氏设置</div>'+
+      '<div class="setting-options">'+capsules('surnameMode',[
+        {value:'maternal',label:'随母姓'},
+        {value:'paternal',label:'随父姓'},
+        {value:'custom',label:'自定义'},
+        {value:'given_name_only',label:'只生成名'},
+        {value:'random',label:'随机'}
+      ])+'</div>'+
+      '<div class="surname-input-wrap'+surnameInputShow+'">'+
+        '<input type="text" class="surname-input" id="surname-input" placeholder="'+surnamePlaceholder+'" value="'+p.surname+'">'+
+      '</div>'+
+    '</div>'+
+
+    '<div class="setting-group">'+
+      '<div class="setting-label">风格倾向</div>'+
+      '<div class="setting-options">'+capsules('stylePreference',[
+        {value:'realistic',label:'真实一点'},
+        {value:'expressive',label:'表达感强一点'},
+        {value:'balanced',label:'平衡'}
+      ])+'</div>'+
+    '</div>'+
+
+    '<div class="setting-group">'+
+      '<div class="setting-label">使用场景</div>'+
+      '<div class="setting-options">'+capsules('userGoal',[
+        {value:'social_handle',label:'社交账号'},
+        {value:'creator_identity',label:'创作身份'},
+        {value:'private_identity',label:'私人自我认同'},
+        {value:'curiosity',label:'只是好奇测试'}
+      ])+'</div>'+
+    '</div>'+
+
+    '<div class="setting-group">'+
+      '<div class="setting-label">性别感</div>'+
+      '<div class="setting-options">'+capsules('genderTone',[
+        {value:'feminine',label:'偏女性'},
+        {value:'masculine',label:'偏男性'},
+        {value:'neutral',label:'中性'},
+        {value:'open',label:'不设限'}
+      ])+'</div>'+
+    '</div>'+
+
+    '<div class="settings-actions">'+
+      '<button class="btn-secondary" id="btn-back-home">返回</button>'+
+      '<button class="btn-next" id="btn-start-quiz">开始 10 题测试</button>'+
+    '</div>'+
+    '<p class="privacy-note">隐私提示：无需输入真实姓名、手机号、住址等隐私信息。姓氏输入只收集 1-2 个汉字。问卷均为选择题，不要求讲述私人经历。默认不公开、不保存。</p>';
+}
+
+// ---- QUIZ ----
+function renderQuiz(){
+  var idx = state.currentQuestion;
+  var q = QUESTIONS[idx];
+  var progress = ((idx) / QUESTIONS.length * 100);
+  var selected = state.selectedOptions[idx] || [];
+
+  var optsHtml = q.options.map(function(opt, i){
+    var sel = selected.indexOf(i) >= 0 ? ' selected' : '';
+    return '<button class="quiz-option'+sel+'" data-option="'+i+'">'+opt+'</button>';
+  }).join('');
+
+  var hint = selected.length >= 2 ? '最多选择 2 项' : (selected.length === 1 ? '可选 1 项，也可继续选 1 项' : '可以选择 1-2 项');
+
+  return '<div class="quiz-progress">'+
+      '<div class="quiz-progress-num">第 '+(idx+1)+' / '+QUESTIONS.length+' 个问题</div>'+
+      '<div class="quiz-bar"><div class="quiz-bar-fill" style="width:'+progress+'%"></div></div>'+
+    '</div>'+
+    '<div class="quiz-guide">'+q.guide+'</div>'+
+    '<div class="quiz-question">'+q.q+'</div>'+
+    '<div class="quiz-hint">'+hint+'</div>'+
+    '<div class="quiz-options">'+optsHtml+'</div>'+
+    '<div class="quiz-skip" id="quiz-skip">都不太像</div>'+
+    '<div class="quiz-nav">'+
+      (idx > 0 ? '<button class="quiz-back" id="quiz-back">← 上一题</button>' : '<span></span>')+
+      '<button class="btn-primary" id="quiz-next" style="padding:10px 32px;font-size:14px;'+(selected.length===0?'opacity:.4;pointer-events:none':'')+'">下一题</button>'+
+    '</div>';
+}
+
+// ---- THINKING ----
+function renderThinking(){
+  return '<div class="thinking-wrap">'+
+    '<div class="thinking-dots">'+
+      '<div class="thinking-dot"></div>'+
+      '<div class="thinking-dot"></div>'+
+      '<div class="thinking-dot"></div>'+
+    '</div>'+
+    '<div class="thinking-text" id="thinking-text">'+THINKING_MSGS[0]+'</div>'+
+  '</div>';
+}
+
+// ---- PROFILE ----
+function renderProfile(){
+  var p = state.profile;
+  return '<div class="profile-header">'+
+      '<div class="profile-title">这是 AI 看到的你</div>'+
+      '<div class="profile-sub">人格画像</div>'+
+    '</div>'+
+    '<div class="profile-portrait" id="profile-portrait">'+getPortraitSVG()+'</div>'+
+    '<div class="profile-section">'+
+      '<div class="profile-section-title">核心气质</div>'+
+      '<div class="profile-section-text">'+p.coreTemperament+'</div>'+
+    '</div>'+
+    '<div class="profile-section">'+
+      '<div class="profile-section-title">内在张力</div>'+
+      '<div class="profile-section-text">'+p.innerTension+'</div>'+
+    '</div>'+
+    '<div class="profile-section">'+
+      '<div class="profile-section-title">审美倾向</div>'+
+      '<div class="profile-section-text">'+p.aestheticPreference+'</div>'+
+    '</div>'+
+    '<div class="profile-section">'+
+      '<div class="profile-section-title">命名方向</div>'+
+      '<div class="profile-section-text">'+p.namingDirection+'</div>'+
+    '</div>'+
+    '<div class="profile-feedback">'+
+      '<div class="profile-feedback-label">这个画像像我吗？</div>'+
+      '<div class="feedback-btns">'+
+        '<button class="feedback-btn" data-profile-fb="很像">很像</button>'+
+        '<button class="feedback-btn" data-profile-fb="有一点像">有一点像</button>'+
+        '<button class="feedback-btn" data-profile-fb="不太像">不太像</button>'+
+      '</div>'+
+    '</div>'+
+    '<div class="profile-actions">'+
+      '<button class="btn-primary" id="btn-gashapon">抽取我的名字</button>'+
+    '</div>';
+}
+
+// ---- GASHAPON ----
+function renderGashapon(){
+  return '<div class="gashapon-wrap">'+
+    '<div class="gashapon-machine" id="gashapon-machine">'+
+      '<div class="gashapon-dome">'+
+        '<div class="gashapon-capsule" id="gashapon-capsule">'+
+          '<div class="gashapon-capsule-top"></div>'+
+          '<div class="gashapon-capsule-bottom"></div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="gashapon-body"></div>'+
+      '<div class="gashapon-base"></div>'+
+    '</div>'+
+    '<div class="gashapon-reveal" id="gashapon-reveal"></div>'+
+    '<div class="gashapon-reveal-pinyin" id="gashapon-pinyin"></div>'+
+    '<div class="gashapon-hint" id="gashapon-hint">正在把你的答案折成名字...</div>'+
+    '<div class="gashapon-count" id="gashapon-count"></div>'+
+    '<button class="btn-primary" id="btn-view-names" style="display:none;margin-top:24px">查看全部名字</button>'+
+  '</div>';
+}
+
+// ---- NAMES ----
+function renderNames(){
+  var cardsHtml = state.names.map(function(n, i){
+    var tagsHtml = n.keywords.map(function(k){return '<span class="name-tag">'+k+'</span>';}).join('');
+    var usageHtml = n.usage.map(function(u){return '<span>'+u+'</span>';}).join('');
+    var fbHtml = ['喜欢这个方向','太软了','太像真名','不够特别'].map(function(fb){
+      var active = (state.nameFeedback[i]===fb) ? ' active' : '';
+      return '<button class="fb-btn'+active+'" data-name-fb="'+i+'" data-fb="'+fb+'">'+fb+'</button>';
+    }).join('');
+    var selected = state.selectedNameIndex === i;
+    var selectLabel = selected ? '已认领 ✓' : '选定这个名字';
+
+    return '<div class="name-card">'+
+      '<div class="name-card-name">'+n.name+'</div>'+
+      '<div class="name-card-pinyin">'+n.pinyin+'</div>'+
+      '<div class="name-card-line">'+n.oneLine+'</div>'+
+      '<div class="name-card-explain">'+n.explanation+'</div>'+
+      '<div class="name-card-tags">'+tagsHtml+'</div>'+
+      '<div class="name-card-usage">'+usageHtml+'</div>'+
+      '<div class="name-card-feedback">'+fbHtml+'</div>'+
+      '<button class="name-card-select'+(selected?' selected':'')+'" data-select-name="'+i+'">'+selectLabel+'</button>'+
+    '</div>';
+  }).join('');
+
+  return '<div class="names-header">'+
+      '<div class="names-title">你的候选名字</div>'+
+      '<div class="names-sub">4 个名字已抽取完成</div>'+
+    '</div>'+
+    cardsHtml+
+    '<div class="names-actions">'+
+      '<div class="regenerate-options">'+
+        '<button class="capsule" id="regen-default">再生成一组</button>'+
+        '<button class="capsule" data-regen="realistic">稍微真实一点</button>'+
+        '<button class="capsule" data-regen="expressive">更有表达感一点</button>'+
+        '<button class="capsule" data-regen="neutral">更中性一点</button>'+
+        '<button class="capsule" data-regen="gentle">更松弛一点</button>'+
+        '<button class="capsule" data-regen="sharp">更锋利一点</button>'+
+      '</div>'+
+    '</div>';
+}
+
+// ---- RESULT ----
+function renderResult(){
+  var n = state.names[state.selectedNameIndex];
+  var po = state.posterOptions;
+  var today = new Date();
+  var dateStr = today.getFullYear()+' / '+String(today.getMonth()+1).padStart(2,'0')+' / '+String(today.getDate()).padStart(2,'0');
+
+  var decls = n.posterLines || [n.oneLine];
+  var currentDecl = decls[po.declIndex % decls.length];
+  var tagsHtml = n.keywords.map(function(k){return '<span class="poster-keyword">'+k+'</span>';}).join('');
+
+  var stripTone = function(py){
+    var map = {'ā':'a','á':'a','ǎ':'a','à':'a','ē':'e','é':'e','ě':'e','è':'e','ī':'i','í':'i','ǐ':'i','ì':'i','ō':'o','ó':'o','ǒ':'o','ò':'o','ū':'u','ú':'u','ǔ':'u','ù':'u','ǖ':'v','ǘ':'v','ǚ':'v','ǜ':'v'};
+    return py.replace(/[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ]/g, function(m){ return map[m] || m; });
+  };
+  var posterPinyin = n.pinyin.split(' ').map(function(p){ return stripTone(p).toUpperCase(); }).join(' / ');
+
+  var starSvg = '<svg class="poster-decoration poster-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2 L13 10 L21 12 L13 14 L12 22 L11 14 L3 12 L11 10 Z"/></svg>';
+  var smileSvg = '<svg class="poster-decoration poster-smile" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M8 14c1.5 1.5 6.5 1.5 8 0"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="15" cy="9" r="1" fill="currentColor"/></svg>';
+  var topIconSvg = '<svg class="poster-top-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>';
+  var barcodeSvg = '<svg class="poster-decoration poster-barcode" viewBox="0 0 80 28" fill="currentColor"><rect x="0" y="0" width="2" height="28"/><rect x="6" y="0" width="1" height="28"/><rect x="11" y="0" width="3" height="28"/><rect x="18" y="0" width="1" height="28"/><rect x="23" y="0" width="2" height="28"/><rect x="29" y="0" width="1" height="28"/><rect x="34" y="0" width="4" height="28"/><rect x="42" y="0" width="1" height="28"/><rect x="47" y="0" width="2" height="28"/><rect x="53" y="0" width="1" height="28"/><rect x="58" y="0" width="3" height="28"/><rect x="65" y="0" width="1" height="28"/><rect x="70" y="0" width="2" height="28"/></svg>';
+
+  function posterTop(){
+    return '<div class="poster-top">'+
+      '<div class="poster-top-left">'+
+        '<div class="poster-top-label">Namself</div>'+
+        '<div class="poster-top-meta">'+dateStr+'</div>'+
+      '</div>'+
+      topIconSvg+
+    '</div>';
+  }
+  function posterKeywords(){ return (po.showKeywords ? '<div class="poster-keywords-label">关键词</div><div class="poster-keywords">'+tagsHtml+'</div>' : ''); }
+  function posterBottom(){ return '<div class="poster-bottom"><div class="poster-bottom-brand"><span>自名得意 · Namself</span><span class="poster-bottom-slogan">取一个更像你的名字</span></div><div class="poster-bottom-arrow"></div></div>'; }
+
+  var posterHtml = '';
+  if(state.posterTemplate === 'A'){
+    var waveSvg = '<svg class="poster-decoration poster-wave wave" viewBox="0 0 70 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 10 Q18 2 35 10 T68 10"/><path d="M2 14 Q18 6 35 14 T68 14" opacity="0.5"/></svg>';
+    var sparkleSvg = '<svg class="poster-decoration poster-sparkle sparkle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2 L13 9 L20 12 L13 15 L12 22 L11 15 L4 12 L11 9 Z"/><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/></svg>';
+    posterHtml = '<div class="poster-card poster-a" id="poster-content">'+
+      '<div class="poster-a-highlight"></div>'+
+      '<div class="poster-a-blob b1"></div>'+
+      '<div class="poster-a-blob b2"></div>'+
+      posterTop()+
+      sparkleSvg.replace('class="poster-decoration poster-sparkle sparkle"','class="poster-decoration poster-sparkle sparkle-1"')+
+      '<div class="poster-name">'+n.name+'</div>'+
+      '<div class="poster-pinyin">'+posterPinyin+'</div>'+
+      '<div class="poster-decl">'+currentDecl+'</div>'+
+      posterKeywords()+
+      posterBottom()+
+      sparkleSvg.replace('class="poster-decoration poster-sparkle sparkle"','class="poster-decoration poster-sparkle sparkle-2"')+
+      waveSvg+
+    '</div>';
+  } else if(state.posterTemplate === 'B'){
+    posterHtml = '<div class="poster-card poster-b" id="poster-content" style="background:'+po.bgColor+'">'+
+      '<div class="poster-b-ring"></div>'+
+      posterTop()+
+      '<div class="poster-name">'+n.name+'</div>'+
+      '<div class="poster-pinyin">'+posterPinyin+'</div>'+
+      '<div class="poster-decl">'+currentDecl+'</div>'+
+      posterKeywords()+
+      '<div class="poster-b-line"></div>'+
+      posterBottom()+
+    '</div>';
+  } else if(state.posterTemplate === 'C'){
+    posterHtml = '<div class="poster-card poster-c" id="poster-content">'+
+      '<div class="poster-c-grid"></div>'+
+      '<div class="poster-c-geo tri-1"></div>'+
+      '<div class="poster-c-geo tri-2"></div>'+
+      '<div class="poster-c-geo circle-1"></div>'+
+      posterTop()+
+      '<div class="poster-name">'+n.name+'</div>'+
+      '<div class="poster-pinyin">'+posterPinyin+'</div>'+
+      '<div class="poster-decl">'+currentDecl+'</div>'+
+      posterKeywords()+
+      barcodeSvg+
+      posterBottom()+
+    '</div>';
+  } else if(state.posterTemplate === 'D'){
+    var mountainSvg = '<div class="poster-d-mountain"><svg viewBox="0 0 360 90" preserveAspectRatio="none" fill="#2B2622"><path d="M0 90 L0 70 Q40 40 80 60 T160 50 T240 65 T320 45 L360 70 L360 90 Z"/></svg></div>';
+    posterHtml = '<div class="poster-card poster-d" id="poster-content">'+
+      posterTop()+
+      '<div class="poster-d-vertical">自名得意</div>'+
+      '<div class="poster-name">'+n.name+'</div>'+
+      '<div class="poster-pinyin">'+posterPinyin+'</div>'+
+      '<div class="poster-decl">'+currentDecl+'</div>'+
+      posterKeywords()+
+      posterBottom()+
+      '<div class="poster-d-seal">为<br>我</div>'+
+      mountainSvg+
+    '</div>';
+  } else if(state.posterTemplate === 'E'){
+    posterHtml = '<div class="poster-card poster-e" id="poster-content">'+
+      '<div class="poster-e-grid"></div>'+
+      '<div class="poster-e-rect r1"></div>'+
+      '<div class="poster-e-rect r2"></div>'+
+      posterTop()+
+      '<div class="poster-name">'+n.name+'</div>'+
+      '<div class="poster-pinyin">'+posterPinyin+'</div>'+
+      '<div class="poster-e-block"><div class="poster-decl">'+currentDecl+'</div></div>'+
+      posterKeywords()+
+      posterBottom()+
+    '</div>';
+  }
+
+  var declBtns = decls.map(function(d, i){
+    var sel = (i === po.declIndex % decls.length) ? ' selected' : '';
+    return '<button class="poster-decl-btn'+sel+'" data-decl="'+i+'">'+d+'</button>';
+  }).join('');
+
+  return '<div class="result-header">'+
+      '<div class="result-title">你的名字</div>'+
+      '<div class="result-sub">选定后可以保存海报</div>'+
+    '</div>'+
+    '<div class="poster-container">'+posterHtml+'</div>'+
+
+    '<div class="poster-controls">'+
+      '<div class="poster-controls-title">海报模板</div>'+
+      '<div class="poster-templates">'+
+        '<button class="poster-tpl-btn'+(state.posterTemplate==='A'?' selected':'')+'" data-tpl="A">唯美风</button>'+
+        '<button class="poster-tpl-btn'+(state.posterTemplate==='B'?' selected':'')+'" data-tpl="B">简约风</button>'+
+        '<button class="poster-tpl-btn'+(state.posterTemplate==='C'?' selected':'')+'" data-tpl="C">酷炫风</button>'+
+        '<button class="poster-tpl-btn'+(state.posterTemplate==='D'?' selected':'')+'" data-tpl="D">古典风</button>'+
+        '<button class="poster-tpl-btn'+(state.posterTemplate==='E'?' selected':'')+'" data-tpl="E">中性风</button>'+
+      '</div>'+
+    '</div>'+
+
+    '<div class="poster-controls">'+
+      '<div class="poster-controls-title">背景色</div>'+
+      '<div class="poster-bg-colors">'+
+        BG_COLORS.map(function(c){
+          var sel = po.bgColor===c.value ? ' selected' : '';
+          return '<div class="poster-bg-color'+sel+'" data-bg="'+c.value+'" style="background:'+c.value+';border:1px solid var(--line)" title="'+c.name+'"></div>';
+        }).join('')+
+      '</div>'+
+    '</div>'+
+
+    '<div class="poster-controls">'+
+      '<div class="poster-controls-title">命名宣言</div>'+
+      '<div class="poster-decls">'+declBtns+'</div>'+
+    '</div>'+
+
+    '<div class="poster-controls">'+
+      '<div class="poster-controls-title">显示选项</div>'+
+      '<div class="poster-toggles">'+
+        '<div class="poster-toggle">显示关键词<div class="toggle-switch'+(po.showKeywords?' on':'')+'" id="toggle-keywords"></div></div>'+
+      '</div>'+
+    '</div>'+
+
+    '<div class="result-actions">'+
+      '<button class="btn-secondary" id="btn-save-poster">保存海报</button>'+
+      '<button class="btn-secondary" id="btn-regenerate-decl">再生成一句</button>'+
+      '<button class="btn-secondary" id="btn-back-names">换个名字</button>'+
+    '</div>'+
+
+    '<p class="result-bottom-note">这个名字不是答案，而是你此刻愿意认领的一部分自己。</p>';
+}
+
+// ===================== LOGIC =====================
+
+function collectThemes(answers){
+  var themeCount = {};
+  answers.forEach(function(ans){
+    var mapping = ANSWER_THEMES[ans.questionId];
+    if(mapping && mapping[ans.answer]){
+      mapping[ans.answer].forEach(function(t){
+        themeCount[t] = (themeCount[t]||0) + 1;
+      });
+    }
+  });
+  return themeCount;
+}
+
+function generateProfile(answers, prefs){
+  var themes = collectThemes(answers);
+  var topThemes = Object.keys(themes).sort(function(a,b){return themes[b]-themes[a];}).slice(0,6);
+
+  // Get specific answers for referencing
+  var a1 = getAnswer(answers, 'aesthetic_scene');
+  var a2 = getAnswer(answers, 'alone_mode');
+  var a3 = getAnswer(answers, 'admired_quality');
+  var a4 = getAnswer(answers, 'keep_trait');
+  var a5 = getAnswer(answers, 'interest_type');
+  var a6 = getAnswer(answers, 'decision_style');
+  var a7 = getAnswer(answers, 'relationship_mode');
+  var a8 = getAnswer(answers, 'disliked_state');
+  var a9 = getAnswer(answers, 'current_state');
+  var a10 = getAnswer(answers, 'name_expectation');
+
+  // Core temperament - cooler, more direct, with personal tags
+  var ct = '';
+  if((themes['cold'] || themes['clear']) && themes['indie']){
+    ct = '你是一个不太热衷解释自己的人。选择"'+a3+'"和保留"'+a4+'"说明，你更在意边界感和内在秩序。你不怕冷场，也不怕被误解，你的安静里有一种自洽的锋利。';
+  } else if(themes['sharp'] && themes['strong']){
+    ct = '你身上有明确的棱角。欣赏"'+a3+'"、想保留"'+a4+'"的你，不是温顺型的人。你习惯"'+a6+'"，这意味着你的判断来自内部，而不是外部声音。名字不适合太软，要有一定的锐度。';
+  } else if(themes['steady'] && themes['deep']){
+    ct = '你是一个沉得住气的人。欣赏"'+a3+'"、选择"'+a4+'"说明你看重长期价值。你不喜欢被情绪带着走，做决定时更依赖"'+a6+'"。你的名字应该像一块压得住的东西。';
+  } else if((themes['hot'] || themes['motion']) && themes['strong']){
+    ct = '你是行动型的人。选择"'+a4+'"说明你不想被卡住，而"'+a6+'"也表明你习惯先动起来。你有能量，也有主见，名字应该有向前的感觉，但不能显得浮躁。';
+  } else if(themes['simple'] && themes['clear']){
+    ct = '你喜欢把复杂的事情变简单。选择"'+a4+'"和"'+a6+'"说明你看重效率和真实，不喜欢绕弯子。你的名字也应该利落、不堆叠，看一眼就记得住。';
+  } else {
+    ct = '你欣赏"'+a3+'"的人，也想保留"'+a4+'"。这两个选择勾勒出一个有内在标准的人——你不追求被所有人喜欢，但你在意自己是否真实。名字不需要讨好谁，它只需要像你。';
+  }
+
+  // Inner tension
+  var it = '';
+  if(themes['indie'] && (themes['steady'] || themes['deep'])){
+    it = '你想独立，但也想稳。关系里你更像"'+a7+'"，这说明边界感对你很重要。你讨厌"'+a8+'"，所以名字不能把你框死，它应该保留一点"不被定义"的空间。';
+  } else if(themes['new'] && themes['deep']){
+    it = '你现在"'+a9+'"，内在正在换系统。你想保留"'+a4+'"，但也在远离"'+a8+'"。名字可以承载这种"正在成型"的状态——不是过去式，也不是完成式。';
+  } else if((themes['cold'] || themes['quiet']) && (themes['hot'] || themes['bright'])){
+    it = '你身上有冷热交替的张力。"'+a1+'"和"'+a10+'"说明你想要距离感，但也不想太冷。名字要在冷热之间找到平衡：克制，但不僵硬。';
+  } else {
+    it = '你选择保留"'+a4+'"，同时排斥"'+a8+'"。这说明你在意的不是标签，而是内在的平衡感。一个适合你的名字，应该让你在被叫到时觉得：嗯，这确实是我。';
+  }
+
+  // Aesthetic preference
+  var ap = '';
+  if((themes['urban'] || themes['craft']) && themes['indie']){
+    ap = '你被"'+a1+'"吸引，独处时常选择"'+a2+'"。你的审美有都市感和手工感，不甜不腻，也不追流行。名字可以从有态度的常用字里取，别太文艺，要耐读。';
+  } else if(themes['wild'] || themes['motion']){
+    ap = '你喜欢"'+a1+'"和"'+a2+'"。你的审美偏向开阔和行动，不喜欢被困住。名字应该利落、有方向感，像能走出去的字。';
+  } else if(themes['tech'] || themes['simple']){
+    ap = '你被"'+a1+'"吸引，喜欢"'+a2+'"。你要的是干净和秩序，名字也要简单直接，不堆叠、不矫情。"'+a5+'"是你长期会投入的方向，名字可以和这种清晰感共振。';
+  } else if(themes['art'] || themes['craft']){
+    ap = '你选择"'+a1+'"和"'+a2+'"，长期兴趣是"'+a5+'"。你的审美有质感和细节，不追求夸张，但在意辨识度。名字应该耐读，有余味，但不需要解释太多。';
+  } else {
+    ap = '你选择"'+a1+'"，独处时喜欢"'+a2+'"。你的审美不是戏剧性的，而是干净、稳定、有个人气场的。名字不适合太华丽，它应该顺口、自然，但比常见名字多一点辨识度。';
+  }
+
+  // Naming direction
+  var nd = '';
+  if(a10 === '冷——干净、克制、有距离感'){
+    nd = '你希望名字"冷"。结合"'+a4+'"的气质，名字要干净、克制，不解释太多。优先选用冷感、简洁、有空间的字，避免热闹和甜腻。';
+  } else if(a10 === '热——直接、有感染力、不藏着'){
+    nd = '你希望名字"热"。名字应该有能量感，像"'+a1+'"给人的视觉冲击。用明亮、有力的字，但避免过度张扬，要热得有控制。';
+  } else if(a10 === '锐——利落、有棱角、不好惹'){
+    nd = '你希望名字"锐"。名字要利落、有辨识度，最好带一点锋芒。含义上和"'+a4+'"呼应，让人一听就觉得这不是一个随便的名字。';
+  } else if(a10 === '稳——沉着、可信、压得住'){
+    nd = '你希望名字"稳"。名字要沉着、可信，能压住场面。结合你"'+a6+'"的决策方式，它应该像一种长期有效的判断。';
+  } else {
+    nd = '你希望名字"轻"。它应该简单、顺口、不费劲，像"'+a2+'"那种放松的状态。不需要太多含义叠加，读起来舒服、记得住就够了。';
+  }
+
+  return {
+    coreTemperament: ct,
+    innerTension: it,
+    aestheticPreference: ap,
+    namingDirection: nd
+  };
+}
+
+function getAnswer(answers, qid){
+  var found = answers.filter(function(a){return a.questionId === qid;});
+  return found.length > 0 ? found[0].answer : '';
+}
+
+function generateNames(profile, prefs, regenStyle){
+  var themes = collectThemes(state.answers);
+  var themeArr = Object.keys(themes).map(function(k){return {theme:k, count:themes[k]};});
+  themeArr.sort(function(a,b){return b.count - a.count;});
+  var topThemes = themeArr.slice(0,8).map(function(t){return t.theme;});
+
+  // Score characters with full attributes
+  var charArr = [];
+  for(var ch in CHARS){
+    if(!CHARS[ch]) continue;
+    var info = CHARS[ch];
+    var score = 0;
+    info.themes.forEach(function(t){
+      if(themes[t]) score += themes[t];
+    });
+    charArr.push({
+      char:ch, py:info.py, tone:info.tone, force:info.force, hard:info.hard,
+      rare:info.rare, temp:info.temp, daily:info.daily,
+      themes:info.themes, meaning:info.m, score:score
+    });
+  }
+  charArr.sort(function(a,b){return b.score - a.score;});
+
+  // Filter by gender tone
+  if(prefs.genderTone === 'feminine'){
+    charArr = charArr.filter(function(c){
+      return ['宁','安','浅','可','白','素','简','未','池','林','音','夏','南','清','之','也','亦','以','且','澄','澈','泊','书','影','格','原','轻','一'].indexOf(c.char) >= 0 || c.score > 0;
+    });
+  } else if(prefs.genderTone === 'masculine'){
+    charArr = charArr.filter(function(c){
+      return ['凛','朔','屹','峥','铮','燃','骁','驰','昱','昭','朗','阳','跃','锋','锐','砺','砥','峻','越','稳','定','岩','岳','厚','朴','淳','诚','信','恒','野','川','岭','漠','途','航','墨','创','序','秩','律','衡','准','析','策','深','笃','专','凝','潜','沉','远','北','冬'].indexOf(c.char) >= 0 || c.score > 0;
+    });
+  }
+
+  // Apply regen style adjustments
+  if(regenStyle === 'realistic'){
+    charArr = charArr.filter(function(c){return c.score >= 1;});
+  } else if(regenStyle === 'expressive'){
+    charArr = charArr.filter(function(c){return c.score >= 0;});
+    charArr.sort(function(a,b){return a.score - b.score + (Math.random()-0.5);});
+  } else if(regenStyle === 'gentle'){
+    charArr = charArr.filter(function(c){
+      return c.themes.some(function(t){return ['gentle','warm','calm','nature','water','simple','light'].indexOf(t)>=0;}) || c.score >= 1;
+    });
+  } else if(regenStyle === 'neutral'){
+    charArr = charArr.filter(function(c){
+      return c.themes.some(function(t){return ['calm','clear','quiet','simple','steady','light'].indexOf(t)>=0;}) || c.score >= 1;
+    });
+  } else if(regenStyle === 'sharp'){
+    charArr = charArr.filter(function(c){
+      return c.themes.some(function(t){return ['clear','strong','cold','sharp','hot','motion','indie'].indexOf(t)>=0;}) || c.score >= 1;
+    });
+  }
+
+  // Ensure enough characters with full attributes
+  if(charArr.length < 10){
+    charArr = Object.keys(CHARS).filter(function(c){return CHARS[c];}).map(function(c){
+      var info = CHARS[c];
+      return {
+        char:c, py:info.py, tone:info.tone, force:info.force, hard:info.hard,
+        rare:info.rare, temp:info.temp, daily:info.daily,
+        themes:info.themes, meaning:info.m, score:0
+      };
+    });
+  }
+
+  // Determine name structure
+  var useSurname = prefs.surnameMode !== 'given_name_only';
+  var surname = '';
+  if(prefs.surnameMode === 'maternal' || prefs.surnameMode === 'paternal' || prefs.surnameMode === 'custom'){
+    surname = prefs.surname || SURNAMES[Math.floor(Math.random()*SURNAMES.length)];
+  } else if(prefs.surnameMode === 'random'){
+    surname = SURNAMES[Math.floor(Math.random()*SURNAMES.length)];
+  }
+  var surnameProminent = isSurnameProminent(surname);
+
+  var nameCharCount;
+  if(prefs.nameLength === 'two_chars'){
+    nameCharCount = 1;
+  } else if(prefs.nameLength === 'three_chars'){
+    nameCharCount = 2;
+  } else {
+    // 名字长度都可以：生成 2 个 1 字名 + 2 个 2 字名
+    nameCharCount = [1, 1, 2, 2];
+  }
+
+  // Generate 4 names with different directions
+  var directions = ['daily','edge','real','core'];
+  var names = [];
+  var usedChars = {};
+  var usedNames = {};
+
+  for(var d = 0; d < 4; d++){
+    var direction = directions[d];
+    var currentNameCharCount = Array.isArray(nameCharCount) ? nameCharCount[d] : nameCharCount;
+    var pool = buildDirectionPool(charArr, direction, currentNameCharCount, surnameProminent);
+
+    // Find best character combination
+    var nameChars = findBestChars(pool, currentNameCharCount, usedChars, surnameProminent, direction);
+
+    if(!nameChars || nameChars.length < currentNameCharCount){
+      nameChars = fallbackPick(charArr, currentNameCharCount, usedChars);
+    }
+
+    // Mark used
+    nameChars.forEach(function(nc){
+      usedChars[nc.char] = (usedChars[nc.char]||0) + 1;
+    });
+
+    // Build name
+    var nameStr = (useSurname ? surname : '') + nameChars.map(function(nc){return nc.char;}).join('');
+    if(usedNames[nameStr]){
+      var altPool = charArr.filter(function(c){return !usedChars[c.char] || usedChars[c.char] < 2;});
+      if(altPool.length > 0){
+        var alt = altPool[Math.floor(Math.random()*altPool.length)];
+        nameChars[nameChars.length-1] = alt;
+        nameStr = (useSurname ? surname : '') + nameChars.map(function(nc){return nc.char;}).join('');
+      }
+    }
+    usedNames[nameStr] = true;
+
+    // Build pinyin
+    var surnamePy = useSurname ? getPinyin(surname) + ' ' : '';
+    var pinyin = surnamePy + nameChars.map(function(nc){return nc.py;}).join(' ');
+
+    // Generate one-liner and explanation
+    var oneLine = generateOneLiner(nameChars, themes, direction);
+    var explanation = generateExplanation(nameChars, state.answers, surname, direction);
+    var keywords = generateKeywords(nameChars, themes, direction);
+    var usage = generateUsage(prefs.userGoal, direction);
+    var posterLines = generatePosterLines(nameChars, themes, state.answers, direction);
+
+    names.push({
+      name: nameStr,
+      pinyin: pinyin.trim(),
+      oneLine: oneLine,
+      explanation: explanation,
+      keywords: keywords,
+      usage: usage,
+      posterLines: posterLines
+    });
+  }
+
+  return names;
+}
+
+// Build candidate pool by direction, with optional calm bias for prominent surnames
+function buildDirectionPool(charArr, direction, charCount, surnameProminent){
+  var pool = charArr.slice();
+  if(direction === 'daily'){
+    pool = pool.filter(function(c){return c.score >= 1 || c.daily >= 4;});
+  } else if(direction === 'edge'){
+    pool = pool.filter(function(c){
+      return c.themes.some(function(t){return ['sharp','cold','indie','hot','motion','urban'].indexOf(t)>=0;}) || c.score >= 1;
+    });
+  } else if(direction === 'real'){
+    pool = pool.filter(function(c){
+      return c.themes.some(function(t){return ['simple','steady','clear','calm','practical','honest'].indexOf(t)>=0;}) || c.score >= 1;
+    });
+  } else if(direction === 'core'){
+    pool = pool.filter(function(c){return c.score >= 2 || (c.force >= 3 && c.rare <= 3);});
+    if(pool.length < 5) pool = charArr.filter(function(c){return c.score >= 1;});
+  }
+  if(pool.length < 8) pool = charArr.slice();
+
+  // For three-char names with a prominent surname, favor calmer/more common name chars
+  if(charCount === 2 && surnameProminent){
+    pool.sort(function(a,b){
+      var calmA = a.score - (a.force + a.hard) * 0.4 - a.rare * 0.2 + a.daily * 0.3;
+      var calmB = b.score - (b.force + b.hard) * 0.4 - b.rare * 0.2 + b.daily * 0.3;
+      return calmB - calmA;
+    });
+  }
+  return pool;
+}
+
+// Pick a well-balanced combination by generating and scoring candidates
+function findBestChars(pool, count, usedChars, surnameProminent, direction){
+  if(pool.length < count) return null;
+  var candidates = [];
+  var maxAttempts = 300;
+
+  for(var attempt = 0; attempt < maxAttempts; attempt++){
+    var combo = [];
+    var localUsed = {};
+    var tries = 0;
+    while(combo.length < count && tries < 60){
+      tries++;
+      var idx = Math.floor(Math.random() * Math.min(pool.length, 45));
+      var cand = pool[idx];
+      if(!cand) continue;
+      if(usedChars[cand.char] && usedChars[cand.char] >= 2) continue;
+      if(localUsed[cand.char]) continue;
+      combo.push(cand);
+      localUsed[cand.char] = true;
+    }
+    if(combo.length < count) continue;
+
+    // Hard reject abrasive / double-hard / double-rare combinations
+    if(isAbrasive(combo) || isTooHard(combo) || isTooRare(combo)) continue;
+
+    var score = scoreCombination(combo, surnameProminent, direction);
+    // Base theme score
+    combo.forEach(function(c){ score += c.score * 0.6; });
+
+    candidates.push({chars:combo, score:score});
+  }
+
+  if(candidates.length === 0) return null;
+  candidates.sort(function(a,b){return b.score - a.score;});
+  // Pick from top 25% with slight randomness to avoid repetitiveness
+  var topCount = Math.max(1, Math.floor(candidates.length * 0.25));
+  var selected = candidates[Math.floor(Math.random() * topCount)];
+  return selected.chars;
+}
+
+function fallbackPick(charArr, count, usedChars){
+  var result = [];
+  var shuffled = charArr.slice().sort(function(){return Math.random()-0.5;});
+  for(var i = 0; i < shuffled.length && result.length < count; i++){
+    var c = shuffled[i];
+    if(usedChars[c.char] && usedChars[c.char] >= 2) continue;
+    if(result.some(function(r){return r.char === c.char;})) continue;
+    result.push(c);
+  }
+  return result;
+}
+
+function scoreCombination(chars, surnameProminent, direction){
+  var score = 0;
+  var n = chars.length;
+  if(n < 2) return score;
+
+  var functionWords = ['之','也','以','亦','且'];
+
+  // 1. Avoid double hardness / force / rarity
+  if(isTooHard(chars)) score -= 10;
+  if(isTooForceful(chars)) score -= 8;
+  if(isTooRare(chars)) score -= 12;
+
+  // 2. Avoid abrasive sound (similar initials/rhymes)
+  if(isAbrasive(chars)) score -= 8;
+
+  // 3. Tone pleasantness: prefer起伏, avoid continuous 去声/阴平
+  if(!isTonePleasant(chars)) score -= 6;
+  score += scoreTonePleasantness(chars) * 1.5;
+
+  // 4. Contrast pairing for two-char names: strong+soft, cold+warm, new+daily
+  if(n === 2){
+    var a = chars[0], b = chars[1];
+    // Strong + soft: hard difference
+    var hardDiff = a.hard - b.hard;
+    if(Math.abs(hardDiff) >= 2) score += 4;
+    else if(Math.abs(hardDiff) <= 1 && a.hard >= 3 && b.hard >= 3) score -= 4;
+    // Cold + warm
+    if(a.temp !== b.temp && a.temp !== 'neutral' && b.temp !== 'neutral') score += 3;
+    else if(a.temp === b.temp && a.temp !== 'neutral') score -= 2;
+    // Unique/new + daily/common
+    if((a.daily <= 2 && b.daily >= 4) || (a.daily >= 4 && b.daily <= 2)) score += 3;
+    // Force balance
+    if(Math.abs(a.force - b.force) >= 2) score += 2;
+    // Avoid both too weak or both too strong
+    if(a.force + b.force <= 2) score -= 1;
+    if(a.force + b.force >= 9) score -= 2;
+    // Avoid both too rare or both too daily-boring
+    if(a.rare >= 3 && b.rare >= 3) score -= 3;
+    // Function words at end of two-char name feel weak
+    if(functionWords.indexOf(b.char) >= 0) score -= 5;
+  }
+
+  // 5. For three-char names, if surname is prominent, name should be more steady
+  if(n === 2 && surnameProminent){
+    var avgForce = (chars[0].force + chars[1].force) / 2;
+    var avgHard = (chars[0].hard + chars[1].hard) / 2;
+    var avgRare = (chars[0].rare + chars[1].rare) / 2;
+    if(avgForce <= 2.0) score += 5;
+    if(avgHard <= 2.0) score += 5;
+    if(avgRare <= 2.0) score += 3;
+    if(avgForce > 3.0) score -= 6;
+    if(avgHard > 3.0) score -= 6;
+  }
+
+  // 6. Penalize function words in any position of three-char name (name chars only)
+  if(n === 2){
+    if(functionWords.indexOf(chars[0].char) >= 0) score -= 10;
+    if(functionWords.indexOf(chars[1].char) >= 0) score -= 10;
+  }
+
+  // 7. Avoid stacking same intense theme in the two name chars
+  if(n === 2){
+    var a = chars[0], b = chars[1];
+    ['cold','sharp','hot','strong','indie'].forEach(function(t){
+      if(a.themes.indexOf(t) >= 0 && b.themes.indexOf(t) >= 0) score -= 5;
+    });
+  }
+
+  // 8. Direction bonuses
+  if(direction === 'daily'){
+    chars.forEach(function(c){ if(c.daily >= 4) score += 1; });
+  } else if(direction === 'edge'){
+    chars.forEach(function(c){ if(c.hard >= 3 || c.force >= 3) score += 1; });
+  } else if(direction === 'real'){
+    chars.forEach(function(c){ if(c.force <= 3 && c.daily >= 3) score += 1; });
+  } else if(direction === 'core'){
+    chars.forEach(function(c){ if(c.force >= 3 && c.rare <= 3) score += 1; });
+  }
+
+  return score;
+}
+
+function isTooHard(chars){
+  if(chars.length < 2) return false;
+  var hardCount = 0;
+  chars.forEach(function(c){ if(c.hard >= 4) hardCount++; });
+  return hardCount >= 2;
+}
+
+function isTooForceful(chars){
+  if(chars.length < 2) return false;
+  var forceCount = 0;
+  chars.forEach(function(c){ if(c.force >= 4) forceCount++; });
+  return forceCount >= 2;
+}
+
+function isTooRare(chars){
+  if(chars.length < 2) return false;
+  var rareCount = 0;
+  chars.forEach(function(c){ if(c.rare >= 4) rareCount++; });
+  return rareCount >= 2;
+}
+
+function isTonePleasant(chars){
+  if(chars.length < 2) return true;
+  var tones = chars.map(function(c){ return c.tone; });
+  for(var i = 0; i < tones.length - 1; i++){
+    var t1 = tones[i], t2 = tones[i+1];
+    // 连续去声
+    if(t1 === 4 && t2 === 4) return false;
+    // 连续阴平
+    if(t1 === 1 && t2 === 1) return false;
+  }
+  return true;
+}
+
+function scoreTonePleasantness(chars){
+  var score = 0;
+  if(chars.length < 2) return 0;
+  var tones = chars.map(function(c){ return c.tone; });
+  for(var i = 0; i < tones.length - 1; i++){
+    var t1 = tones[i], t2 = tones[i+1];
+    // 平仄交替：1/2 平，3/4 仄
+    var flat1 = (t1 === 1 || t1 === 2);
+    var flat2 = (t2 === 1 || t2 === 2);
+    if(flat1 !== flat2) score += 2;
+    // 阳平 + 去声
+    if(t1 === 2 && t2 === 4) score += 1;
+    // 去声 + 阳平
+    if(t1 === 4 && t2 === 2) score += 1;
+    // 同调连续，额外扣分
+    if(t1 === t2) score -= 2;
+  }
+  return score;
+}
+
+function parsePinyin(py){
+  var initials = ['zh','ch','sh','ng','b','p','m','f','d','t','n','l','g','k','h','j','q','x','r','z','c','s','y','w'];
+  var sm = '', ym = '';
+  for(var i = 0; i < initials.length; i++){
+    if(py.indexOf(initials[i]) === 0){
+      sm = initials[i];
+      ym = py.substring(initials[i].length);
+      break;
+    }
+  }
+  if(!sm){
+    ym = py;
+  }
+  return {sm:sm, ym:normalizeRhyme(ym)};
+}
+
+function normalizeRhyme(ym){
+  return ym.replace(/[āáǎà]/g,'a').replace(/[ēéěè]/g,'e').replace(/[īíǐì]/g,'i')
+           .replace(/[ōóǒò]/g,'o').replace(/[ūúǔù]/g,'u').replace(/[ǖǘǚǜ]/g,'v');
+}
+
+function isAbrasive(chars){
+  if(chars.length < 2) return false;
+  var strongInitials = ['sh','x','zh','ch','r','q','c'];
+  var strongRhymes = ['ao','uo','ou','ang','eng','ong','iang','iong'];
+  var similarRhymeGroups = [
+    ['eng','en','ei'],['ing','in','i'],['ang','an','a'],['ong','un','ong'],
+    ['ao','o','ou'],['u','uo'],['e','eng','en'],['v','u']
+  ];
+  for(var i = 0; i < chars.length - 1; i++){
+    var a = parsePinyin(chars[i].py);
+    var b = parsePinyin(chars[i+1].py);
+    // Same initial (e.g., 深 + 书)
+    if(a.sm && a.sm === b.sm) return true;
+    // Same or very similar rhyme (e.g., 诚 + 澈: eng/e; 骁 + 昭: ao/ao)
+    if(a.ym && b.ym){
+      if(a.ym === b.ym) return true;
+      for(var g = 0; g < similarRhymeGroups.length; g++){
+        var group = similarRhymeGroups[g];
+        if(group.indexOf(a.ym) >= 0 && group.indexOf(b.ym) >= 0) return true;
+      }
+    }
+    // Both strong initials clustered
+    if(strongInitials.indexOf(a.sm) >= 0 && strongInitials.indexOf(b.sm) >= 0) return true;
+    // Both strong rhymes clustered
+    if(strongRhymes.indexOf(a.ym) >= 0 && strongRhymes.indexOf(b.ym) >= 0) return true;
+  }
+  return false;
+}
+
+function isSurnameProminent(surname){
+  // 姓氏笔画多、读音重、常见度高，名就要更平稳
+  var prominent = ['张','刘','陈','杨','赵','黄','周','吴','马','罗','梁','郑','韩','唐','董','萧','曹','邓','沈','彭','蒋','叶','阎','田','熊','白','史','顾','龙','段','雷','武','龚','贺'];
+  return prominent.indexOf(surname) >= 0;
+}
+
+function getTone(py){
+
+  var tones = {'ā':1,'á':2,'ǎ':3,'à':4,'ē':1,'é':2,'ě':3,'è':4,'ī':1,'í':2,'ǐ':3,'ì':4,'ō':1,'ó':2,'ǒ':3,'ò':4,'ū':1,'ú':2,'ǔ':3,'ù':4,'ǖ':1,'ǘ':2,'ǚ':3,'ǜ':4,'ā':1,'á':2,'ǎ':3,'à':4};
+  for(var key in tones){
+    if(py.indexOf(key) >= 0) return tones[key];
+  }
+  return 0;
+}
+
+function getPinyin(surname){
+  var map = {'李':'lǐ','王':'wáng','张':'zhāng','刘':'liú','陈':'chén','杨':'yáng','赵':'zhào','黄':'huáng','周':'zhōu','吴':'wú','徐':'xú','孙':'sūn','胡':'hú','朱':'zhū','高':'gāo','林':'lín','何':'hé','郭':'guō','马':'mǎ','罗':'luó','梁':'liáng','宋':'sòng','郑':'zhèng','谢':'xiè','韩':'hán','唐':'táng','冯':'féng','于':'yú','董':'dǒng','萧':'xiāo','程':'chéng','曹':'cáo','袁':'yuán','邓':'dèng','许':'xǔ','傅':'fù','沈':'shěn','曾':'zēng','彭':'péng','吕':'lǚ','苏':'sū','蒋':'jiǎng','贾':'jiǎ','丁':'dīng','魏':'wèi','薛':'xuē','叶':'yè','阎':'yán','余':'yú','潘':'pān','杜':'dù','戴':'dài','夏':'xià','钟':'zhōng','汪':'wāng','田':'tián','任':'rèn','姜':'jiāng','范':'fàn','方':'fāng','石':'shí','姚':'yáo','谭':'tán','廖':'liào','邹':'zōu','熊':'xióng','金':'jīn','陆':'lù','郝':'hǎo','孔':'kǒng','白':'bái','崔':'cuī','康':'kāng','毛':'máo','邱':'qiū','秦':'qín','江':'jiāng','史':'shǐ','顾':'gù','侯':'hóu','邵':'shào','孟':'mèng','龙':'lóng','万':'wàn','段':'duàn','雷':'léi','钱':'qián','汤':'tāng','尹':'yǐn','黎':'lí','易':'yì','常':'cháng','武':'wǔ','乔':'qiáo','贺':'hè','赖':'lài','龚':'gōng','文':'wén'};
+  return map[surname] || surname;
+}
+
+function generateOneLiner(chars, themes, direction){
+  var lines = {
+    daily:['把日子过得清楚一点，也利落一点。','在普通生活里保留自己的节奏。','不需要解释太多， quietly doing the work。','把简单和稳定当作一种态度。'],
+    edge:['有棱角，但不刺伤谁。','不喜欢被归类，也不需要被理解。','冷一点、直接一点，反而更真实。','带着自己的气场生活。'],
+    real:['落地、真实、不装。','稳稳地做好自己那部分。','不需要太特别，但要足够像自己。','简单直接，反而有力量。'],
+    core:['清醒是一种选择，独立也是。','知道自己要什么，也知道自己不要什么。','不轻易跟随，也不刻意对抗。','在安静中确认自己的方向。']
+  };
+  var pool = lines[direction] || lines.daily;
+  return pool[Math.floor(Math.random()*pool.length)];
+}
+
+function generateExplanation(chars, answers, surname, direction){
+  var a1 = getAnswer(answers, 'aesthetic_scene');
+  var a4 = getAnswer(answers, 'keep_trait');
+  var a10 = getAnswer(answers, 'name_expectation');
+  var a9 = getAnswer(answers, 'current_state');
+
+  var parts = chars.map(function(c){return '"'+c.char+'"'+c.meaning;});
+  var charStr = parts.join('，');
+
+  var connection = '';
+  if(a4){
+    connection = '这个名字和你想保留的"'+a4+'"有关——';
+    if(direction === 'daily') connection += '它不张扬，读起来有一种踏实、清楚的感觉。';
+    else if(direction === 'edge') connection += '它带一点锋芒，像一种不解释的自我声明。';
+    else if(direction === 'real') connection += '它落地、真实，适合被日常使用。';
+    else connection += '它和你最核心的那部分气质对齐，有清醒、独立的力量感。';
+  }
+
+  if(a9){
+    connection += '你现在"'+a9+'"，这个名字适合这种正在慢慢变好的状态。';
+  }
+
+  return charStr + '。' + connection;
+}
+
+function generateKeywords(chars, themes, direction){
+  var kws = [];
+  chars.forEach(function(c){
+    c.themes.forEach(function(t){
+      var kw = themeToKeyword(t);
+      if(kw && kws.indexOf(kw) < 0) kws.push(kw);
+    });
+  });
+  if(kws.length < 3){
+    ['冷感','锋利','沉稳','简洁','独立','行动'].forEach(function(k){
+      if(kws.indexOf(k) < 0 && kws.length < 4) kws.push(k);
+    });
+  }
+  return kws.slice(0, 4);
+}
+
+function themeToKeyword(t){
+  var map = {
+    bright:'明亮', clear:'清爽', calm:'稳定', quiet:'安静',
+    gentle:'松弛', nature:'自然', fresh:'新锐', water:'清澈',
+    wisdom:'清醒', culture:'文气', art:'创作', elegant:'格调',
+    honest:'真实', independent:'独立', simple:'简洁', clean:'干净',
+    warm:'温度', new:'新生', open:'开阔', free:'自由',
+    distant:'疏离', deep:'深沉', strong:'有力', practical:'务实',
+    curious:'好奇', soft:'柔软', stable:'稳定', natural:'自然',
+    neutral:'中性', classical:'文雅', unique:'独特', giving:'善意',
+    tall:'高远', small:'精巧', honest2:'诚恳', autumn:'清远',
+    cold:'冷感', hot:'热感', sharp:'锋利', steady:'沉稳',
+    light:'轻松', urban:'都市', wild:'旷野', craft:'手艺',
+    tech:'秩序', motion:'行动', indie:'独立'
+  };
+  return map[t] || null;
+}
+
+function generateUsage(userGoal, direction){
+  var all = ['私人自我认同','创作身份','社交账号','只是好奇测试'];
+  var result = [];
+  if(userGoal === 'private_identity') result.push('私人自我认同');
+  else if(userGoal === 'creator_identity') result.push('创作身份');
+  else if(userGoal === 'social_handle') result.push('社交账号');
+  else result.push('社交账号');
+
+  if(direction === 'daily' && result.indexOf('社交账号') < 0) result.push('社交账号');
+  if(direction === 'edge' && result.indexOf('创作身份') < 0) result.push('创作身份');
+  if(direction === 'real' && result.indexOf('日常使用') < 0) result.push('日常使用');
+  if(direction === 'core' && result.indexOf('私人自我认同') < 0) result.push('私人自我认同');
+
+  return result.slice(0, 3);
+}
+
+function generatePosterLines(chars, themes, answers, direction){
+  var a4 = getAnswer(answers, 'keep_trait');
+  var a9 = getAnswer(answers, 'current_state');
+  var lines = [];
+
+  if(direction === 'daily'){
+    lines = [
+      '把日子过得清楚一点，也利落一点。',
+      '在普通生活里，保留自己的节奏。',
+      '不需要解释太多，quietly doing the work。'
+    ];
+  } else if(direction === 'edge'){
+    lines = [
+      '有棱角，但不刺伤谁。',
+      '不喜欢被归类，也不需要被理解。',
+      '冷一点、直接一点，反而更真实。'
+    ];
+  } else if(direction === 'real'){
+    lines = [
+      '落地、真实、不装。',
+      '稳稳地做好自己那部分。',
+      '简单直接，反而有力量。'
+    ];
+  } else {
+    lines = [
+      '清醒是一种选择，独立也是。',
+      '知道自己要什么，也知道自己不要什么。',
+      '不轻易跟随，也不刻意对抗。'
+    ];
+  }
+
+  if(a4){
+    lines.push('留住"'+a4+'"，也留住自己。');
+  }
+
+  return lines;
+}
+
+// ===================== PORTRAIT SVG =====================
+
+function getPortraitSVG(small){
+  var size = small ? 60 : 140;
+  var poses = [
+    // Sitting by window
+    '<svg class="portrait-svg" viewBox="0 0 100 100" fill="none" stroke="#9A6A4F" stroke-width="1" stroke-linecap="round">'+
+      '<rect x="15" y="10" width="70" height="80" stroke-dasharray="3 2" opacity="0.2"/>'+
+      '<line x1="15" y1="35" x2="85" y2="35" opacity="0.15"/>'+
+      '<circle cx="50" cy="38" r="6" />'+
+      '<path d="M44 44 Q50 50 56 44" />'+
+      '<path d="M40 55 Q40 65 42 75 L58 75 Q60 65 60 55" />'+
+      '<path d="M40 55 L35 65 M60 55 L65 65" />'+
+      '<line x1="42" y1="75" x2="42" y2="85" /><line x1="58" y1="75" x2="58" y2="85" />'+
+    '</svg>',
+    // Standing in wind
+    '<svg class="portrait-svg" viewBox="0 0 100 100" fill="none" stroke="#9A6A4F" stroke-width="1" stroke-linecap="round">'+
+      '<circle cx="50" cy="30" r="7" />'+
+      '<path d="M43 37 Q50 42 57 37" />'+
+      '<path d="M45 42 L42 70 L42 85" />'+
+      '<path d="M55 42 L58 70 L58 85" />'+
+      '<path d="M45 45 L35 55 M55 45 L65 52" />'+
+      '<path d="M20 25 Q30 23 40 28" opacity="0.3"/>'+
+      '<path d="M25 35 Q35 33 42 36" opacity="0.2"/>'+
+    '</svg>',
+    // Reading
+    '<svg class="portrait-svg" viewBox="0 0 100 100" fill="none" stroke="#9A6A4F" stroke-width="1" stroke-linecap="round">'+
+      '<circle cx="50" cy="32" r="6" />'+
+      '<path d="M44 38 Q50 43 56 38" />'+
+      '<path d="M42 44 L40 65 L60 65 L58 44" />'+
+      '<rect x="38" y="60" width="24" height="3" fill="#9A6A4F" opacity="0.3" stroke="none"/>'+
+      '<path d="M40 65 L38 80 M60 65 L62 80" />'+
+      '<path d="M44 50 L56 50 M44 53 L54 53" opacity="0.3"/>'+
+    '</svg>',
+    // Looking far
+    '<svg class="portrait-svg" viewBox="0 0 100 100" fill="none" stroke="#9A6A4F" stroke-width="1" stroke-linecap="round">'+
+      '<circle cx="48" cy="28" r="7" />'+
+      '<path d="M42 35 Q48 40 55 35" />'+
+      '<path d="M44 40 L40 65 L42 82" />'+
+      '<path d="M54 40 L58 65 L56 82" />'+
+      '<path d="M45 48 L38 58 M55 48 L62 55" />'+
+      '<line x1="70" y1="20" x2="85" y2="20" opacity="0.15"/>'+
+      '<line x1="72" y1="28" x2="88" y2="28" opacity="0.1"/>'+
+    '</svg>'
+  ];
+  return poses[Math.floor(Math.random()*poses.length)];
+}
+
+function shiftColor(hex, amount){
+  var r = parseInt(hex.substr(1,2),16);
+  var g = parseInt(hex.substr(3,2),16);
+  var b = parseInt(hex.substr(5,2),16);
+  r = Math.min(255, r+amount);
+  g = Math.min(255, g+amount);
+  b = Math.min(255, b+amount);
+  return '#'+r.toString(16).padStart(2,'0')+g.toString(16).padStart(2,'0')+b.toString(16).padStart(2,'0');
+}
+
+// ===================== EVENTS =====================
+
+function attachEvents(){
+  // Home
+  var btnStart = document.getElementById('btn-start');
+  if(btnStart) btnStart.onclick = function(){ state.step='settings'; render(); };
+
+  var auxQuiz = document.getElementById('aux-quiz');
+  if(auxQuiz) auxQuiz.onclick = function(){ state.step='settings'; render(); };
+
+  var auxExamples = document.getElementById('aux-examples');
+  if(auxExamples) auxExamples.onclick = function(){ document.getElementById('examples-modal').classList.add('show'); };
+
+  var examplesClose = document.getElementById('examples-close');
+  if(examplesClose) examplesClose.onclick = function(){ document.getElementById('examples-modal').classList.remove('show'); };
+
+  // Settings
+  document.querySelectorAll('[data-setting]').forEach(function(el){
+    el.onclick = function(){
+      var key = el.getAttribute('data-setting');
+      var val = el.getAttribute('data-value');
+      state.preferences[key] = val;
+      if(key === 'surnameMode'){
+        render();
+      } else {
+        document.querySelectorAll('[data-setting="'+key+'"]').forEach(function(e){e.classList.remove('selected');});
+        el.classList.add('selected');
+      }
+    };
+  });
+
+  var surnameInput = document.getElementById('surname-input');
+  if(surnameInput){
+    var isComposing = false;
+    surnameInput.addEventListener('compositionstart', function(){
+      isComposing = true;
+    });
+    surnameInput.addEventListener('compositionend', function(){
+      isComposing = false;
+      filterSurname();
+    });
+    surnameInput.addEventListener('input', function(){
+      if(!isComposing){
+        filterSurname();
+      }
+    });
+    function filterSurname(){
+      var val = surnameInput.value.trim();
+      var maxLen = (state.preferences.surnameMode === 'maternal' || state.preferences.surnameMode === 'paternal') ? 1 : 2;
+      val = val.replace(/[^\u4e00-\u9fa5]/g, '').substring(0, maxLen);
+      surnameInput.value = val;
+      state.preferences.surname = val;
+    }
+  }
+
+  var btnBackHome = document.getElementById('btn-back-home');
+  if(btnBackHome) btnBackHome.onclick = function(){ state.step='home'; render(); };
+
+  var btnStartQuiz = document.getElementById('btn-start-quiz');
+  if(btnStartQuiz){
+    btnStartQuiz.onclick = function(){
+      // Validate surname if needed
+      if((state.preferences.surnameMode === 'maternal' || state.preferences.surnameMode === 'paternal' || state.preferences.surnameMode === 'custom') && !state.preferences.surname){
+        alert('请输入姓氏（1-2个汉字）');
+        return;
+      }
+      state.step = 'quiz';
+      state.currentQuestion = 0;
+      state.selectedOptions = [];
+      render();
+    };
+  }
+
+  // Quiz
+  document.querySelectorAll('.quiz-option').forEach(function(el){
+    el.onclick = function(){
+      var idx = parseInt(el.getAttribute('data-option'));
+      var selected = state.selectedOptions[state.currentQuestion] || [];
+      if(selected.indexOf(idx) >= 0){
+        selected = selected.filter(function(i){return i !== idx;});
+      } else {
+        if(selected.length >= 2) return;
+        selected.push(idx);
+      }
+      state.selectedOptions[state.currentQuestion] = selected;
+      render();
+    };
+  });
+
+  var quizSkip = document.getElementById('quiz-skip');
+  if(quizSkip){
+    quizSkip.onclick = function(){
+      state.selectedOptions[state.currentQuestion] = [];
+      goToNextQuestion();
+    };
+  }
+
+  var quizBack = document.getElementById('quiz-back');
+  if(quizBack) quizBack.onclick = function(){
+    if(state.currentQuestion > 0){
+      state.currentQuestion--;
+      render();
+    }
+  };
+
+  var quizNext = document.getElementById('quiz-next');
+  if(quizNext){
+    quizNext.onclick = function(){
+      goToNextQuestion();
+    };
+  }
+
+  // Thinking
+  if(state.step === 'thinking'){
+    runThinkingSequence();
+  }
+
+  // Profile
+  var btnGashapon = document.getElementById('btn-gashapon');
+  if(btnGashapon) btnGashapon.onclick = function(){
+    state.step = 'gashapon';
+    render();
+    startGashaponAnimation();
+  };
+
+  document.querySelectorAll('[data-profile-fb]').forEach(function(el){
+    el.onclick = function(){
+      document.querySelectorAll('[data-profile-fb]').forEach(function(e){e.classList.remove('active');});
+      el.classList.add('active');
+    };
+  });
+
+  // Gashapon - handled by startGashaponAnimation
+
+  var btnViewNames = document.getElementById('btn-view-names');
+  if(btnViewNames) btnViewNames.onclick = function(){
+    state.step = 'names';
+    render();
+  };
+
+  // Names
+  document.querySelectorAll('[data-name-fb]').forEach(function(el){
+    el.onclick = function(){
+      var idx = parseInt(el.getAttribute('data-name-fb'));
+      var fb = el.getAttribute('data-fb');
+      state.nameFeedback[idx] = fb;
+      render();
+    };
+  });
+
+  document.querySelectorAll('[data-select-name]').forEach(function(el){
+    el.onclick = function(){
+      var idx = parseInt(el.getAttribute('data-select-name'));
+      state.selectedNameIndex = idx;
+      state.step = 'result';
+      state.posterOptions.declIndex = 0;
+      render();
+    };
+  });
+
+  var regenDefault = document.getElementById('regen-default');
+  if(regenDefault) regenDefault.onclick = function(){
+    state.regenerateCount++;
+    state.names = generateNames(state.profile, state.preferences, 'default');
+    state.nameFeedback = {};
+    render();
+  };
+
+  document.querySelectorAll('[data-regen]').forEach(function(el){
+    el.onclick = function(){
+      var style = el.getAttribute('data-regen');
+      state.regenerateCount++;
+      state.names = generateNames(state.profile, state.preferences, style);
+      state.nameFeedback = {};
+      render();
+    };
+  });
+
+  // Result/Poster
+  document.querySelectorAll('[data-tpl]').forEach(function(el){
+    el.onclick = function(){
+      state.posterTemplate = el.getAttribute('data-tpl');
+      render();
+    };
+  });
+
+  document.querySelectorAll('[data-bg]').forEach(function(el){
+    el.onclick = function(){
+      state.posterOptions.bgColor = el.getAttribute('data-bg');
+      render();
+    };
+  });
+
+  document.querySelectorAll('[data-decl]').forEach(function(el){
+    el.onclick = function(){
+      state.posterOptions.declIndex = parseInt(el.getAttribute('data-decl'));
+      render();
+    };
+  });
+
+  var toggleKeywords = document.getElementById('toggle-keywords');
+  if(toggleKeywords) toggleKeywords.onclick = function(){
+    state.posterOptions.showKeywords = !state.posterOptions.showKeywords;
+    render();
+  };
+
+  var togglePortrait = document.getElementById('toggle-portrait');
+  if(togglePortrait) togglePortrait.onclick = function(){
+    state.posterOptions.showPortrait = !state.posterOptions.showPortrait;
+    render();
+  };
+
+  var btnSavePoster = document.getElementById('btn-save-poster');
+  if(btnSavePoster) btnSavePoster.onclick = function(){
+    savePoster();
+  };
+
+  var btnRegenDecl = document.getElementById('btn-regenerate-decl');
+  if(btnRegenDecl) btnRegenDecl.onclick = function(){
+    var n = state.names[state.selectedNameIndex];
+    var lines = n.posterLines || [n.oneLine];
+    state.posterOptions.declIndex = (state.posterOptions.declIndex + 1) % lines.length;
+    render();
+  };
+
+  var btnBackNames = document.getElementById('btn-back-names');
+  if(btnBackNames) btnBackNames.onclick = function(){
+    state.selectedNameIndex = -1;
+    state.step = 'names';
+    render();
+  };
+}
+
+function goToNextQuestion(){
+  var selected = state.selectedOptions[state.currentQuestion] || [];
+  var q = QUESTIONS[state.currentQuestion];
+
+  // Record answers
+  if(selected.length === 0){
+    // Skipped - record "都不太像"
+    state.answers = state.answers.filter(function(a){return a.questionId !== q.id;});
+    state.answers.push({questionId: q.id, question: q.q, answer: '都不太像'});
+  } else {
+    state.answers = state.answers.filter(function(a){return a.questionId !== q.id;});
+    selected.forEach(function(idx){
+      state.answers.push({questionId: q.id, question: q.q, answer: q.options[idx]});
+    });
+  }
+
+  if(state.currentQuestion < QUESTIONS.length - 1){
+    state.currentQuestion++;
+    render();
+  } else {
+    // Go to thinking
+    state.step = 'thinking';
+    render();
+  }
+}
+
+function runThinkingSequence(){
+  var msgIdx = 0;
+  var textEl = document.getElementById('thinking-text');
+
+  var interval = setInterval(function(){
+    msgIdx++;
+    if(msgIdx < THINKING_MSGS.length){
+      if(textEl){
+        textEl.style.opacity = '0';
+        setTimeout(function(){
+          textEl.textContent = THINKING_MSGS[msgIdx];
+          textEl.style.opacity = '1';
+        }, 300);
+      }
+    } else {
+      clearInterval(interval);
+      // Generate profile and names
+      state.profile = generateProfile(state.answers, state.preferences);
+      state.names = generateNames(state.profile, state.preferences, 'default');
+      state.step = 'profile';
+      render();
+    }
+  }, 1200);
+}
+
+function startGashaponAnimation(){
+  var revealIdx = 0;
+  var revealEl = document.getElementById('gashapon-reveal');
+  var pinyinEl = document.getElementById('gashapon-pinyin');
+  var hintEl = document.getElementById('gashapon-hint');
+  var countEl = document.getElementById('gashapon-count');
+  var capsuleEl = document.getElementById('gashapon-capsule');
+  var viewBtn = document.getElementById('btn-view-names');
+
+  function revealNext(){
+    if(revealIdx >= state.names.length){
+      hintEl.textContent = '4 个名字已抽取完成';
+      countEl.textContent = '';
+      viewBtn.style.display = 'inline-block';
+      return;
+    }
+
+    var n = state.names[revealIdx];
+
+    // Reset
+    revealEl.classList.remove('show');
+    pinyinEl.classList.remove('show');
+    revealEl.textContent = '';
+    pinyinEl.textContent = '';
+    hintEl.textContent = '正在把你的答案折成名字...';
+    countEl.textContent = '';
+    capsuleEl.classList.add('gashapon-shake');
+    capsuleEl.classList.remove('gashapon-drop');
+
+    // Shake phase
+    setTimeout(function(){
+      capsuleEl.classList.remove('gashapon-shake');
+      capsuleEl.classList.add('gashapon-drop');
+      hintEl.textContent = '第 '+(revealIdx+1)+' 个名字';
+
+      // Reveal
+      setTimeout(function(){
+        revealEl.textContent = n.name;
+        pinyinEl.textContent = n.pinyin;
+        revealEl.classList.add('show');
+        pinyinEl.classList.add('show');
+        countEl.textContent = (revealIdx+1)+' / '+state.names.length;
+
+        revealIdx++;
+
+        if(revealIdx < state.names.length){
+          hintEl.textContent = '再抽一个';
+          setTimeout(function(){
+            // Reset capsule
+            capsuleEl.classList.remove('gashapon-drop');
+            capsuleEl.style.opacity = '1';
+            revealNext();
+          }, 1500);
+        } else {
+          setTimeout(function(){
+            revealNext();
+          }, 800);
+        }
+      }, 600);
+    }, 1200);
+  }
+
+  // Start after brief delay
+  setTimeout(revealNext, 500);
+}
+
+function savePoster(){
+  var posterContent = document.getElementById('poster-content');
+  if(!posterContent){
+    alert('海报内容未找到');
+    return;
+  }
+
+  if(typeof html2canvas === 'undefined'){
+    alert('海报下载需要联网加载组件，请检查网络连接后重试，或直接截图保存。');
+    return;
+  }
+
+  // Show loading state
+  var btn = document.getElementById('btn-save-poster');
+  var originalText = btn.textContent;
+  btn.textContent = '正在生成...';
+  btn.style.pointerEvents = 'none';
+
+  html2canvas(posterContent, {
+    scale: 2,
+    backgroundColor: null,
+    useCORS: true,
+    logging: false
+  }).then(function(canvas){
+    var link = document.createElement('a');
+    var n = state.names[state.selectedNameIndex];
+    link.download = n.name + '_自名得意.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+
+    btn.textContent = originalText;
+    btn.style.pointerEvents = '';
+  }).catch(function(err){
+    console.error(err);
+    alert('海报生成失败，请尝试截图保存。');
+    btn.textContent = originalText;
+    btn.style.pointerEvents = '';
+  });
+}
+
+// ===================== INIT =====================
+render();
+</script>
+</body>
+</html>
