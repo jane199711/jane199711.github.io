@@ -292,6 +292,90 @@ body{min-height:100vh}
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-thumb{background:var(--line);border-radius:2px}
 
+/* ===== HOME MODE CARDS ===== */
+.home-modes{display:flex;gap:14px;margin-bottom:32px;width:100%;max-width:380px}
+.home-mode-card{flex:1;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:22px 14px;cursor:pointer;transition:all .3s;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;overflow:hidden}
+.home-mode-card:hover{border-color:#FF9A8B;transform:translateY(-3px);box-shadow:0 8px 24px rgba(255,154,139,.18)}
+.home-mode-card[data-mode="cat"]{background:linear-gradient(160deg,#FFF8F2 0%,#FFEFE5 100%);border-color:#FFD4C4}
+.home-mode-card[data-mode="cat"]:hover{border-color:#FF9A8B}
+.home-mode-icon{width:52px;height:52px;color:#FF9A8B;margin-bottom:10px}
+.home-mode-card[data-mode="human"] .home-mode-icon{color:#9A6A4F}
+.home-mode-title{font-size:16px;font-weight:600;color:var(--text);letter-spacing:1px;margin-bottom:4px}
+.home-mode-desc{font-size:11px;color:var(--text2);letter-spacing:.5px;line-height:1.5}
+
+/* ===== CAT PAGE TOKENS ===== */
+.cat-quiz-option{cursor:pointer}
+.cat-quiz-question{color:#A0522D}
+.cat-quiz-tags{margin-top:14px;font-size:12px;color:#D2691E;background:#FFF0E6;padding:10px 14px;border-radius:8px;min-height:18px;letter-spacing:1px}
+.cat-thinking-dot{background:#FF9A8B!important}
+
+/* ===== CAT PROFILE ===== */
+.cat-portrait{background:linear-gradient(135deg,#FFF8F2 0%,#FFE4D6 100%);border:2px solid #FFB6A0}
+.cat-tags{display:flex;flex-wrap:wrap;gap:8px}
+.cat-tag{padding:5px 14px;background:linear-gradient(135deg,#FFE4D6 0%,#FFD4C4 100%);color:#A0522D;border-radius:18px;font-size:12px;letter-spacing:1px;font-weight:500}
+
+/* ===== CAT GASHAPON ===== */
+.cat-gashapon-capsule{background:linear-gradient(135deg,#FF9A8B 0%,#FF6A6A 100%)}
+.cat-gashapon-reveal{color:#A0522D}
+.cat-gashapon-reveal-pinyin{color:#D2691E}
+.cat-gashapon-machine .gashapon-body{border-color:#FF9A8B}
+.cat-gashapon-machine .gashapon-base{background:#FF9A8B}
+
+/* ===== CAT NAME CARDS ===== */
+.cat-name-card{background:linear-gradient(160deg,#FFFAF5 0%,#FFF3EA 100%);border-color:#FFD4C4}
+.cat-card-name{color:#A0522D}
+.cat-name-tag{background:#FFE4D6!important;color:#A0522D!important}
+.cat-fb-btn{color:#D2691E!important}
+.cat-fb-btn:hover{border-color:#FF9A8B!important;color:#FF9A8B!important}
+.cat-fb-btn.active{background:#FF9A8B!important;color:#fff!important;border-color:#FF9A8B!important}
+
+/* ===== CAT POSTER TEMPLATES ===== */
+.cat-poster-name{color:#4A3F3A;font-family:var(--serif);text-shadow:0 2px 0 #FFF}
+.cat-poster-pinyin{color:#A0522D}
+.cat-poster-decl{color:#5A4A3A;font-style:italic}
+.cat-poster-keyword{background:rgba(255,154,139,.2);color:#A0522D;border:1px solid #FFB6A0;border-radius:14px;padding:4px 12px}
+
+/* Cream 奶油 */
+.cat-poster-cream{background:linear-gradient(160deg,#FFF8E7 0%,#FFE4D6 100%)}
+.cat-poster-cream .poster-top{color:#A0522D}
+.cat-poster-cream .poster-bottom{color:#A0522D}
+.cat-paw{position:absolute;font-size:24px;opacity:.35;pointer-events:none;z-index:0}
+.cat-paw.paw-1{top:60px;right:24px;transform:rotate(20deg)}
+.cat-paw.paw-2{bottom:120px;left:20px;transform:rotate(-15deg)}
+.cat-face-decoration{position:absolute;top:90px;right:20px;opacity:.15;z-index:0}
+
+/* Paw 粉爪 */
+.cat-poster-paw{background:linear-gradient(180deg,#FFF0E6 0%,#FFE0CC 100%)}
+.cat-poster-paw .poster-top{color:#A0522D}
+.cat-poster-paw .poster-bottom{color:#A0522D}
+.cat-paw-bg{position:absolute;top:0;left:0;right:0;bottom:0;background-image:radial-gradient(circle at 20% 30%,rgba(255,154,139,.15) 0%,transparent 30%),radial-gradient(circle at 80% 70%,rgba(255,182,160,.2) 0%,transparent 30%);pointer-events:none;z-index:0}
+.cat-big-paw{position:absolute;bottom:80px;right:20px;opacity:.2;z-index:0}
+
+/* Comic 漫画 */
+.cat-poster-comic{background:#FFFAF0;color:#4A3F3A}
+.cat-poster-comic .poster-top{color:#A0522D}
+.cat-poster-comic .poster-bottom{color:#A0522D}
+.cat-comic-dots{position:absolute;top:0;left:0;right:0;bottom:0;background-image:radial-gradient(circle,#FFB6A0 1.5px,transparent 1.5px);background-size:24px 24px;opacity:.2;pointer-events:none;z-index:0}
+.cat-comic-bubble{position:absolute;top:80px;right:30px;background:#FF9A8B;color:#fff;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:2px;z-index:1;box-shadow:2px 2px 0 #A0522D}
+
+/* Lucky 招财 */
+.cat-poster-lucky{background:linear-gradient(160deg,#FFF8E7 0%,#FFEFD5 100%)}
+.cat-poster-lucky .poster-top{color:#B8860B}
+.cat-poster-lucky .poster-bottom{color:#B8860B}
+.cat-lucky-cloud{position:absolute;top:0;left:0;right:0;height:200px;background:radial-gradient(ellipse at top,rgba(255,200,150,.3) 0%,transparent 70%);pointer-events:none;z-index:0}
+.cat-lucky-cat{position:absolute;top:60px;right:24px;opacity:.85;z-index:1}
+
+/* Night 夜空 */
+.cat-poster-night{background:linear-gradient(160deg,#1A1A3E 0%,#2D1B4E 50%,#1A1A3E 100%);color:#F0F0F0}
+.cat-poster-night .poster-top{color:#FFD4C4;opacity:.7}
+.cat-poster-night .poster-name{color:#FFF;text-shadow:0 0 20px rgba(255,200,150,.4)}
+.cat-poster-night .poster-pinyin{color:#FFD4C4;opacity:.8}
+.cat-poster-night .poster-decl{color:#D4C4B4}
+.cat-poster-night .poster-bottom{color:#FFD4C4;opacity:.6}
+.cat-poster-night .cat-poster-keyword{background:rgba(255,200,150,.15);color:#FFD4C4;border-color:rgba(255,200,150,.4)}
+.cat-night-stars{position:absolute;top:0;left:0;right:0;bottom:0;opacity:.6;z-index:0}
+.cat-night-moon{position:absolute;top:30px;right:24px;z-index:0;opacity:.5}
+
 /* Responsive */
 @media(max-width:380px){
   .page{padding:30px 20px}
@@ -301,6 +385,10 @@ body{min-height:100vh}
   .poster-name{font-size:44px;letter-spacing:6px}
   .poster-pinyin{font-size:12px}
   .poster-decl{font-size:14px}
+  .home-modes{flex-direction:column;gap:10px}
+  .home-mode-card{flex-direction:row;justify-content:flex-start;padding:14px}
+  .home-mode-icon{width:36px;height:36px;margin-bottom:0;margin-right:12px}
+  .home-mode-text{text-align:left}
 }
 </style>
 </head>
@@ -453,6 +541,497 @@ var THINKING_MSGS = [
   '正在找一个读起来像你、写起来也成立的名字',
   '正在把你的选择压缩成几个有力的字'
 ];
+
+// ===================== CAT DATA =====================
+
+var CAT_QUESTIONS = [
+  {
+    id:'cat_q1',
+    q:'凌晨三点，你家猫主子通常在进行什么秘密活动？',
+    guide:'性格与迷惑行为',
+    options:[
+      'A. 在我脸上无情跑酷 / 蹦迪',
+      'B. 睡得比我还死，甚至在打呼噜',
+      'C. 蹲在漆黑的墙角，盯着虚无一动不动',
+      'D. 必须贴着我睡，拿屁股对着我的脸'
+    ]
+  },
+  {
+    id:'cat_q2',
+    q:'当家里来了陌生人，它的第一反应是？',
+    guide:'性格与迷惑行为',
+    options:[
+      'A. 瞬间化为液体滑入床底或柜顶',
+      'B. 冲上去疯狂闻人家的鞋子和包包',
+      'C. 稳坐江山，用三分讥笑的眼神俯瞰凡人',
+      'D. 无所谓，只要对方手里有零食就是亲妈'
+    ]
+  },
+  {
+    id:'cat_q3',
+    q:'作为主人，你最希望给猫咪营造一种什么样的生活氛围？',
+    guide:'主人的审美偏好',
+    options:[
+      'A. 热血动漫风：随心所欲，向着星辰大海出发！',
+      'B. 治愈吉卜力：平淡、温暖、充满阳光和草木香',
+      'C. 赛博 / 复古潮：酷炫、有态度、走在时尚前沿',
+      'D. 传统中式 / 招财：简单粗暴，唯愿暴富与健康'
+    ]
+  },
+  {
+    id:'cat_q4',
+    q:'如果你和猫咪一起穿越到异世界，你希望它变成你的什么？',
+    guide:'主人的审美偏好',
+    options:[
+      'A. 拥有毁天灭地战力的隐藏大 Boss',
+      'B. 关键时刻能吐出神奇道具的可靠伙伴',
+      'C. 负责在后方搞笑和干饭的吉祥物',
+      'D. 默默陪伴、懂你所有疲惫的治愈系精灵'
+    ]
+  },
+  {
+    id:'cat_q5',
+    q:'你家猫主子主要是什么毛色？',
+    guide:'外貌特征',
+    options:[
+      'A. 橘色系（大橘 / 金渐层 / 橘白相间）',
+      'B. 白色系（纯白 / 银渐层 / 乳白）',
+      'C. 黑灰系（纯黑 / 蓝猫 / 灰猫 / 奶牛燕尾服）',
+      'D. 花斑系（三花 / 玳瑁 / 狸花 / 虎斑）'
+    ]
+  },
+  {
+    id:'cat_q6',
+    q:'它的眼神通常给人一种什么样的精神状态？',
+    guide:'外貌特征',
+    options:[
+      'A. 清澈的愚蠢 / 充满好奇',
+      'B. 满脸怨气 / 眼神拉丝',
+      'C. 眯眯眼 / 岁月静好'
+    ]
+  },
+  {
+    id:'cat_q7',
+    q:'你最喜欢哪种风格的猫咪名字？',
+    guide:'名字风格偏好',
+    options:[
+      'A. 🍔 食物派：汤圆、布丁、奶茶、奥利奥',
+      'B. 🎨 外貌派：橘子、煤球、点点、花花',
+      'C. 🥰 叠词派：咪咪、豆豆、球球、毛毛',
+      'D. 👑 人名与人设派：旺财、大王、妹妹、将军',
+      'E. 🌍 潮流文化派：辛巴、Luna、皮卡丘、逆子',
+      'F. ✨ 文艺/独特派：子衿、半夏、琥珀、初雪'
+    ]
+  }
+];
+
+var CAT_ANSWER_TAGS = {
+  'cat_q1':{
+    'A. 在我脸上无情跑酷 / 蹦迪':['精力旺盛','拆家','运动','活泼'],
+    'B. 睡得比我还死，甚至在打呼噜':['随和','干饭王','懒','松弛'],
+    'C. 蹲在漆黑的墙角，盯着虚无一动不动':['高冷','哲学家','神秘','安静'],
+    'D. 必须贴着我睡，拿屁股对着我的脸':['社牛','黏人精','撒娇','温暖']
+  },
+  'cat_q2':{
+    'A. 瞬间化为液体滑入床底或柜顶':['社恐','胆小','敏感','软萌'],
+    'B. 冲上去疯狂闻人家的鞋子和包包':['好奇','社牛','探索','外向'],
+    'C. 稳坐江山，用三分讥笑的眼神俯瞰凡人':['大佬','高冷','霸气','淡定'],
+    'D. 无所谓，只要对方手里有零食就是亲妈':['吃货','现实主义','务实','好哄']
+  },
+  'cat_q3':{
+    'A. 热血动漫风：随心所欲，向着星辰大海出发！':['动漫热血','自由','冒险','元气'],
+    'B. 治愈吉卜力：平淡、温暖、充满阳光和草木香':['日系治愈','温柔','自然','阳光'],
+    'C. 赛博 / 复古潮：酷炫、有态度、走在时尚前沿':['潮流个性','酷炫','态度','时尚'],
+    'D. 传统中式 / 招财：简单粗暴，唯愿暴富与健康':['中式招财','吉祥','福气','传统']
+  },
+  'cat_q4':{
+    'A. 拥有毁天灭地战力的隐藏大 Boss':['反差','霸气','强大','隐藏'],
+    'B. 关键时刻能吐出神奇道具的可靠伙伴':['魔法','奇幻','可靠','伙伴'],
+    'C. 负责在后方搞笑和干饭的吉祥物':['搞笑','萌系','快乐','治愈'],
+    'D. 默默陪伴、懂你所有疲惫的治愈系精灵':['温柔','陪伴','治愈','安静']
+  },
+  'cat_q5':{
+    'A. 橘色系（大橘 / 金渐层 / 橘白相间）':['橘色','暖色','食物'],
+    'B. 白色系（纯白 / 银渐层 / 乳白）':['白色','纯净','仙气'],
+    'C. 黑灰系（纯黑 / 蓝猫 / 灰猫 / 奶牛燕尾服）':['黑灰','酷','神秘'],
+    'D. 花斑系（三花 / 玳瑁 / 狸花 / 虎斑）':['花斑','独特','野性']
+  },
+  'cat_q6':{
+    'A. 清澈的愚蠢 / 充满好奇':['呆萌'],
+    'B. 满脸怨气 / 眼神拉丝':['厌世高冷'],
+    'C. 眯眯眼 / 岁月静好':['佛系']
+  },
+  'cat_q7':{
+    'A. 🍔 食物派：汤圆、布丁、奶茶、奥利奥':['食物派'],
+    'B. 🎨 外貌派：橘子、煤球、点点、花花':['外貌派'],
+    'C. 🥰 叠词派：咪咪、豆豆、球球、毛毛':['叠词派'],
+    'D. 👑 人名与人设派：旺财、大王、妹妹、将军':['人设派'],
+    'E. 🌍 潮流文化派：辛巴、Luna、皮卡丘、逆子':['潮流派'],
+    'F. ✨ 文艺/独特派：子衿、半夏、琥珀、初雪':['文艺派']
+  }
+};
+
+var CAT_PROFILE_TEMPLATES = {
+  '精力旺盛':{
+    title:'永动机型选手',
+    text:'它的字典里没有「累」这个字。凌晨跑酷、白天拆家、晚上还要再蹦一轮。适合一个听起来就很有冲劲、带点少年感的名字。'
+  },
+  '随和':{
+    title:'佛系躺平代表',
+    text:'能吃能睡、遇事不慌，是天生的情绪稳定器。名字可以 relaxed 一点，让人一听就想摸摸它的肚皮。'
+  },
+  '高冷':{
+    title:'高冷哲学家',
+    text:'它看你的眼神，三分讥笑、三分凉薄、四分漫不经心。名字要带点距离感，不能太甜。'
+  },
+  '黏人精':{
+    title:'人形挂件成精',
+    text:'走哪跟哪，睡觉必须贴贴。名字应该软软的、暖暖的，一听就知道它很会撒娇。'
+  },
+  '社恐':{
+    title:'隐形猫艺术家',
+    text:'一有动静就消失，日常只出现在你以为它不在的地方。名字适合安静、小巧、有点害羞的感觉。'
+  },
+  '社牛':{
+    title:'社交天花板',
+    text:'来者是客，先闻为敬。它把全世界都当成自己的地盘。名字可以外向、响亮、带点社牛气场。'
+  },
+  '大佬':{
+    title:'这个家真正的主人',
+    text:'沉稳、霸气、俯瞰众生。名字要有分量感，配得上它睥睨一切的眼神。'
+  },
+  '吃货':{
+    title:'猫粮收割机',
+    text:'万物皆可吃，有零食就是亲妈。名字可以可爱、接地气，最好一听就想给它开罐头。'
+  },
+  '动漫热血':{
+    title:'二次元热血主角',
+    text:'它的身体里住着一个少年漫主角。名字要中二、响亮、有梦想感。'
+  },
+  '日系治愈':{
+    title:'吉卜力风小猫咪',
+    text:'像是从宫崎骏动画里走出来的，温柔、自然、带着草木香。名字适合清新、柔和、有画面感。'
+  },
+  '潮流个性':{
+    title:'猫界时尚博主',
+    text:'态度写在脸上，走在潮流前线。名字要酷、要短、要有辨识度。'
+  },
+  '中式招财':{
+    title:'家中招财猫',
+    text:'福气满满、圆圆滚滚。名字要吉利、喜庆、一听就有好兆头。'
+  },
+  '反差':{
+    title:'隐藏大 Boss',
+    text:'看起来软萌，实际战斗力爆表。名字要有反差感：奶凶、甜酷、外柔内刚。'
+  },
+  '魔法':{
+    title:'异世界可靠伙伴',
+    text:'仿佛随时会从口袋里掏出神奇道具。名字可以奇幻、神秘、带点童话色彩。'
+  },
+  '搞笑':{
+    title:'氛围组担当',
+    text:'每天都在制造表情包，是家里的快乐源泉。名字要搞怪、好记、让人忍不住笑。'
+  },
+  '温柔':{
+    title:'治愈系小精灵',
+    text:'它的存在本身就是一种安慰。名字要轻、要暖、像阳光晒过的被子。'
+  }
+};
+
+// 猫咪名字库：每个字/词带拼音、标签、解释
+var CAT_CHARS = [
+  // ===== 通用可爱字 =====
+  {char:'团',py:'tuán',tags:['萌系','圆润','中式招财','吃货','随和','叠词派'],m:'像一团毛球，软糯好 rua'},
+  {char:'圆',py:'yuán',tags:['萌系','圆润','中式招财','吃货','佛系','叠词派'],m:'圆圆滚滚，福气满满'},
+  {char:'球',py:'qiú',tags:['萌系','圆润','运动','活泼','搞笑','叠词派'],m:'毛茸茸的小球，滚来滚去'},
+  {char:'豆',py:'dòu',tags:['萌系','小巧','吃货','温柔','日系治愈','叠词派'],m:'一颗小甜豆，让人想捧在手心'},
+  {char:'米',py:'mǐ',tags:['萌系','小巧','温柔','日系治愈','随和','叠词派'],m:'像米粒一样小小只，软萌'},
+  {char:'糯',py:'nuò',tags:['萌系','软糯','黏人精','温柔','日系治愈','食物派'],m:'糯米糍一样黏人又甜'},
+  {char:'糍',py:'cí',tags:['萌系','软糯','黏人精','温柔','吃货','食物派'],m:'软糯 Q 弹，甜到心坎'},
+  {char:'芙',py:'fú',tags:['萌系','温柔','日系治愈','自然','清新','文艺派'],m:'像芙蕖一样清新柔软'},
+  {char:'栗',py:'lì',tags:['萌系','自然','温暖','日系治愈','小巧','食物派'],m:'像栗子一样毛茸茸、暖乎乎'},
+  {char:'椰',py:'yē',tags:['萌系','自然','治愈','日系治愈','清新','食物派'],m:'带着热带海岛的松弛感'},
+  {char:'芒',py:'máng',tags:['萌系','温暖','阳光','日系治愈','吃货','食物派'],m:'像芒果一样金灿灿、甜滋滋'},
+  {char:'桃',py:'táo',tags:['萌系','甜美','粉色','日系治愈','温柔','食物派','叠词派'],m:'水蜜桃一样软甜'},
+  {char:'杏',py:'xìng',tags:['萌系','温暖','自然','日系治愈','清新','食物派'],m:'杏子般温柔的颜色'},
+  {char:'梨',py:'lí',tags:['萌系','圆润','自然','治愈','佛系','食物派'],m:'像小雪梨一样白净软糯'},
+  {char:'橘',py:'jú',tags:['萌系','纯色','温暖','中式招财','吃货','食物派','外貌派','叠词派'],m:'大橘为重，温暖可靠'},
+  {char:'柚',py:'yòu',tags:['萌系','清新','自然','日系治愈','佛系','食物派'],m:'清爽不甜腻，很适合淡猫'},
+  {char:'茶',py:'chá',tags:['萌系','自然','佛系','日系治愈','温暖','食物派'],m:'像一杯温茶，岁月静好'},
+  {char:'饼',py:'bǐng',tags:['萌系','圆润','吃货','搞笑','随和','食物派','叠词派'],m:'猫饼摊平，可爱到犯规'},
+  {char:'包',py:'bāo',tags:['萌系','圆润','吃货','搞笑','温暖','食物派','叠词派'],m:'一个毛茸茸的小包子'},
+  {char:'福',py:'fú',tags:['中式招财','吉祥','圆润','温暖','传统','人设派','叠词派'],m:'福气满满，招财进宝'},
+  {char:'满',py:'mǎn',tags:['中式招财','圆满','温暖','佛系','传统','人设派','叠词派'],m:'圆满、满足、盆满钵满'},
+  {char:'宝',py:'bǎo',tags:['中式招财','珍贵','可爱','温暖','黏人精','人设派','叠词派'],m:'家里的宝贝疙瘩'},
+  {char:'禄',py:'lù',tags:['中式招财','吉祥','传统','大佬','霸气','人设派'],m:'福禄双全，气场稳重'},
+  {char:'喜',py:'xǐ',tags:['中式招财','喜庆','可爱','温暖','搞笑','人设派','叠词派'],m:'喜气洋洋，带来好运'},
+  {char:'财',py:'cái',tags:['中式招财','吉祥','霸气','吃货','现实主义','人设派'],m:'招财猫本猫'},
+  {char:'金',py:'jīn',tags:['中式招财','富贵','纯色','霸气','传统','人设派','外貌派'],m:'金灿灿，贵气满满'},
+  {char:'元',py:'yuán',tags:['中式招财','圆满','可爱','传统','佛系','人设派','叠词派'],m:'元气、元宝，寓意很好'},
+  {char:'旺',py:'wàng',tags:['中式招财','喜庆','活泼','精力旺盛','元气','人设派','叠词派'],m:'旺旺旺，热闹又吉利'},
+  {char:'松',py:'sōng',tags:['日系治愈','自然','佛系','随和','温柔','文艺派'],m:'像松树一样松弛自在'},
+  {char:'町',py:'tǐng',tags:['日系治愈','街道','温暖','安静','小清新','文艺派'],m:'日剧里的小街道，安静温柔'},
+  {char:'海',py:'hǎi',tags:['日系治愈','自然','自由','动漫热血','治愈','文艺派'],m:'像海一样辽阔又治愈'},
+  {char:'风',py:'fēng',tags:['日系治愈','自由','自然','动漫热血','温柔','文艺派'],m:'像风一样轻快自由'},
+  {char:'星',py:'xīng',tags:['日系治愈','动漫热血','魔法','治愈','浪漫','文艺派','叠词派'],m:'小星星，闪闪发光'},
+  {char:'月',py:'yuè',tags:['日系治愈','魔法','神秘','温柔','高冷','文艺派','叠词派'],m:'月亮一样安静又遥远'},
+  {char:'云',py:'yún',tags:['日系治愈','柔软','佛系','自然','温柔','文艺派','叠词派'],m:'像云一样软绵绵'},
+  {char:'野',py:'yě',tags:['日系治愈','自然','自由','动漫热血','冒险','文艺派'],m:'有一点点野性，向往自由'},
+  {char:'凛',py:'lǐn',tags:['高冷','酷','霸气','反差','潮流个性','文艺派','潮流派'],m:'凛冽帅气，外冷内热'},
+  {char:'焰',py:'yàn',tags:['动漫热血','酷','霸气','精力旺盛','反差','潮流派'],m:'像火焰一样热烈'},
+  {char:'飒',py:'sà',tags:['动漫热血','酷','霸气','潮流个性','运动','潮流派'],m:'又飒又酷，走路带风'},
+  {char:'曜',py:'yào',tags:['动漫热血','霸气','光明','反差','大佬','潮流派','文艺派'],m:'像太阳一样耀眼'},
+  {char:'影',py:'yǐng',tags:['高冷','神秘','酷','反差','潮流个性','潮流派','文艺派'],m:'来无影去无踪，自带神秘感'},
+  {char:'墨',py:'mò',tags:['高冷','神秘','酷','潮流个性','纯色','外貌派','文艺派','叠词派'],m:'像墨一样深邃有态度'},
+  {char:'烬',py:'jìn',tags:['高冷','酷','霸气','反差','神秘','潮流派','文艺派'],m:'灰烬中重生，高级又冷感'},
+  {char:'澈',py:'chè',tags:['高冷','清澈','酷','神秘','潮流个性','文艺派'],m:'眼神清澈，看透一切'},
+  {char:'玄',py:'xuán',tags:['高冷','神秘','中式','大佬','纯色','外貌派','文艺派'],m:'玄色、玄妙，很有气场'},
+  {char:'渊',py:'yuān',tags:['高冷','深邃','大佬','神秘','哲学家','文艺派'],m:'深不见底，沉稳大佬'},
+  {char:'爵',py:'jué',tags:['大佬','霸气','高冷','贵气','隐藏','人设派'],m:'爵爷风范，高贵冷艳'},
+  {char:'王',py:'wáng',tags:['大佬','霸气','搞笑','中式','社牛','人设派','叠词派'],m:'王者风范，直白霸气'},
+  {char:'将',py:'jiàng',tags:['大佬','霸气','动漫热血','酷','隐藏','人设派'],m:'大将之风，气场全开'},
+  {char:'摩',py:'mó',tags:['魔法','奇幻','神秘','治愈','日系治愈','文艺派'],m:'魔法感，神秘又温柔'},
+  {char:'灵',py:'líng',tags:['魔法','治愈','温柔','神秘','日系治愈','文艺派','叠词派'],m:'小精灵一样灵动'},
+  {char:'糖',py:'táng',tags:['萌系','甜美','治愈','吃货','黏人精','食物派','叠词派'],m:'甜甜的，让人想咬一口'},
+  {char:'泡',py:'pào',tags:['萌系','轻盈','治愈','搞笑','日系治愈','食物派','叠词派'],m:'像泡泡一样轻飘飘'},
+  {char:'噗',py:'pū',tags:['萌系','搞笑','拟声','活泼','拆家','叠词派'],m:'拟声词，自带搞笑音效'},
+  {char:'叽',py:'jī',tags:['萌系','搞笑','拟声','活泼','小巧','叠词派'],m:'小奶猫叽叽叫的既视感'},
+  {char:'咪',py:'mī',tags:['萌系','可爱','拟声','黏人精','温柔','叠词派'],m:'最经典的猫咪感'},
+  {char:'崽',py:'zǎi',tags:['萌系','可爱','黏人精','温暖','小巧','人设派','叠词派'],m:'家里的崽崽，满满宠溺'},
+  {char:'嗷',py:'áo',tags:['萌系','反差','搞笑','精力旺盛','动漫热血','叠词派'],m:'奶凶奶凶的叫声'},
+  {char:'盹',py:'dǔn',tags:['佛系','随和','懒','温暖','治愈','叠词派'],m:'打盹儿的盹，岁月静好'},
+  {char:'呆',py:'dāi',tags:['呆萌','搞笑','佛系','治愈','松弛','叠词派'],m:'呆呆的，但很治愈'},
+  {char:'傻',py:'shǎ',tags:['呆萌','搞笑','温暖','松弛','社牛','叠词派'],m:'傻乎乎但很可爱'},
+  {char:'憨',py:'hān',tags:['呆萌','搞笑','温暖','吃货','随和','叠词派'],m:'憨态可掬，很接地气'},
+  {char:'懵',py:'měng',tags:['呆萌','搞笑','清澈','治愈','社恐','叠词派'],m:'一脸懵，清澈又愚蠢'},
+  {char:'困',py:'kùn',tags:['佛系','懒','治愈','随和','呆萌','叠词派'],m:'永远睡不醒的样子'},
+  // ===== 叠词派专用单字 =====
+  {char:'毛',py:'máo',tags:['萌系','柔软','治愈','温暖','叠词派','外貌派'],m:'毛茸茸的，手感一流'},
+  {char:'乖',py:'guāi',tags:['萌系','温柔','黏人精','治愈','叠词派'],m:'乖巧听话，让人心疼'},
+  {char:'皮',py:'pí',tags:['萌系','活泼','搞笑','拆家','精力旺盛','叠词派'],m:'皮得很，但也可爱得很'},
+  {char:'嘟',py:'dū',tags:['萌系','可爱','软糯','治愈','叠词派'],m:'嘟嘟嘴，奶凶奶凶'},
+  {char:'萌',py:'méng',tags:['萌系','可爱','治愈','甜美','叠词派'],m:'萌出血了，没有抵抗力'},
+  {char:'奶',py:'nǎi',tags:['萌系','软糯','甜美','温柔','食物派','叠词派'],m:'奶声奶气，甜到心坎'},
+  {char:'乖',py:'guāi',tags:['萌系','温柔','黏人精','治愈','叠词派'],m:'乖巧听话的小天使'},
+  {char:'花',py:'huā',tags:['萌系','外貌派','花斑','可爱','叠词派'],m:'花花绿绿，独一无二'},
+  {char:'黑',py:'hēi',tags:['外貌派','纯色','酷','神秘','叠词派'],m:'黑猫警长同款，又酷又萌'},
+  {char:'白',py:'bái',tags:['外貌派','纯色','纯净','仙气','叠词派'],m:'白白净净，仙气飘飘'},
+  {char:'灰',py:'huī',tags:['外貌派','纯色','高冷','温柔','叠词派'],m:'灰灰的，自带高级感'},
+  {char:'黄',py:'huáng',tags:['外貌派','纯色','温暖','橘色','叠词派'],m:'黄澄澄，暖洋洋'},
+  {char:'胖',py:'pàng',tags:['萌系','圆润','搞笑','吃货','叠词派'],m:'胖嘟嘟的，手感更好'},
+  {char:'瘦',py:'shòu',tags:['萌系','小巧','搞笑','叠词派'],m:'瘦瘦小小，但很灵活'},
+  {char:'乖',py:'guāi',tags:['萌系','温柔','黏人精','治愈','叠词派'],m:'乖宝宝一枚'},
+  // ===== 食物派双字组合 =====
+  {char:'布丁',py:'bù dīng',tags:['萌系','食物','软糯','治愈','吃货','食物派'],m:'Q 弹软糯，甜到心里'},
+  {char:'奶盖',py:'nǎi gài',tags:['萌系','食物','软糯','治愈','吃货','食物派'],m:'像奶盖一样绵密温柔'},
+  {char:'麻薯',py:'má shǔ',tags:['萌系','食物','软糯','黏人精','吃货','食物派'],m:'黏黏糯糯，越 rua 越上头'},
+  {char:'曲奇',py:'qū qí',tags:['萌系','食物','小巧','治愈','吃货','食物派'],m:'酥脆香甜，小小一块刚好'},
+  {char:'泡芙',py:'pào fú',tags:['萌系','食物','软糯','甜美','治愈','食物派'],m:'鼓鼓囊囊，一口满足'},
+  {char:'汤圆',py:'tāng yuán',tags:['萌系','食物','圆润','中式','温暖','食物派'],m:'白白圆圆，团团圆圆'},
+  {char:'年糕',py:'nián gāo',tags:['萌系','食物','软糯','中式','吃货','食物派'],m:'黏人又 Q 弹'},
+  {char:'馒头',py:'mán tou',tags:['萌系','食物','圆润','中式','搞笑','食物派'],m:'白白胖胖，像发面馒头'},
+  {char:'花卷',py:'huā juǎn',tags:['萌系','食物','斑纹','中式','搞笑','食物派','外貌派'],m:'卷卷的花纹，像个小花卷'},
+  {char:'虎皮',py:'hǔ pí',tags:['萌系','食物','斑纹','中式','特色','食物派','外貌派'],m:'虎皮蛋糕卷，斑纹猫绝配'},
+  {char:'芝麻',py:'zhī ma',tags:['萌系','食物','斑纹','小巧','治愈','食物派','外貌派'],m:'撒了芝麻的糯米团'},
+  {char:'奶黄',py:'nǎi huáng',tags:['萌系','食物','纯色','温暖','治愈','食物派','外貌派'],m:'奶黄包一样软乎乎'},
+  {char:'红豆',py:'hóng dòu',tags:['萌系','食物','温暖','治愈','中式','食物派'],m:'甜糯红豆，温柔可爱'},
+  {char:'芋泥',py:'yù ní',tags:['萌系','食物','紫色','温柔','治愈','食物派'],m:'香芋紫的软糯感'},
+  {char:'抹茶',py:'mǒ chá',tags:['萌系','食物','绿色','日系治愈','清新','食物派'],m:'清新的抹茶色'},
+  {char:'可可',py:'kě kě',tags:['萌系','食物','纯色','温暖','治愈','食物派','叠词派','潮流派'],m:'像热可可一样暖'},
+  {char:'摩卡',py:'mó kǎ',tags:['萌系','食物','纯色','温暖','潮流个性','食物派'],m:'咖啡色的时髦感'},
+  {char:'拿铁',py:'ná tiě',tags:['萌系','食物','纯色','治愈','佛系','食物派'],m:'像拿铁一样温柔有层次'},
+  {char:'贝果',py:'bèi guǒ',tags:['萌系','食物','圆润','治愈','潮流个性','食物派'],m:'圆滚滚的贝果'},
+  {char:'吐司',py:'tǔ sī',tags:['萌系','食物','纯色','温暖','治愈','食物派'],m:'像烤吐司一样金黄松软'},
+  {char:'薯条',py:'shǔ tiáo',tags:['萌系','食物','搞笑','活泼','吃货','食物派'],m:'金灿灿，一根一根很好玩'},
+  {char:'可乐',py:'kě lè',tags:['萌系','食物','搞笑','活泼','快乐','食物派'],m:'肥宅快乐水，治愈一切'},
+  {char:'汉堡',py:'hàn bǎo',tags:['萌系','食物','圆润','搞笑','吃货','食物派'],m:'层层叠叠的满足感'},
+  {char:'奶冻',py:'nǎi dòng',tags:['萌系','食物','软糯','治愈','温柔','食物派'],m:'冰冰凉凉、软软嫩嫩'},
+  {char:'果冻',py:'guǒ dòng',tags:['萌系','食物','透明','治愈','活泼','食物派'],m:'透明 Q 弹，晶莹剔透'},
+  {char:'青团',py:'qīng tuán',tags:['萌系','食物','绿色','中式','治愈','食物派'],m:'春天的颜色，软糯清新'},
+  {char:'锅巴',py:'guō bā',tags:['萌系','食物','搞笑','接地气','吃货','食物派'],m:'焦香酥脆，很接地气'},
+  {char:'饭团',py:'fàn tuán',tags:['萌系','食物','圆润','日系治愈','温暖','食物派'],m:'圆圆一个，很有日剧感'},
+  {char:'寿司',py:'shòu sī',tags:['萌系','食物','日系治愈','小巧','精致','食物派'],m:'小巧精致，一口一个'},
+  {char:'乌冬',py:'wū dōng',tags:['萌系','食物','日系治愈','佛系','温暖','食物派'],m:'暖暖的乌冬面，慵懒舒适'},
+  {char:'鲷鱼',py:'diāo yú',tags:['萌系','食物','日系治愈','特色','可爱','食物派'],m:'鲷鱼烧造型，可爱满分'},
+  {char:'章鱼',py:'zhāng yú',tags:['萌系','食物','搞笑','特色','活泼','食物派'],m:'小丸子即视感'},
+  {char:'肉松',py:'ròu sōng',tags:['萌系','食物','斑纹','温暖','吃货','食物派','外貌派'],m:'毛茸茸像肉松一样蓬松'},
+  {char:'蛋挞',py:'dàn tà',tags:['萌系','食物','圆润','治愈','吃货','食物派'],m:'金黄酥软，甜度刚好'},
+  {char:'铜锣',py:'tóng luó',tags:['萌系','食物','动漫热血','日式','治愈','食物派','潮流派'],m:'哆啦 A 梦同款，圆梦感'},
+  {char:'栗子',py:'lì zi',tags:['萌系','食物','自然','温暖','日系治愈','食物派'],m:'秋冬限定，暖手又暖心'},
+  {char:'南瓜',py:'nán guā',tags:['萌系','食物','纯色','温暖','治愈','食物派','外貌派'],m:'橘橘圆圆，万圣节也可爱'},
+  {char:'蘑菇',py:'mó gu',tags:['萌系','自然','小巧','日系治愈','可爱','食物派'],m:'像森林里的小蘑菇'},
+  {char:'松果',py:'sōng guǒ',tags:['萌系','自然','小巧','日系治愈','温暖','食物派'],m:'森林里掉下来的小礼物'},
+  {char:'棉花',py:'mián hua',tags:['萌系','自然','软糯','纯白','治愈','食物派','外貌派'],m:'像棉花一样又白又软'},
+  {char:'云朵',py:'yún duǒ',tags:['萌系','自然','柔软','佛系','治愈','外貌派'],m:'软绵绵的一朵云'},
+  {char:'糯米',py:'nuò mǐ',tags:['萌系','食物','软糯','黏人精','中式','食物派'],m:'黏人又软糯'},
+  // ===== 食物派新增 =====
+  {char:'奶茶',py:'nǎi chá',tags:['萌系','食物','甜美','治愈','吃货','食物派'],m:'甜甜的奶茶，治愈一切烦恼'},
+  {char:'咖啡',py:'kā fēi',tags:['萌系','食物','温暖','治愈','潮流个性','食物派'],m:'像一杯手冲，温暖有格调'},
+  {char:'雪碧',py:'xuě bì',tags:['萌系','食物','清爽','活泼','搞笑','食物派'],m:'透心凉，心飞扬'},
+  {char:'橘子',py:'jú zi',tags:['萌系','食物','橘色','可爱','温暖','食物派','外貌派'],m:'酸酸甜甜，橘猫标配'},
+  {char:'橙子',py:'chéng zi',tags:['萌系','食物','橘色','阳光','可爱','食物派','外貌派'],m:'元气满满，维C十足'},
+  {char:'草莓',py:'cǎo méi',tags:['萌系','食物','粉色','甜美','可爱','食物派'],m:'粉粉嫩嫩，甜到冒泡'},
+  {char:'芋圆',py:'yù yuán',tags:['萌系','食物','软糯','圆润','可爱','食物派'],m:'Q弹软糯，圆圆滚滚'},
+  {char:'奶酪',py:'nǎi lào',tags:['萌系','食物','温暖','治愈','吃货','食物派'],m:'浓浓的奶香，温暖治愈'},
+  {char:'饼干',py:'bǐng gān',tags:['萌系','食物','小巧','治愈','吃货','食物派'],m:'酥酥脆脆，小小一块'},
+  {char:'奶昔',py:'nǎi xī',tags:['萌系','食物','甜美','清凉','治愈','食物派'],m:'冰冰甜甜，夏日限定'},
+  {char:'蛋黄',py:'dàn huáng',tags:['萌系','食物','橘色','温暖','吃货','食物派','外貌派'],m:'金黄的蛋黄，暖洋洋'},
+  {char:'豆乳',py:'dòu rǔ',tags:['萌系','食物','温柔','治愈','日系治愈','食物派'],m:'温和不腻，日系感满满'},
+  {char:'芝士',py:'zhī shì',tags:['萌系','食物','软糯','治愈','潮流个性','食物派'],m:'拉丝的芝士，黏人又甜'},
+  {char:'奥利奥',py:'ào lì ào',tags:['萌系','食物','黑白','搞笑','潮流个性','食物派','外貌派'],m:'黑白配，奶牛猫绝配'},
+  {char:'布蕾',py:'bù lěi',tags:['萌系','食物','软糯','甜美','治愈','食物派'],m:'焦糖布蕾，甜到心里'},
+  {char:'大福',py:'dà fú',tags:['萌系','食物','圆润','中式','吉祥','食物派','人设派'],m:'大福大贵，圆润可爱'},
+  {char:'仙草',py:'xiān cǎo',tags:['萌系','食物','清凉','治愈','日系治愈','食物派','文艺派'],m:'清凉治愈，仙气飘飘'},
+  {char:'西米',py:'xī mǐ',tags:['萌系','食物','小巧','圆润','可爱','食物派'],m:'小小圆圆，Q弹可爱'},
+  {char:'椰果',py:'yē guǒ',tags:['萌系','食物','清爽','可爱','活泼','食物派'],m:'QQ弹弹，热带风情'},
+  {char:'焦糖',py:'jiāo táng',tags:['萌系','食物','温暖','甜美','潮流个性','食物派','外貌派'],m:'焦糖色，温暖又高级'},
+  {char:'麦片',py:'mài piàn',tags:['萌系','食物','温暖','质朴','治愈','食物派'],m:'朴实温暖，元气早餐'},
+  // ===== 外貌派新增 =====
+  {char:'小白',py:'xiǎo bái',tags:['外貌派','白色','纯净','可爱','萌系'],m:'白白净净，简单直接'},
+  {char:'小黑',py:'xiǎo hēi',tags:['外貌派','黑灰','酷','可爱','萌系'],m:'黑黑酷酷，又萌又帅'},
+  {char:'大橘',py:'dà jú',tags:['外貌派','橘色','温暖','吃货','搞笑'],m:'十橘九胖，大橘为重'},
+  {char:'花花',py:'huā huā',tags:['外貌派','花斑','可爱','萌系','叠词派'],m:'花花绿绿，独一无二'},
+  {char:'点点',py:'diǎn diǎn',tags:['外貌派','花斑','可爱','萌系','叠词派'],m:'点点斑纹，可爱满分'},
+  {char:'墨水',py:'mò shuǐ',tags:['外貌派','黑灰','高冷','文艺派','酷'],m:'像水墨画一样，写意又酷'},
+  {char:'煤球',py:'méi qiú',tags:['外貌派','黑灰','搞笑','可爱','萌系','叠词派'],m:'黑黑的圆球，又萌又暖'},
+  {char:'奶牛',py:'nǎi niú',tags:['外貌派','花斑','搞笑','可爱','萌系','叠词派'],m:'黑白花纹，像小奶牛'},
+  {char:'三花',py:'sān huā',tags:['外貌派','花斑','独特','可爱','萌系'],m:'三色花纹，独一无二'},
+  {char:'虎子',py:'hǔ zi',tags:['外貌派','花斑','霸气','可爱','人设派'],m:'虎虎生威，花纹霸气'},
+  {char:'斑斑',py:'bān bān',tags:['外貌派','花斑','可爱','萌系','叠词派'],m:'斑斑点点，花纹好看'},
+  {char:'雪球',py:'xuě qiú',tags:['外貌派','白色','圆润','可爱','萌系'],m:'白白圆圆，像雪球一样'},
+  {char:'炭炭',py:'tàn tàn',tags:['外貌派','黑灰','可爱','萌系','叠词派'],m:'黑炭一样，但暖到心里'},
+  // ===== 人名与人设派新增 =====
+  {char:'旺财',py:'wàng cái',tags:['人设派','中式招财','吉祥','活泼','传统'],m:'旺财旺财，财运滚滚来'},
+  {char:'将军',py:'jiāng jūn',tags:['人设派','大佬','霸气','酷','中式'],m:'将军出征，气场全开'},
+  {char:'妹妹',py:'mèi mei',tags:['人设派','可爱','黏人精','温暖','叠词派'],m:'家里的妹妹，娇俏可爱'},
+  {char:'弟弟',py:'dì di',tags:['人设派','可爱','活泼','温暖','叠词派'],m:'调皮弟弟，活泼好动'},
+  {char:'少爷',py:'shào ye',tags:['大佬','贵气','搞笑','中式','隐藏','人设派'],m:'纨绔小少爷，奶凶'},
+  {char:'公主',py:'gōng zhǔ',tags:['萌系','贵气','可爱','黏人精','甜美','人设派'],m:'家里的小公主'},
+  {char:'格格',py:'gé ge',tags:['萌系','贵气','可爱','中式','大佬','人设派','叠词派'],m:'清宫小格格，娇贵可爱'},
+  {char:'小满',py:'xiǎo mǎn',tags:['中式招财','节气','圆满','温暖','佛系','人设派','文艺派'],m:'小满即圆满，寓意很好'},
+  {char:'立夏',py:'lì xià',tags:['中式','节气','温暖','阳光','日系治愈','文艺派'],m:'夏天开始的明亮感'},
+  {char:'惊蛰',py:'jīng zhé',tags:['中式','节气','活泼','精力旺盛','自然','文艺派'],m:'春雷惊醒万物，活力满满'},
+  {char:'谷雨',py:'gǔ yǔ',tags:['中式','节气','温柔','自然','日系治愈','文艺派'],m:'雨生百谷，清新温柔'},
+  {char:'霜降',py:'shuāng jiàng',tags:['中式','节气','高冷','清冷','神秘','文艺派'],m:'带一点清冷的高级感'},
+  {char:'冬至',py:'dōng zhì',tags:['中式','节气','温暖','团圆','治愈','文艺派'],m:'冬至阳生，温暖回归'},
+  {char:'元宝',py:'yuán bǎo',tags:['中式招财','吉祥','圆润','可爱','传统','人设派'],m:'圆滚滚的元宝，招财'},
+  {char:'如意',py:'rú yì',tags:['中式招财','吉祥','温柔','传统','治愈','人设派','文艺派'],m:'事事如意，温柔喜庆'},
+  {char:'平安',py:'píng ān',tags:['中式招财','吉祥','温柔','传统','陪伴','人设派'],m:'平平安安，最朴素的祝福'},
+  {char:'喜乐',py:'xǐ lè',tags:['中式招财','喜庆','快乐','温暖','搞笑','人设派'],m:'平安喜乐，热闹可爱'},
+  {char:'招财',py:'zhāo cái',tags:['中式招财','喜庆','吉祥','传统','直白','人设派'],m:'招财猫本猫，直白吉利'},
+  {char:'进宝',py:'jìn bǎo',tags:['中式招财','喜庆','吉祥','传统','霸气','人设派'],m:'招财进宝，富贵逼人'},
+  {char:'大王',py:'dà wáng',tags:['大佬','霸气','搞笑','中式','社牛','人设派'],m:'这个家我说了算'},
+  {char:'陛下',py:'bì xià',tags:['大佬','霸气','搞笑','中式','高冷','人设派'],m:'陛下驾到，气场全开'},
+  {char:'主子',py:'zhǔ zi',tags:['大佬','霸气','搞笑','中式','黏人精','人设派'],m:'你就是我的主子'},
+  // ===== 潮流文化派新增 =====
+  {char:'哪吒',py:'né zhā',tags:['动漫热血','霸气','反差','精力旺盛','拆家','潮流派'],m:'拆家小能手，奶凶奶凶'},
+  {char:'悟空',py:'wù kōng',tags:['动漫热血','霸气','精力旺盛','拆家','隐藏','潮流派','文艺派'],m:'上天入地，精力无限'},
+  {char:'辛巴',py:'xīn bā',tags:['潮流派','动漫热血','霸气','勇敢','冒险'],m:'狮子王同款，勇敢无畏'},
+  {char:'胖虎',py:'pàng hǔ',tags:['潮流派','搞笑','霸气','圆润','吃货'],m:'哆啦A梦同款，又胖又虎'},
+  {char:'提莫',py:'tí mò',tags:['潮流派','游戏','可爱','搞笑','小巧'],m:'提莫队长正在待命'},
+  {char:'甲方',py:'jiā fāng',tags:['潮流派','搞笑','霸气','社牛','玩梗'],m:'猫界甲方，说你不行就不行'},
+  {char:'逆子',py:'nì zǐ',tags:['潮流派','搞笑','玩梗','活泼','拆家'],m:'逆子！又拆家了！'},
+  {char:'露娜',py:'lù nà',tags:['潮流派','国际范','神秘','高冷','魔法'],m:'Luna，月光下的神秘小猫'},
+  {char:'米洛',py:'mǐ luò',tags:['潮流派','国际范','温柔','治愈','时尚'],m:'Milo，温柔又时髦'},
+  {char:'贝拉',py:'bèi lā',tags:['潮流派','国际范','甜美','可爱','时尚'],m:'Bella，美丽又迷人'},
+  {char:'查理',py:'chá lǐ',tags:['潮流派','国际范','温暖','绅士','时尚'],m:'Charlie，绅士风度'},
+  {char:' lucky',py:'lucky',tags:['潮流派','国际范','幸运','活泼','时尚'],m:'Lucky，带来好运的boy'},
+  {char:' Coco',py:'coco',tags:['潮流派','国际范','时尚','可爱','甜美'],m:'Coco，又酷又甜'},
+  {char:'洛基',py:'luò jī',tags:['潮流派','动漫热血','神秘','酷','反差'],m:'Loki，捣蛋鬼也迷人'},
+  {char:'雷神',py:'léi shén',tags:['潮流派','动漫热血','霸气','酷','大佬'],m:'雷神之锤，气场炸裂'},
+  {char:'星爵',py:'xīng jué',tags:['潮流派','动漫热血','搞笑','酷','冒险'],m:'星爵大人，又帅又逗'},
+  {char:'皮蛋',py:'pí dàn',tags:['潮流派','搞笑','食物','活泼','玩梗','食物派'],m:'皮蛋瘦肉粥，又皮又逗'},
+  {char:'土豆',py:'tǔ dòu',tags:['潮流派','搞笑','食物','圆润','可爱','食物派','叠词派'],m:'土土的豆豆，憨萌满分'},
+  // ===== 文艺/独特派新增 =====
+  {char:'子衿',py:'zǐ jīn',tags:['文艺派','古风','温柔','雅致','独特'],m:'青青子衿，悠悠我心'},
+  {char:'南风',py:'nán fēng',tags:['文艺派','自然','温柔','自由','古风'],m:'南风知我意，吹梦到西洲'},
+  {char:'半夏',py:'bàn xià',tags:['文艺派','中药','清新','独特','雅致'],m:'半夏生，夏日清新'},
+  {char:'清欢',py:'qīng huān',tags:['文艺派','意境','温柔','治愈','雅致'],m:'人间有味是清欢'},
+  {char:'星云',py:'xīng yún',tags:['文艺派','星辰','神秘','浪漫','独特'],m:'浩瀚星云，浪漫又神秘'},
+  {char:'琥珀',py:'hǔ pò',tags:['文艺派','珍贵','温暖','独特','雅致'],m:'琥珀色的眼瞳，珍贵独特'},
+  {char:'琉璃',py:'liú lí',tags:['文艺派','珍贵','晶莹','独特','雅致'],m:'琉璃般剔透，美丽独特'},
+  {char:'初雪',py:'chū xuě',tags:['文艺派','自然','纯净','浪漫','白色','外貌派'],m:'初雪降临，纯净浪漫'},
+  {char:'白露',py:'bái lù',tags:['文艺派','节气','纯净','清冷','古风'],m:'蒹葭苍苍，白露为霜'},
+  {char:'长歌',py:'cháng gē',tags:['文艺派','古风','豪迈','雅致','独特'],m:'长歌当哭，豪情万丈'},
+  {char:'鹿鸣',py:'lù míng',tags:['文艺派','古风','自然','雅致','独特'],m:'呦呦鹿鸣，食野之苹'},
+  {char:'知秋',py:'zhī qiū',tags:['文艺派','自然','温柔','雅致','独特'],m:'一叶知秋，细腻温柔'},
+  {char:'听雨',py:'tīng yǔ',tags:['文艺派','自然','安静','治愈','雅致'],m:'听雨眠，岁月静好'},
+  {char:'拾光',py:'shí guāng',tags:['文艺派','意境','温暖','治愈','独特'],m:'拾起时光，温暖如初'},
+  {char:'朝露',py:'zhāo lù',tags:['文艺派','自然','纯净','清冷','独特'],m:'朝露待日晞，清新纯净'},
+  {char:'暮云',py:'mù yún',tags:['文艺派','自然','安静','温柔','独特'],m:'暮云收尽，温柔沉静'},
+  {char:'落樱',py:'luò yīng',tags:['文艺派','自然','浪漫','日系治愈','唯美'],m:'落英缤纷，浪漫唯美'},
+  {char:'寒烟',py:'hán yān',tags:['文艺派','意境','清冷','神秘','雅致'],m:'寒烟翠淡，清冷高级'},
+  {char:'青黛',py:'qīng dài',tags:['文艺派','古风','雅致','独特','颜色'],m:'青黛画眉，古韵悠然'},
+  {char:'未央',py:'wèi yāng',tags:['文艺派','古风','意境','雅致','独特'],m:'夜未央，意未尽'},
+  // ===== 3字潮流名字 =====
+  {char:'皮卡丘',py:'pí kǎ qiū',tags:['潮流派','动漫热血','游戏','可爱','电系'],m:'皮卡皮卡，十万伏特萌力'},
+  {char:'猫始皇',py:'māo shǐ huáng',tags:['潮流派','玩梗','霸气','搞笑','大佬'],m:'朕统六猫，猫界始皇帝'},
+  {char:'胖橘子',py:'pàng jú zi',tags:['潮流派','外貌派','橘色','搞笑','吃货','食物派'],m:'又胖又橘，三合一完美'}
+];
+
+// 名字派别 → 已有tag的映射（用于匹配未标注派别tag的旧条目）
+var CAT_SCHOOL_MAP = {
+  '食物派': ['食物'],
+  '外貌派': ['纯色','斑纹','橘色','白色','黑灰','花斑'],
+  '叠词派': [],  // 叠词派通过单字+叠字逻辑处理，不靠tag
+  '人设派': ['大佬','中式招财','吉祥','霸气','贵气'],
+  '潮流派': ['动漫热血','潮流个性','酷炫','玩梗','国际范','游戏'],
+  '文艺派': ['日系治愈','自然','魔法','神秘','高冷','节气','古风']
+};
+
+// 根据毛色推荐的前缀/后缀灵感（用于名字解释或组合）
+var CAT_COLOR_HINTS = {
+  '橘色':{
+    prefixes:['橘','金','橙','黄','柚','柿','蜜','焦','糖','南瓜'],
+    words:['橘子','小橘','金宝','橙橙','焦糖','南瓜','蜜桔','柿饼','蛋黄','芒果','柚子','铜锣烧','橙汁','旺财'],
+    feel:'橘猫自带招财体质，名字走暖色食物系最讨喜。'
+  },
+  '白色':{
+    prefixes:['白','雪','银','乳','云','棉','霜','月','珠','米'],
+    words:['雪球','云朵','棉花糖','奶盖','珍珠','米粒','月光','霜霜','银豆','糯米','汤圆','豆腐','小布丁','椰奶'],
+    feel:'白色干净通透，名字适合走仙气或软萌路线。'
+  },
+  '黑灰':{
+    prefixes:['黑','墨','灰','炭','乌','玄','夜','影','铁','烟'],
+    words:['墨墨','炭炭','黑炭','芝麻','玄米','影子','夜神','煤球','乌龙','灰灰','铁蛋','可乐','奥利奥','蝙蝠侠'],
+    feel:'黑灰系自带酷感，名字走神秘或反差萌都合适。'
+  },
+  '花斑':{
+    prefixes:['花','虎','斑','玳','狸','麻','豹','三花','花卷'],
+    words:['斑斑','虎子','麻团','豹豹','花卷','芝麻','玳瑁','狸奴','三花','虎皮','花纹','奶牛','奥利奥','小花'],
+    feel:'花斑独一无二，名字可以取花纹或独特的混色感。'
+  }
+};
+
+var CAT_EYE_HINTS = {
+  '呆萌':{feel:'眼神清澈又好奇，名字可以呆萌或搞笑。',words:['呆呆','懵懵','豆豆','球球','二二']},
+  '厌世高冷':{feel:'眼神里写满「关我什么事」，名字要高冷或反差萌。',words:['冷冷','厌厌','冰山','大佬','王']},
+  '佛系':{feel:'眯眯眼，万事随缘。名字适合慵懒、禅意。',words:['困困','盹盹','佛佛','慢慢','悠悠']}
+};
+
+var CAT_THINKING_MSGS = [
+  '正在读取猫咪的迷惑行为',
+  '正在把它的小脾气翻译成标签',
+  '正在从毛色和眼神里找灵感',
+  '正在组合一个配得上它的名字'
+];
+
+var CAT_POSTER_LINES = [
+  '从今天起，也是有身份的喵了',
+  '铲屎官认证 · 此猫不凡',
+  '毛茸茸的名字，沉甸甸的爱',
+  '名字是我，脾气也是我',
+  '一个字：喵。两个：可爱。'
+];
+
+var CAT_POSTER_TEMPLATES = [
+  {key:'Cream',name:'奶油猫'},
+  {key:'Paw',name:'粉爪印'},
+  {key:'Comic',name:'漫画框'},
+  {key:'Lucky',name:'招财猫'},
+  {key:'Night',name:'夜空猫'}
+];
+
 
 var SURNAMES = ['李','王','张','刘','陈','杨','赵','黄','周','吴','徐','孙','胡','朱','高','林','何','郭','马','罗','梁','宋','郑','谢','韩','唐','冯','于','董','萧','程','曹','袁','邓','许','傅','沈','曾','彭','吕','苏','蒋','贾','丁','魏','薛','叶','阎','余','潘','杜','戴','夏','钟','汪','田','任','姜','范','方','石','姚','谭','廖','邹','熊','金','陆','郝','孔','白','崔','康','毛','邱','秦','江','史','顾','侯','邵','孟','龙','万','段','雷','钱','汤','尹','黎','易','常','武','乔','贺','赖','龚','文'];
 
@@ -642,6 +1221,7 @@ var ANSWER_THEMES = {
 // ===================== STATE =====================
 
 var state = {
+  mode:'human',
   step:'home',
   preferences:{
     nameLength:'flexible',
@@ -665,7 +1245,22 @@ var state = {
     declIndex:0
   },
   nameFeedback:{},
-  regenerateCount:0
+  regenerateCount:0,
+  // 猫猫取名状态
+  catAnswers:[],
+  catCurrentQuestion:0,
+  catSelectedOptions:[],
+  catProfile:null,
+  catNames:[],
+  catSelectedNameIndex:-1,
+  catPosterTemplate:'Cream',
+  catPosterOptions:{
+    showKeywords:true,
+    declIndex:0,
+    bgColor:'#FFF8E7'
+  },
+  catNameFeedback:{},
+  catRegenerateCount:0
 };
 
 // ===================== RENDER =====================
@@ -673,15 +1268,27 @@ var state = {
 function render(){
   var app = document.getElementById('app');
   var html = '';
-  switch(state.step){
-    case 'home': html = renderHome(); break;
-    case 'settings': html = renderSettings(); break;
-    case 'quiz': html = renderQuiz(); break;
-    case 'thinking': html = renderThinking(); break;
-    case 'profile': html = renderProfile(); break;
-    case 'gashapon': html = renderGashapon(); break;
-    case 'names': html = renderNames(); break;
-    case 'result': html = renderResult(); break;
+  if(state.mode === 'cat'){
+    switch(state.step){
+      case 'home': html = renderHome(); break;
+      case 'cat-quiz': html = renderCatQuiz(); break;
+      case 'cat-thinking': html = renderCatThinking(); break;
+      case 'cat-profile': html = renderCatProfile(); break;
+      case 'cat-gashapon': html = renderCatGashapon(); break;
+      case 'cat-names': html = renderCatNames(); break;
+      case 'cat-result': html = renderCatResult(); break;
+    }
+  } else {
+    switch(state.step){
+      case 'home': html = renderHome(); break;
+      case 'settings': html = renderSettings(); break;
+      case 'quiz': html = renderQuiz(); break;
+      case 'thinking': html = renderThinking(); break;
+      case 'profile': html = renderProfile(); break;
+      case 'gashapon': html = renderGashapon(); break;
+      case 'names': html = renderNames(); break;
+      case 'result': html = renderResult(); break;
+    }
   }
   app.innerHTML = '<div class="page active" id="page-'+state.step+'">'+html+'</div>';
   attachEvents();
@@ -701,10 +1308,24 @@ function renderHome(){
       '<h1 class="home-title">自名得意</h1>'+
       '<p class="home-slogan">取一个更像你的名字</p>'+
     '</div>'+
-    '<p class="home-sub">通过 10 个轻松的问题，AI 会从你的兴趣、审美、偏好和价值观里，<br>提炼一个可以代表你的中文名字。</p>'+
-    '<button class="btn-primary" id="btn-start">开始命名</button>'+
+    '<p class="home-sub">通过几个轻松的问题，AI 会为你或你的毛孩子，<br>提炼一个刚刚好的名字。</p>'+
+    '<div class="home-modes">'+
+      '<div class="home-mode-card" data-mode="human">'+
+        '<div class="home-mode-icon">'+
+          '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="24" cy="20" r="8"/><path d="M10 42 C10 32 18 30 24 30 C30 30 38 32 38 42"/><circle cx="21" cy="19" r="1" fill="currentColor" stroke="none"/><circle cx="27" cy="19" r="1" fill="currentColor" stroke="none"/><path d="M21 23 Q24 25 27 23" stroke-width="1"/></svg>'+
+        '</div>'+
+        '<div class="home-mode-title">给自己取名</div>'+
+        '<div class="home-mode-desc">10 题测试 · 人格画像 · 候选名字</div>'+
+      '</div>'+
+      '<div class="home-mode-card" data-mode="cat">'+
+        '<div class="home-mode-icon">'+
+          '<svg viewBox="0 0 48 48" fill="none" stroke-linecap="round"><path d="M8 18 L14 4 L20 16 Z" fill="#FFB89A" stroke="#FF9A8B" stroke-width="1"/><path d="M40 18 L34 4 L28 16 Z" fill="#FFB89A" stroke="#FF9A8B" stroke-width="1"/><path d="M11 16 L14 8 L17 15 Z" fill="#FFD4D4"/><path d="M37 16 L34 8 L31 15 Z" fill="#FFD4D4"/><ellipse cx="24" cy="28" rx="16" ry="14" fill="#FFE8D6" stroke="#FF9A8B" stroke-width="1"/><ellipse cx="18" cy="25" rx="3" ry="3.5" fill="#3A2E2A"/><ellipse cx="30" cy="25" rx="3" ry="3.5" fill="#3A2E2A"/><circle cx="19" cy="24" r="1" fill="#FFF"/><circle cx="31" cy="24" r="1" fill="#FFF"/><path d="M22 31 L24 31 L23 33 Z" fill="#FF6B6B"/><path d="M21 34 Q24 37 27 34" stroke="#3A2E2A" stroke-width="1.5" fill="none" stroke-linecap="round"/><ellipse cx="13" cy="32" rx="2.5" ry="2" fill="#FFB6C1" opacity="0.5"/><ellipse cx="35" cy="32" rx="2.5" ry="2" fill="#FFB6C1" opacity="0.5"/><line x1="3" y1="29" x2="9" y2="30" stroke="#3A2E2A" stroke-width="0.6" opacity="0.3"/><line x1="45" y1="29" x2="39" y2="30" stroke="#3A2E2A" stroke-width="0.6" opacity="0.3"/></svg>'+
+        '</div>'+
+        '<div class="home-mode-title">给猫猫取名</div>'+
+        '<div class="home-mode-desc">6 题测试 · 性格画像 · 猫咪海报</div>'+
+      '</div>'+
+    '</div>'+
     '<div class="home-aux">'+
-      '<a id="aux-quiz">开始 10 题测试</a>'+
       '<a id="aux-examples">先看看名字示例</a>'+
     '</div>'+
     '<p class="home-note">无需输入真实姓名 · 全部选择题 · 3-5 分钟</p>'+
@@ -719,9 +1340,464 @@ function renderHome(){
         '<div class="example-item"><div class="example-name">林知夏</div><div class="example-pinyin">lín zhī xià</div><div class="example-explain">"知"是明白和清醒，"夏"对应明亮和温度，适合独立而温暖的人。</div></div>'+
         '<div class="example-item"><div class="example-name">陈若宁</div><div class="example-pinyin">chén ruò níng</div><div class="example-explain">"若"有柔和自然感，"宁"是安宁平静，适合偏安静克制的气质。</div></div>'+
         '<div class="example-item"><div class="example-name">顾思宁</div><div class="example-pinyin">gù sī níng</div><div class="example-explain">"思"是思想和深度，"宁"是安定从容，适合独立克制的人。</div></div>'+
+        '<div class="example-item example-cat"><div class="example-name">汤圆</div><div class="example-pinyin">tāng yuán</div><div class="example-explain">圆圆滚滚，白白软软，一听就想咬一口。</div></div>'+
+        '<div class="example-item example-cat"><div class="example-name">奥利奥</div><div class="example-pinyin">ào lì ào</div><div class="example-explain">奶牛猫专属，黑白分明，甜酷可爱。</div></div>'+
       '</div>'+
     '</div>'+
   '</div>';
+}
+
+// ---- CAT RENDER FUNCTIONS ----
+
+function renderCatQuiz(){
+  var idx = state.catCurrentQuestion;
+  var q = CAT_QUESTIONS[idx];
+  var progress = ((idx) / CAT_QUESTIONS.length * 100);
+  var selected = state.catSelectedOptions[idx] || [];
+
+  var optsHtml = q.options.map(function(opt, i){
+    var sel = selected.indexOf(i) >= 0 ? ' selected' : '';
+    return '<button class="quiz-option cat-quiz-option'+sel+'" data-cat-option="'+i+'">'+opt+'</button>';
+  }).join('');
+
+  var hint = selected.length === 0 ? '请选择一个最像它的选项' : '已选择，可继续下一题';
+
+  return '<div class="quiz-progress">'+
+      '<div class="quiz-progress-num">第 '+(idx+1)+' / '+CAT_QUESTIONS.length+' 个问题</div>'+
+      '<div class="quiz-bar"><div class="quiz-bar-fill" style="width:'+progress+'%"></div></div>'+
+    '</div>'+
+    '<div class="quiz-guide">'+q.guide+'</div>'+
+    '<div class="quiz-question cat-quiz-question">'+q.q+'</div>'+
+    '<div class="quiz-hint">'+hint+'</div>'+
+    '<div class="quiz-options">'+optsHtml+'</div>'+
+    '<div class="cat-quiz-tags">'+((selected.length > 0) ? '选中标签：' + selected.map(function(i){ return CAT_ANSWER_TAGS[q.id][q.options[i]][0]; }).join(' · ') : '')+'</div>'+
+    '<div class="quiz-nav">'+
+      (idx > 0 ? '<button class="quiz-back" id="cat-quiz-back">← 上一题</button>' : '<span></span>')+
+      '<button class="btn-primary" id="cat-quiz-next" style="padding:10px 32px;font-size:14px;">下一题</button>'+
+    '</div>';
+}
+
+function renderCatThinking(){
+  return '<div class="thinking-wrap">'+
+    '<div class="thinking-dots">'+
+      '<div class="thinking-dot cat-thinking-dot"></div>'+
+      '<div class="thinking-dot cat-thinking-dot"></div>'+
+      '<div class="thinking-dot cat-thinking-dot"></div>'+
+    '</div>'+
+    '<div class="thinking-text" id="cat-thinking-text">'+CAT_THINKING_MSGS[0]+'</div>'+
+  '</div>';
+}
+
+function renderCatProfile(){
+  var p = state.catProfile;
+  return '<div class="profile-header">'+
+      '<div class="profile-title">这是 AI 看到的小猫咪</div>'+
+      '<div class="profile-sub">性格画像</div>'+
+    '</div>'+
+    '<div class="profile-portrait cat-portrait" id="cat-profile-portrait">'+getCatPortraitSVG(p)+'</div>'+
+    '<div class="profile-section">'+
+      '<div class="profile-section-title">性格标签</div>'+
+      '<div class="cat-tags">'+p.tags.map(function(t){return '<span class="cat-tag">'+t+'</span>';}).join('')+'</div>'+
+    '</div>'+
+    '<div class="profile-section">'+
+      '<div class="profile-section-title">画像解读</div>'+
+      '<div class="profile-section-text">'+p.text+'</div>'+
+    '</div>'+
+    '<div class="profile-section">'+
+      '<div class="profile-section-title">命名灵感</div>'+
+      '<div class="profile-section-text">'+p.namingHint+'</div>'+
+    '</div>'+
+    '<div class="profile-actions">'+
+      '<button class="btn-primary" id="btn-cat-gashapon">抽取猫咪名字</button>'+
+    '</div>';
+}
+
+function renderCatGashapon(){
+  return '<div class="gashapon-wrap">'+
+    '<div class="gashapon-machine cat-gashapon-machine" id="cat-gashapon-machine">'+
+      '<div class="gashapon-dome">'+
+        '<div class="gashapon-capsule cat-gashapon-capsule" id="cat-gashapon-capsule">'+
+          '<div class="gashapon-capsule-top" style="background:#FF9A8B"></div>'+
+          '<div class="gashapon-capsule-bottom" style="background:#FFF0E6"></div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="gashapon-body" style="background:rgba(255,154,139,.15);border-color:#FF9A8B"></div>'+
+      '<div class="gashapon-base" style="background:#FF9A8B"></div>'+
+    '</div>'+
+    '<div class="gashapon-reveal cat-gashapon-reveal" id="cat-gashapon-reveal"></div>'+
+    '<div class="gashapon-reveal-pinyin cat-gashapon-reveal-pinyin" id="cat-gashapon-pinyin"></div>'+
+    '<div class="gashapon-hint" id="cat-gashapon-hint">正在把猫咪的小脾气折成名字...</div>'+
+    '<div class="gashapon-count" id="cat-gashapon-count"></div>'+
+    '<button class="btn-primary" id="btn-cat-view-names" style="display:none;margin-top:24px">查看全部名字</button>'+
+  '</div>';
+}
+
+function renderCatNames(){
+  var cardsHtml = state.catNames.map(function(n, i){
+    var tagsHtml = n.keywords.map(function(k){return '<span class="name-tag cat-name-tag">'+k+'</span>';}).join('');
+    var fbHtml = ['好可爱','不够霸气','太普通','想再换一个'].map(function(fb){
+      var active = (state.catNameFeedback[i]===fb) ? ' active' : '';
+      return '<button class="fb-btn cat-fb-btn'+active+'" data-cat-name-fb="'+i+'" data-fb="'+fb+'">'+fb+'</button>';
+    }).join('');
+    var selected = state.catSelectedNameIndex === i;
+    var selectLabel = selected ? '已认领 ✓' : '选定这个名字';
+
+    return '<div class="name-card cat-name-card">'+
+      '<div class="name-card-name cat-card-name">'+n.name+'</div>'+
+      '<div class="name-card-pinyin">'+n.pinyin+'</div>'+
+      '<div class="name-card-line">'+n.oneLine+'</div>'+
+      '<div class="name-card-explain">'+n.explanation+'</div>'+
+      '<div class="name-card-tags">'+tagsHtml+'</div>'+
+      '<div class="name-card-feedback">'+fbHtml+'</div>'+
+      '<button class="name-card-select'+(selected?' selected':'')+'" data-cat-select-name="'+i+'">'+selectLabel+'</button>'+
+    '</div>';
+  }).join('');
+
+  return '<div class="names-header">'+
+      '<div class="names-title">猫咪候选名字</div>'+
+      '<div class="names-sub">4 个名字已抽取完成</div>'+
+    '</div>'+
+    cardsHtml+
+    '<div class="names-actions">'+
+      '<div class="regenerate-options">'+
+        '<button class="capsule" id="cat-regen-default">再生成一组</button>'+
+        '<button class="capsule" data-cat-regen="food">更食物系</button>'+
+        '<button class="capsule" data-cat-regen="appearance">更外貌系</button>'+
+        '<button class="capsule" data-cat-regen="repeat">更叠词系</button>'+
+        '<button class="capsule" data-cat-regen="lucky">更吉利一点</button>'+
+        '<button class="capsule" data-cat-regen="pop">更潮流系</button>'+
+        '<button class="capsule" data-cat-regen="literary">更文艺系</button>'+
+        '<button class="capsule" data-cat-regen="cuter">更可爱一点</button>'+
+        '<button class="capsule" data-cat-regen="cooler">更酷一点</button>'+
+      '</div>'+
+    '</div>';
+}
+
+function renderCatResult(){
+  var n = state.catNames[state.catSelectedNameIndex];
+  var po = state.catPosterOptions;
+  var today = new Date();
+  var dateStr = today.getFullYear()+' / '+String(today.getMonth()+1).padStart(2,'0')+' / '+String(today.getDate()).padStart(2,'0');
+
+  var decls = n.posterLines || [n.oneLine];
+  var currentDecl = decls[po.declIndex % decls.length];
+  var tagsHtml = n.keywords.map(function(k){return '<span class="poster-keyword cat-poster-keyword">'+k+'</span>';}).join('');
+
+  var stripTone = function(py){
+    var map = {'ā':'a','á':'a','ǎ':'a','à':'a','ē':'e','é':'e','ě':'e','è':'e','ī':'i','í':'i','ǐ':'i','ì':'i','ō':'o','ó':'o','ǒ':'o','ò':'o','ū':'u','ú':'u','ǔ':'u','ù':'u','ǖ':'v','ǘ':'v','ǚ':'v','ǜ':'v'};
+    return py.replace(/[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ]/g, function(m){ return map[m] || m; });
+  };
+  var posterPinyin = n.pinyin.split(' ').map(function(p){ return stripTone(p).toUpperCase(); }).join(' / ');
+
+  function catPosterTop(){
+    return '<div class="poster-top">'+
+      '<div class="poster-top-left">'+
+        '<div class="poster-top-label">Namself</div>'+
+        '<div class="poster-top-meta">'+dateStr+'</div>'+
+      '</div>'+
+      catTopIconSvg()+
+    '</div>';
+  }
+  function catPosterBottom(){
+    return '<div class="poster-bottom"><div class="poster-bottom-brand"><span>自名得意 · Namself</span><span class="poster-bottom-slogan">取一个更像你的名字</span></div><div class="poster-bottom-arrow"></div></div>';
+  }
+  function catPosterKeywords(){ return (po.showKeywords ? '<div class="poster-keywords-label">关键词</div><div class="poster-keywords">'+tagsHtml+'</div>' : ''); }
+
+  var posterHtml = '';
+  if(state.catPosterTemplate === 'Cream'){
+    posterHtml = '<div class="poster-card cat-poster-cream" id="cat-poster-content" style="background:'+po.bgColor+'">'+
+      '<div class="cat-paw paw-1">🐾</div><div class="cat-paw paw-2">🐾</div>'+
+      catPosterTop()+
+      '<div class="cat-face-decoration">'+catFaceSvg()+'</div>'+
+      '<div class="poster-name cat-poster-name">'+n.name+'</div>'+
+      '<div class="poster-pinyin cat-poster-pinyin">'+posterPinyin+'</div>'+
+      '<div class="poster-decl cat-poster-decl">'+currentDecl+'</div>'+
+      catPosterKeywords()+
+      catPosterBottom()+
+    '</div>';
+  } else if(state.catPosterTemplate === 'Paw'){
+    posterHtml = '<div class="poster-card cat-poster-paw" id="cat-poster-content" style="background:'+po.bgColor+'">'+
+      '<div class="cat-paw-bg"></div>'+
+      catPosterTop()+
+      '<div class="poster-name cat-poster-name">'+n.name+'</div>'+
+      '<div class="poster-pinyin cat-poster-pinyin">'+posterPinyin+'</div>'+
+      '<div class="poster-decl cat-poster-decl">'+currentDecl+'</div>'+
+      catPosterKeywords()+
+      '<div class="cat-big-paw">'+catPawSvg()+'</div>'+
+      catPosterBottom()+
+    '</div>';
+  } else if(state.catPosterTemplate === 'Comic'){
+    posterHtml = '<div class="poster-card cat-poster-comic" id="cat-poster-content" style="background:'+po.bgColor+'">'+
+      '<div class="cat-comic-dots"></div>'+
+      catPosterTop()+
+      '<div class="cat-comic-bubble">MEOW</div>'+
+      '<div class="poster-name cat-poster-name">'+n.name+'</div>'+
+      '<div class="poster-pinyin cat-poster-pinyin">'+posterPinyin+'</div>'+
+      '<div class="poster-decl cat-poster-decl">'+currentDecl+'</div>'+
+      catPosterKeywords()+
+      catPosterBottom()+
+    '</div>';
+  } else if(state.catPosterTemplate === 'Lucky'){
+    posterHtml = '<div class="poster-card cat-poster-lucky" id="cat-poster-content" style="background:'+po.bgColor+'">'+
+      '<div class="cat-lucky-cloud"></div>'+
+      catPosterTop()+
+      '<div class="cat-lucky-cat">'+manekiNekoSvg()+'</div>'+
+      '<div class="poster-name cat-poster-name">'+n.name+'</div>'+
+      '<div class="poster-pinyin cat-poster-pinyin">'+posterPinyin+'</div>'+
+      '<div class="poster-decl cat-poster-decl">'+currentDecl+'</div>'+
+      catPosterKeywords()+
+      catPosterBottom()+
+    '</div>';
+  } else if(state.catPosterTemplate === 'Night'){
+    posterHtml = '<div class="poster-card cat-poster-night" id="cat-poster-content">'+
+      '<div class="cat-night-stars">'+starsSvg()+'</div>'+
+      '<div class="cat-night-moon">'+moonSvg()+'</div>'+
+      catPosterTop()+
+      '<div class="poster-name cat-poster-name">'+n.name+'</div>'+
+      '<div class="poster-pinyin cat-poster-pinyin">'+posterPinyin+'</div>'+
+      '<div class="poster-decl cat-poster-decl">'+currentDecl+'</div>'+
+      catPosterKeywords()+
+      catPosterBottom()+
+    '</div>';
+  }
+
+  var declBtns = decls.map(function(d, i){
+    var sel = (i === po.declIndex % decls.length) ? ' selected' : '';
+    return '<button class="poster-decl-btn'+sel+'" data-cat-decl="'+i+'">'+d+'</button>';
+  }).join('');
+
+  var tplBtns = CAT_POSTER_TEMPLATES.map(function(t){
+    var sel = state.catPosterTemplate === t.key ? ' selected' : '';
+    return '<button class="poster-tpl-btn'+sel+'" data-cat-tpl="'+t.key+'">'+t.name+'</button>';
+  }).join('');
+
+  var bgColors = [
+    {value:'#FFF8E7',name:'奶油黄'},
+    {value:'#FFE4EC',name:'樱花粉'},
+    {value:'#E8F5E9',name:'薄荷绿'},
+    {value:'#E3F2FD',name:'天空蓝'},
+    {value:'#FFF3E0',name:'蜜桃橘'}
+  ];
+
+  return '<div class="result-header">'+
+      '<div class="result-title">猫咪专属名片</div>'+
+      '<div class="result-sub">保存海报，晒晒你家主子</div>'+
+    '</div>'+
+    '<div class="poster-container">'+
+      '<div class="poster-canvas">'+posterHtml+'</div>'+
+    '</div>'+
+    '<div class="poster-controls">'+
+      '<div class="poster-controls-title">海报风格</div>'+
+      '<div class="poster-tpls">'+tplBtns+'</div>'+
+    '</div>'+
+    '<div class="poster-controls">'+
+      '<div class="poster-controls-title">背景色</div>'+
+      '<div class="poster-bg-colors">'+
+        bgColors.map(function(c){
+          var sel = po.bgColor===c.value ? ' selected' : '';
+          return '<div class="poster-bg-color'+sel+'" data-cat-bg="'+c.value+'" style="background:'+c.value+';border:1px solid var(--line)" title="'+c.name+'"></div>';
+        }).join('')+
+      '</div>'+
+    '</div>'+
+    '<div class="poster-controls">'+
+      '<div class="poster-controls-title">喵言喵语</div>'+
+      '<div class="poster-decls">'+declBtns+'</div>'+
+    '</div>'+
+    '<div class="poster-controls">'+
+      '<div class="poster-controls-title">显示选项</div>'+
+      '<div class="poster-toggles">'+
+        '<div class="poster-toggle">显示关键词<div class="toggle-switch'+(po.showKeywords?' on':'')+'" id="toggle-cat-keywords"></div></div>'+
+      '</div>'+
+    '</div>'+
+    '<div class="result-actions">'+
+      '<button class="btn-secondary" id="btn-save-cat-poster">保存海报</button>'+
+      '<button class="btn-secondary" id="btn-regenerate-cat-decl">再生成一句</button>'+
+      '<button class="btn-secondary" id="btn-cat-back-names">换个名字</button>'+
+    '</div>'+
+    '<p class="result-bottom-note">这个名字不是答案，而是你和你家毛孩子的专属暗号。</p>';
+}
+
+// ---- SVG HELPERS FOR CAT ----
+function getCatPortraitSVG(profile){
+  var tags = profile.tags || [];
+  var isCool = tags.indexOf('高冷') >= 0 || tags.indexOf('大佬') >= 0 || tags.indexOf('霸气') >= 0;
+  var isLazy = tags.indexOf('随和') >= 0 || tags.indexOf('佛系') >= 0 || tags.indexOf('吃货') >= 0;
+
+  // Color-aware body
+  var ct = profile.colorType || '';
+  var bodyColor, innerEar, bellyColor;
+  if(ct === '橘色'){ bodyColor = '#FFB347'; innerEar = '#FFD4A8'; bellyColor = '#FFE8D0'; }
+  else if(ct === '白色'){ bodyColor = '#F5F0EB'; innerEar = '#FFD4D4'; bellyColor = '#FFFFFF'; }
+  else if(ct === '黑灰'){ bodyColor = '#5A5050'; innerEar = '#9B8B8B'; bellyColor = '#3D3636'; }
+  else if(ct === '花斑'){ bodyColor = '#D4956B'; innerEar = '#FFD4A8'; bellyColor = '#FFE8D0'; }
+  else { bodyColor = '#FFB89A'; innerEar = '#FFD4D4'; bellyColor = '#FFF0E6'; }
+
+  // Eyes: big sparkly Q-eyes for cute, half-lidded for cool/lazy
+  var eyes;
+  if(isCool){
+    eyes = '<path d="M17 22 Q21 20 25 22" stroke="#3A2E2A" stroke-width="2.5" fill="none" stroke-linecap="round"/>'+
+           '<path d="M23 22 Q27 20 31 22" stroke="#3A2E2A" stroke-width="2.5" fill="none" stroke-linecap="round"/>'+
+           '<circle cx="21" cy="23" r="1.5" fill="#3A2E2A"/>'+
+           '<circle cx="27" cy="23" r="1.5" fill="#3A2E2A"/>';
+  } else if(isLazy){
+    eyes = '<path d="M17 22 Q21 24 25 22" stroke="#3A2E2A" stroke-width="2.5" fill="none" stroke-linecap="round"/>'+
+           '<path d="M23 22 Q27 24 31 22" stroke="#3A2E2A" stroke-width="2.5" fill="none" stroke-linecap="round"/>';
+  } else {
+    eyes = '<ellipse cx="20" cy="23" rx="3.5" ry="4" fill="#3A2E2A"/>'+
+           '<ellipse cx="28" cy="23" rx="3.5" ry="4" fill="#3A2E2A"/>'+
+           '<circle cx="21" cy="21.5" r="1.5" fill="#FFF"/>'+
+           '<circle cx="29" cy="21.5" r="1.5" fill="#FFF"/>'+
+           '<circle cx="19" cy="24" r="0.8" fill="#FFF" opacity="0.6"/>'+
+           '<circle cx="27" cy="24" r="0.8" fill="#FFF" opacity="0.6"/>';
+  }
+
+  // Mouth
+  var mouth;
+  if(isCool){
+    mouth = '<path d="M22 33 L24 35 L26 33" stroke="#3A2E2A" stroke-width="1.5" fill="none" stroke-linecap="round"/>';
+  } else if(isLazy){
+    mouth = '<path d="M21 33 Q24 36 27 33" stroke="#3A2E2A" stroke-width="1.5" fill="none" stroke-linecap="round"/>'+
+            '<circle cx="24" cy="35" r="1" fill="#FF9999" opacity="0.5"/>';
+  } else {
+    mouth = '<path d="M21 32 Q23 35 24 33 Q25 35 27 32" stroke="#3A2E2A" stroke-width="1.5" fill="none" stroke-linecap="round"/>';
+  }
+
+  // Whiskers
+  var whiskers = '<line x1="8" y1="29" x2="14" y2="30" stroke="#3A2E2A" stroke-width="0.8" opacity="0.4"/>'+
+                 '<line x1="8" y1="32" x2="14" y2="32" stroke="#3A2E2A" stroke-width="0.8" opacity="0.4"/>'+
+                 '<line x1="40" y1="29" x2="34" y2="30" stroke="#3A2E2A" stroke-width="0.8" opacity="0.4"/>'+
+                 '<line x1="40" y1="32" x2="34" y2="32" stroke="#3A2E2A" stroke-width="0.8" opacity="0.4"/>';
+
+  // Blush
+  var blush = isCool ? '' : '<ellipse cx="13" cy="29" rx="3" ry="2" fill="#FFB6C1" opacity="0.5"/><ellipse cx="35" cy="29" rx="3" ry="2" fill="#FFB6C1" opacity="0.5"/>';
+
+  // Stripes for tabby/orange
+  var stripes = '';
+  if(ct === '花斑'){
+    stripes = '<path d="M14 18 L18 20" stroke="#8B6914" stroke-width="2" opacity="0.4" stroke-linecap="round"/>'+
+              '<path d="M34 18 L30 20" stroke="#8B6914" stroke-width="2" opacity="0.4" stroke-linecap="round"/>'+
+              '<path d="M20 14 L22 18" stroke="#8B6914" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>'+
+              '<path d="M28 14 L26 18" stroke="#8B6914" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>';
+  } else if(ct === '橘色'){
+    stripes = '<path d="M14 18 L18 20" stroke="#D4842A" stroke-width="2" opacity="0.35" stroke-linecap="round"/>'+
+              '<path d="M34 18 L30 20" stroke="#D4842A" stroke-width="2" opacity="0.35" stroke-linecap="round"/>';
+  }
+
+  return '<svg viewBox="0 0 48 48" width="100" height="100">'+
+    '<path d="M9 16 L15 4 L22 16 Z" fill="'+bodyColor+'"/>'+
+    '<path d="M39 16 L33 4 L26 16 Z" fill="'+bodyColor+'"/>'+
+    '<path d="M13 14 L15 8 L19 14 Z" fill="'+innerEar+'"/>'+
+    '<path d="M35 14 L33 8 L29 14 Z" fill="'+innerEar+'"/>'+
+    stripes +
+    '<ellipse cx="24" cy="28" rx="17" ry="15" fill="'+bodyColor+'"/>'+
+    '<ellipse cx="24" cy="34" rx="10" ry="7" fill="'+bellyColor+'" opacity="0.6"/>'+
+    blush +
+    eyes +
+    '<path d="M23 29 L25 29 L24 31 Z" fill="#FF6B6B"/>'+
+    mouth +
+    whiskers +
+    '</svg>';
+}
+
+function catTopIconSvg(){
+  return '<svg class="poster-top-icon" viewBox="0 0 32 32" fill="none" stroke-linecap="round">'+
+    '<path d="M6 12 L9 3 L14 11 Z" fill="#FFB89A" stroke="#FF9A8B" stroke-width="1"/>'+
+    '<path d="M26 12 L23 3 L18 11 Z" fill="#FFB89A" stroke="#FF9A8B" stroke-width="1"/>'+
+    '<path d="M8 11 L9 6 L12 10 Z" fill="#FFD4D4"/>'+
+    '<path d="M24 11 L23 6 L20 10 Z" fill="#FFD4D4"/>'+
+    '<ellipse cx="16" cy="19" rx="10" ry="9" fill="#FFE8D6" stroke="#FF9A8B" stroke-width="1"/>'+
+    '<ellipse cx="12" cy="17" rx="2.2" ry="2.8" fill="#3A2E2A"/>'+
+    '<ellipse cx="20" cy="17" rx="2.2" ry="2.8" fill="#3A2E2A"/>'+
+    '<circle cx="12.8" cy="16" r="0.8" fill="#FFF"/>'+
+    '<circle cx="20.8" cy="16" r="0.8" fill="#FFF"/>'+
+    '<path d="M15 22 L17 22 L16 23.5 Z" fill="#FF6B6B"/>'+
+    '<path d="M13 24 Q16 26 19 24" stroke="#3A2E2A" stroke-width="1.2" fill="none"/>'+
+    '<ellipse cx="8" cy="22" rx="2" ry="1.5" fill="#FFB6C1" opacity="0.5"/>'+
+    '<ellipse cx="24" cy="22" rx="2" ry="1.5" fill="#FFB6C1" opacity="0.5"/>'+
+    '<line x1="3" y1="20" x2="7" y2="21" stroke="#3A2E2A" stroke-width="0.6" opacity="0.3"/>'+
+    '<line x1="29" y1="20" x2="25" y2="21" stroke="#3A2E2A" stroke-width="0.6" opacity="0.3"/>'+
+    '</svg>';
+}
+
+function catFaceSvg(){
+  return '<svg viewBox="0 0 80 80" width="80" height="80">'+
+    '<path d="M12 26 L22 6 L34 24 Z" fill="#FFB347" stroke="#E8943A" stroke-width="1"/>'+
+    '<path d="M68 26 L58 6 L46 24 Z" fill="#FFB347" stroke="#E8943A" stroke-width="1"/>'+
+    '<path d="M16 22 L21 12 L27 21 Z" fill="#FFD4A8"/>'+
+    '<path d="M64 22 L59 12 L53 21 Z" fill="#FFD4A8"/>'+
+    '<ellipse cx="40" cy="46" rx="30" ry="26" fill="#FFD4A8"/>'+
+    '<ellipse cx="40" cy="52" rx="20" ry="14" fill="#FFE8D0" opacity="0.6"/>'+
+    '<ellipse cx="27" cy="42" rx="5" ry="6" fill="#3A2E2A"/>'+
+    '<ellipse cx="53" cy="42" rx="5" ry="6" fill="#3A2E2A"/>'+
+    '<circle cx="28.5" cy="40" r="2" fill="#FFF"/>'+
+    '<circle cx="54.5" cy="40" r="2" fill="#FFF"/>'+
+    '<circle cx="26" cy="44" r="0.8" fill="#FFF" opacity="0.5"/>'+
+    '<circle cx="52" cy="44" r="0.8" fill="#FFF" opacity="0.5"/>'+
+    '<path d="M37 50 L43 50 L40 53 Z" fill="#FF6B6B"/>'+
+    '<path d="M35 54 Q40 58 45 54" stroke="#3A2E2A" stroke-width="1.8" fill="none" stroke-linecap="round"/>'+
+    '<path d="M35 54 Q33 56 31 55" stroke="#3A2E2A" stroke-width="1.5" fill="none" stroke-linecap="round"/>'+
+    '<path d="M45 54 Q47 56 49 55" stroke="#3A2E2A" stroke-width="1.5" fill="none" stroke-linecap="round"/>'+
+    '<ellipse cx="18" cy="50" rx="4" ry="3" fill="#FFB6C1" opacity="0.6"/>'+
+    '<ellipse cx="62" cy="50" rx="4" ry="3" fill="#FFB6C1" opacity="0.6"/>'+
+    '<line x1="5" y1="47" x2="14" y2="48" stroke="#3A2E2A" stroke-width="0.8" opacity="0.3"/>'+
+    '<line x1="5" y1="52" x2="14" y2="51" stroke="#3A2E2A" stroke-width="0.8" opacity="0.3"/>'+
+    '<line x1="75" y1="47" x2="66" y2="48" stroke="#3A2E2A" stroke-width="0.8" opacity="0.3"/>'+
+    '<line x1="75" y1="52" x2="66" y2="51" stroke="#3A2E2A" stroke-width="0.8" opacity="0.3"/>'+
+    '</svg>';
+}
+
+function catPawSvg(){
+  return '<svg viewBox="0 0 64 64" width="64" height="64">'+
+    '<ellipse cx="32" cy="42" rx="20" ry="15" fill="#FFC9C9" stroke="#FF9A9A" stroke-width="1"/>'+
+    '<circle cx="18" cy="26" r="8" fill="#FFC9C9" stroke="#FF9A9A" stroke-width="1"/>'+
+    '<ellipse cx="32" cy="20" rx="8" ry="9" fill="#FFC9C9" stroke="#FF9A9A" stroke-width="1"/>'+
+    '<circle cx="46" cy="26" r="8" fill="#FFC9C9" stroke="#FF9A9A" stroke-width="1"/>'+
+    '<ellipse cx="25" cy="40" rx="4" ry="3" fill="#FF6B8A"/>'+
+    '<ellipse cx="38" cy="40" rx="4" ry="3" fill="#FF6B8A"/>'+
+    '<ellipse cx="32" cy="46" rx="4" ry="3" fill="#FF6B8A"/>'+
+    '<circle cx="16" cy="27" r="2.5" fill="#FF9AB8"/>'+
+    '<circle cx="32" cy="21" r="2.5" fill="#FF9AB8"/>'+
+    '<circle cx="46" cy="27" r="2.5" fill="#FF9AB8"/>'+
+    '</svg>';
+}
+
+function manekiNekoSvg(){
+  return '<svg viewBox="0 0 80 80" width="80" height="80">'+
+    '<path d="M14 30 L24 8 L34 28 Z" fill="#FFF8E7" stroke="#D4A05A" stroke-width="1"/>'+
+    '<path d="M66 30 L56 8 L46 28 Z" fill="#FFF8E7" stroke="#D4A05A" stroke-width="1"/>'+
+    '<path d="M18 27 L23 14 L29 25 Z" fill="#FFD4A8"/>'+
+    '<path d="M62 27 L57 14 L51 25 Z" fill="#FFD4A8"/>'+
+    '<ellipse cx="40" cy="48" rx="28" ry="24" fill="#FFF8E7" stroke="#D4A05A" stroke-width="1"/>'+
+    '<ellipse cx="24" cy="54" rx="8" ry="6" fill="#FFE4D6" opacity="0.5"/>'+
+    '<ellipse cx="56" cy="54" rx="8" ry="6" fill="#FFE4D6" opacity="0.5"/>'+
+    '<ellipse cx="29" cy="45" rx="4.5" ry="5.5" fill="#3A2E2A"/>'+
+    '<ellipse cx="51" cy="45" rx="4.5" ry="5.5" fill="#3A2E2A"/>'+
+    '<circle cx="30" cy="43" r="1.8" fill="#FFF"/>'+
+    '<circle cx="52" cy="43" r="1.8" fill="#FFF"/>'+
+    '<ellipse cx="20" cy="54" rx="4" ry="3" fill="#FFB6C1" opacity="0.6"/>'+
+    '<ellipse cx="60" cy="54" rx="4" ry="3" fill="#FFB6C1" opacity="0.6"/>'+
+    '<path d="M38 52 L42 52 L40 54.5 Z" fill="#FF6B6B"/>'+
+    '<path d="M36 56 Q40 59 44 56" stroke="#3A2E2A" stroke-width="1.5" fill="none" stroke-linecap="round"/>'+
+    '<line x1="6" y1="50" x2="16" y2="51" stroke="#3A2E2A" stroke-width="0.7" opacity="0.3"/>'+
+    '<line x1="6" y1="55" x2="16" y2="54" stroke="#3A2E2A" stroke-width="0.7" opacity="0.3"/>'+
+    '<line x1="74" y1="50" x2="64" y2="51" stroke="#3A2E2A" stroke-width="0.7" opacity="0.3"/>'+
+    '<line x1="74" y1="55" x2="64" y2="54" stroke="#3A2E2A" stroke-width="0.7" opacity="0.3"/>'+
+    '<circle cx="40" cy="30" r="7" fill="#FFD700" stroke="#D4A05A" stroke-width="1"/>'+
+    '<circle cx="40" cy="30" r="5" fill="none" stroke="#D4A05A" stroke-width="0.8"/>'+
+    '<text x="36" y="33" font-size="8" fill="#8B6914" font-weight="bold">福</text>'+
+    '<ellipse cx="66" cy="40" rx="9" ry="7" fill="#FFF8E7" stroke="#D4A05A" stroke-width="1"/>'+
+    '<circle cx="62" cy="37" r="2.5" fill="#FFD4A8"/>'+
+    '<circle cx="68" cy="36" r="2.5" fill="#FFD4A8"/>'+
+    '<circle cx="72" cy="39" r="2" fill="#FFD4A8"/>'+
+    '</svg>';
+}
+
+function starsSvg(){
+  return '<svg viewBox="0 0 360 560" width="100%" height="100%"><circle cx="50" cy="80" r="1.5" fill="#FFF" opacity="0.8"/><circle cx="300" cy="120" r="1.5" fill="#FFF" opacity="0.6"/><circle cx="80" cy="200" r="1.2" fill="#FFF" opacity="0.7"/><circle cx="320" cy="250" r="1.2" fill="#FFF" opacity="0.5"/><circle cx="120" cy="350" r="1.5" fill="#FFF" opacity="0.8"/><circle cx="280" cy="420" r="1.2" fill="#FFF" opacity="0.6"/></svg>';
+}
+
+function moonSvg(){
+  return '<svg viewBox="0 0 60 60" width="60" height="60"><circle cx="28" cy="30" r="18" fill="#FFF8E7" opacity="0.9"/><circle cx="36" cy="24" r="16" fill="#1A1A3E"/></svg>';
 }
 
 // ---- SETTINGS ----
@@ -1816,7 +2892,26 @@ function shiftColor(hex, amount){
 // ===================== EVENTS =====================
 
 function attachEvents(){
-  // Home
+  // Home mode selection
+  document.querySelectorAll('.home-mode-card').forEach(function(el){
+    el.onclick = function(){
+      var mode = el.getAttribute('data-mode');
+      state.mode = mode;
+      if(mode === 'cat'){
+        state.step = 'cat-quiz';
+        state.catCurrentQuestion = 0;
+        state.catSelectedOptions = [];
+        state.catAnswers = [];
+        state.catNameFeedback = {};
+        state.catNames = [];
+        state.catProfile = null;
+      } else {
+        state.step = 'settings';
+      }
+      render();
+    };
+  });
+
   var btnStart = document.getElementById('btn-start');
   if(btnStart) btnStart.onclick = function(){ state.step='settings'; render(); };
 
@@ -2044,6 +3139,280 @@ function attachEvents(){
     state.step = 'names';
     render();
   };
+
+  // ============ CAT MODE EVENTS ============
+  if(state.mode === 'cat'){
+    // Cat quiz
+    document.querySelectorAll('[data-cat-option]').forEach(function(el){
+      el.onclick = function(){
+        var idx = parseInt(el.getAttribute('data-cat-option'));
+        state.catSelectedOptions[state.catCurrentQuestion] = [idx];
+        render();
+      };
+    });
+
+    var catQuizBack = document.getElementById('cat-quiz-back');
+    if(catQuizBack) catQuizBack.onclick = function(){
+      if(state.catCurrentQuestion > 0){
+        state.catCurrentQuestion--;
+        render();
+      } else {
+        state.mode = 'human';
+        state.step = 'home';
+        render();
+      }
+    };
+
+    var catQuizNext = document.getElementById('cat-quiz-next');
+    if(catQuizNext) catQuizNext.onclick = function(){
+      var selected = state.catSelectedOptions[state.catCurrentQuestion] || [];
+      if(selected.length === 0) return;
+      var q = CAT_QUESTIONS[state.catCurrentQuestion];
+      state.catAnswers = state.catAnswers.filter(function(a){return a.questionId !== q.id;});
+      selected.forEach(function(idx){
+        state.catAnswers.push({questionId:q.id, question:q.q, answer:q.options[idx]});
+      });
+      if(state.catCurrentQuestion < CAT_QUESTIONS.length - 1){
+        state.catCurrentQuestion++;
+        render();
+      } else {
+        state.step = 'cat-thinking';
+        render();
+      }
+    };
+
+    if(state.step === 'cat-thinking'){
+      runCatThinkingSequence();
+    }
+
+    var btnCatGashapon = document.getElementById('btn-cat-gashapon');
+    if(btnCatGashapon) btnGashaponTransition();
+
+    var btnCatViewNames = document.getElementById('btn-cat-view-names');
+    if(btnCatViewNames) btnCatViewNames.onclick = function(){
+      state.step = 'cat-names';
+      render();
+    };
+
+    // Cat names feedback
+    document.querySelectorAll('[data-cat-name-fb]').forEach(function(el){
+      el.onclick = function(){
+        var idx = parseInt(el.getAttribute('data-cat-name-fb'));
+        var fb = el.getAttribute('data-fb');
+        state.catNameFeedback[idx] = fb;
+        render();
+      };
+    });
+
+    document.querySelectorAll('[data-cat-select-name]').forEach(function(el){
+      el.onclick = function(){
+        var idx = parseInt(el.getAttribute('data-cat-select-name'));
+        state.catSelectedNameIndex = idx;
+        state.step = 'cat-result';
+        state.catPosterOptions.declIndex = 0;
+        render();
+      };
+    });
+
+    var catRegenDefault = document.getElementById('cat-regen-default');
+    if(catRegenDefault) catRegenDefault.onclick = function(){
+      state.catRegenerateCount++;
+      state.catNames = generateCatNames(state.catProfile, 'default');
+      state.catNameFeedback = {};
+      render();
+    };
+
+    document.querySelectorAll('[data-cat-regen]').forEach(function(el){
+      el.onclick = function(){
+        var style = el.getAttribute('data-cat-regen');
+        state.catRegenerateCount++;
+        state.catNames = generateCatNames(state.catProfile, style);
+        state.catNameFeedback = {};
+        render();
+      };
+    });
+
+    // Cat poster controls
+    document.querySelectorAll('[data-cat-tpl]').forEach(function(el){
+      el.onclick = function(){
+        state.catPosterTemplate = el.getAttribute('data-cat-tpl');
+        render();
+      };
+    });
+
+    document.querySelectorAll('[data-cat-bg]').forEach(function(el){
+      el.onclick = function(){
+        state.catPosterOptions.bgColor = el.getAttribute('data-cat-bg');
+        render();
+      };
+    });
+
+    document.querySelectorAll('[data-cat-decl]').forEach(function(el){
+      el.onclick = function(){
+        state.catPosterOptions.declIndex = parseInt(el.getAttribute('data-cat-decl'));
+        render();
+      };
+    });
+
+    var toggleCatKeywords = document.getElementById('toggle-cat-keywords');
+    if(toggleCatKeywords) toggleCatKeywords.onclick = function(){
+      state.catPosterOptions.showKeywords = !state.catPosterOptions.showKeywords;
+      render();
+    };
+
+    var btnSaveCatPoster = document.getElementById('btn-save-cat-poster');
+    if(btnSaveCatPoster) btnSaveCatPoster.onclick = function(){
+      saveCatPoster();
+    };
+
+    var btnRegenCatDecl = document.getElementById('btn-regenerate-cat-decl');
+    if(btnRegenCatDecl) btnRegenCatDecl.onclick = function(){
+      var n = state.catNames[state.catSelectedNameIndex];
+      var lines = n.posterLines || [n.oneLine];
+      state.catPosterOptions.declIndex = (state.catPosterOptions.declIndex + 1) % lines.length;
+      render();
+    };
+
+    var btnCatBackNames = document.getElementById('btn-cat-back-names');
+    if(btnCatBackNames) btnCatBackNames.onclick = function(){
+      state.catSelectedNameIndex = -1;
+      state.step = 'cat-names';
+      render();
+    };
+  }
+}
+
+function btnGashaponTransition(){
+  var btn = document.getElementById('btn-cat-gashapon');
+  if(!btn) return;
+  btn.onclick = function(){
+    state.step = 'cat-gashapon';
+    render();
+    startCatGashaponAnimation();
+  };
+}
+
+function runCatThinkingSequence(){
+  var msgIdx = 0;
+  var textEl = document.getElementById('cat-thinking-text');
+  var interval = setInterval(function(){
+    msgIdx++;
+    if(msgIdx < CAT_THINKING_MSGS.length){
+      if(textEl){
+        textEl.style.opacity = '0';
+        setTimeout(function(){
+          textEl.textContent = CAT_THINKING_MSGS[msgIdx];
+          textEl.style.opacity = '1';
+        }, 300);
+      }
+    } else {
+      clearInterval(interval);
+      state.catProfile = generateCatProfile(state.catAnswers);
+      state.catNames = generateCatNames(state.catProfile, 'default');
+      state.step = 'cat-profile';
+      render();
+    }
+  }, 1200);
+}
+
+function startCatGashaponAnimation(){
+  var revealIdx = 0;
+  var revealEl = document.getElementById('cat-gashapon-reveal');
+  var pinyinEl = document.getElementById('cat-gashapon-pinyin');
+  var hintEl = document.getElementById('cat-gashapon-hint');
+  var countEl = document.getElementById('cat-gashapon-count');
+  var capsuleEl = document.getElementById('cat-gashapon-capsule');
+  var viewBtn = document.getElementById('btn-cat-view-names');
+
+  function revealNext(){
+    if(revealIdx >= state.catNames.length){
+      hintEl.textContent = '4 个名字已抽取完成';
+      countEl.textContent = '';
+      viewBtn.style.display = 'inline-block';
+      return;
+    }
+
+    var n = state.catNames[revealIdx];
+
+    revealEl.classList.remove('show');
+    pinyinEl.classList.remove('show');
+    revealEl.textContent = '';
+    pinyinEl.textContent = '';
+    hintEl.textContent = '正在把猫咪的小脾气折成名字...';
+    countEl.textContent = '';
+    capsuleEl.classList.add('gashapon-shake');
+    capsuleEl.classList.remove('gashapon-drop');
+
+    setTimeout(function(){
+      capsuleEl.classList.remove('gashapon-shake');
+      capsuleEl.classList.add('gashapon-drop');
+      hintEl.textContent = '第 '+(revealIdx+1)+' 个名字';
+
+      setTimeout(function(){
+        revealEl.textContent = n.name;
+        pinyinEl.textContent = n.pinyin;
+        revealEl.classList.add('show');
+        pinyinEl.classList.add('show');
+        countEl.textContent = (revealIdx+1)+' / '+state.catNames.length;
+
+        revealIdx++;
+
+        if(revealIdx < state.catNames.length){
+          hintEl.textContent = '再抽一个';
+          setTimeout(function(){
+            capsuleEl.classList.remove('gashapon-drop');
+            capsuleEl.style.opacity = '1';
+            revealNext();
+          }, 1500);
+        } else {
+          setTimeout(function(){
+            revealNext();
+          }, 800);
+        }
+      }, 600);
+    }, 1200);
+  }
+
+  setTimeout(revealNext, 500);
+}
+
+function saveCatPoster(){
+  var posterContent = document.getElementById('cat-poster-content');
+  if(!posterContent){
+    alert('海报内容未找到');
+    return;
+  }
+
+  if(typeof html2canvas === 'undefined'){
+    alert('海报下载需要联网加载组件，请检查网络连接后重试，或直接截图保存。');
+    return;
+  }
+
+  var btn = document.getElementById('btn-save-cat-poster');
+  var originalText = btn.textContent;
+  btn.textContent = '正在生成...';
+  btn.style.pointerEvents = 'none';
+
+  html2canvas(posterContent, {
+    scale: 2,
+    backgroundColor: null,
+    useCORS: true,
+    logging: false
+  }).then(function(canvas){
+    var link = document.createElement('a');
+    var n = state.catNames[state.catSelectedNameIndex];
+    link.download = n.name + '_自名得意-猫咪.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+
+    btn.textContent = originalText;
+    btn.style.pointerEvents = '';
+  }).catch(function(err){
+    console.error(err);
+    alert('海报生成失败，请尝试截图保存。');
+    btn.textContent = originalText;
+    btn.style.pointerEvents = '';
+  });
 }
 
 function goToNextQuestion(){
@@ -2201,6 +3570,349 @@ function savePoster(){
     btn.textContent = originalText;
     btn.style.pointerEvents = '';
   });
+}
+
+// ===================== CAT LOGIC =====================
+
+function collectCatTags(answers){
+  var tagCount = {};
+  var colorType = '';
+  var eyeType = '';
+  var nameStyle = '';
+  answers.forEach(function(ans){
+    var mapping = CAT_ANSWER_TAGS[ans.questionId];
+    if(mapping && mapping[ans.answer]){
+      mapping[ans.answer].forEach(function(t){
+        tagCount[t] = (tagCount[t]||0) + 1;
+      });
+    }
+    if(ans.questionId === 'cat_q5'){
+      var cleanAnswer5 = ans.answer.replace(/^[A-F]\.\s*/, '');
+      if(cleanAnswer5.indexOf('橘色') >= 0) colorType = '橘色';
+      else if(cleanAnswer5.indexOf('白色') >= 0) colorType = '白色';
+      else if(cleanAnswer5.indexOf('黑灰') >= 0) colorType = '黑灰';
+      else if(cleanAnswer5.indexOf('花斑') >= 0) colorType = '花斑';
+    }
+    if(ans.questionId === 'cat_q6'){
+      var cleanAnswer = ans.answer.replace(/^[A-F]\.\s*/, '');
+      if(cleanAnswer.indexOf('呆萌') >= 0) eyeType = '呆萌';
+      else if(cleanAnswer.indexOf('厌世') >= 0 || cleanAnswer.indexOf('高冷') >= 0) eyeType = '厌世高冷';
+      else if(cleanAnswer.indexOf('佛系') >= 0) eyeType = '佛系';
+    }
+    if(ans.questionId === 'cat_q7'){
+      var cleanAns7 = ans.answer.replace(/^[A-F]\.\s*/, '');
+      if(cleanAns7.indexOf('食物') >= 0) nameStyle = '食物派';
+      else if(cleanAns7.indexOf('外貌') >= 0) nameStyle = '外貌派';
+      else if(cleanAns7.indexOf('叠词') >= 0) nameStyle = '叠词派';
+      else if(cleanAns7.indexOf('人名') >= 0 || cleanAns7.indexOf('人设') >= 0) nameStyle = '人设派';
+      else if(cleanAns7.indexOf('潮流') >= 0) nameStyle = '潮流派';
+      else if(cleanAns7.indexOf('文艺') >= 0) nameStyle = '文艺派';
+    }
+  });
+  return {tagCount:tagCount, colorType:colorType, eyeType:eyeType, nameStyle:nameStyle};
+}
+
+function generateCatProfile(answers){
+  var collected = collectCatTags(answers);
+  var tagCount = collected.tagCount;
+  var sortedTags = Object.keys(tagCount).sort(function(a,b){return tagCount[b]-tagCount[a];});
+  var topTag = sortedTags[0] || '萌系';
+  var secondTag = sortedTags[1] || '可爱';
+
+  var tmpl = CAT_PROFILE_TEMPLATES[topTag] || CAT_PROFILE_TEMPLATES['温柔'];
+  var colorHint = CAT_COLOR_HINTS[collected.colorType] || CAT_COLOR_HINTS['橘色'];
+  var eyeHint = CAT_EYE_HINTS[collected.eyeType] || CAT_EYE_HINTS['呆萌'];
+
+  var tags = sortedTags.slice(0,6);
+  if(tags.indexOf(topTag) < 0) tags.unshift(topTag);
+
+  return {
+    title:tmpl.title,
+    text:tmpl.text,
+    tags:tags,
+    topTag:topTag,
+    secondTag:secondTag,
+    colorType:collected.colorType,
+    eyeType:collected.eyeType,
+    nameStyle:collected.nameStyle,
+    colorHint:colorHint,
+    eyeHint:eyeHint,
+    namingHint:colorHint.feel + ' ' + eyeHint.feel
+  };
+}
+
+function scoreCatChar(c, profile, regenStyle){
+  var score = 0;
+  var tags = profile.tags || [];
+
+  // Tag matching
+  c.tags.forEach(function(t){
+    if(tags.indexOf(t) >= 0) score += 3;
+  });
+
+  // Color hint matching
+  var colorHint = profile.colorHint || {};
+  var colorWords = colorHint.words || [];
+  if(colorWords.indexOf(c.char) >= 0) score += 5;
+  if(c.tags.indexOf(profile.colorType) >= 0) score += 2;
+
+  // Eye hint matching
+  var eyeHint = profile.eyeHint || {};
+  var eyeWords = eyeHint.words || [];
+  if(eyeWords.indexOf(c.char) >= 0) score += 3;
+
+  // Top tag boost
+  if(c.tags.indexOf(profile.topTag) >= 0) score += 4;
+  if(c.tags.indexOf(profile.secondTag) >= 0) score += 2;
+
+  // === 名字派别偏好 boost（Q7 用户选择） ===
+  var ns = profile.nameStyle;
+  if(ns){
+    // 直接匹配派别 tag（强 boost，确保派别名字排在前面）
+    if(c.tags.indexOf(ns) >= 0) score += 10;
+    // 通过 CAT_SCHOOL_MAP 间接匹配
+    var schoolTags = CAT_SCHOOL_MAP[ns] || [];
+    schoolTags.forEach(function(st){
+      if(c.tags.indexOf(st) >= 0) score += 4;
+    });
+    // 叠词派特殊：单字更适合叠字
+    if(ns === '叠词派' && c.char.length === 1) score += 5;
+    // 外貌派特殊：带颜色/外貌 tag 的加分
+    if(ns === '外貌派' && (c.tags.indexOf('外貌派') >= 0)) score += 6;
+    // 非本派别且有明确派别 tag 的适当降权（避免混入其他派别）
+    var allSchools = ['食物派','外貌派','叠词派','人设派','潮流派','文艺派'];
+    allSchools.forEach(function(sch){
+      if(sch !== ns && c.tags.indexOf(sch) >= 0) score -= 2;
+    });
+  }
+
+  // Style filter for regenerate
+  if(regenStyle === 'cuter'){
+    if(c.tags.indexOf('萌系') >= 0 || c.tags.indexOf('可爱') >= 0 || c.tags.indexOf('甜美') >= 0) score += 3;
+    if(c.tags.indexOf('高冷') >= 0 || c.tags.indexOf('霸气') >= 0) score -= 2;
+  } else if(regenStyle === 'cooler'){
+    if(c.tags.indexOf('高冷') >= 0 || c.tags.indexOf('酷') >= 0 || c.tags.indexOf('霸气') >= 0) score += 3;
+    if(c.tags.indexOf('萌系') >= 0 || c.tags.indexOf('可爱') >= 0) score -= 1;
+  } else if(regenStyle === 'food'){
+    if(c.tags.indexOf('食物') >= 0 || c.tags.indexOf('食物派') >= 0) score += 5;
+  } else if(regenStyle === 'lucky'){
+    if(c.tags.indexOf('中式招财') >= 0 || c.tags.indexOf('吉祥') >= 0 || c.tags.indexOf('人设派') >= 0) score += 5;
+  } else if(regenStyle === 'repeat'){
+    if(c.char.length === 1) score += 5;
+    if(c.tags.indexOf('叠词派') >= 0) score += 3;
+  } else if(regenStyle === 'pop'){
+    if(c.tags.indexOf('潮流派') >= 0 || c.tags.indexOf('动漫热血') >= 0 || c.tags.indexOf('潮流个性') >= 0) score += 5;
+  } else if(regenStyle === 'literary'){
+    if(c.tags.indexOf('文艺派') >= 0 || c.tags.indexOf('日系治愈') >= 0 || c.tags.indexOf('自然') >= 0) score += 5;
+  } else if(regenStyle === 'appearance'){
+    if(c.tags.indexOf('外貌派') >= 0 || c.tags.indexOf('纯色') >= 0 || c.tags.indexOf('花斑') >= 0) score += 5;
+  }
+
+  // Prefer shorter/recognizable for cat names
+  if(c.char.length === 1) score += 0.5;
+
+  return score;
+}
+
+function generateCatNames(profile, regenStyle){
+  regenStyle = regenStyle || 'default';
+  var scored = CAT_CHARS.map(function(c){
+    return {charObj:c, score:scoreCatChar(c, profile, regenStyle)};
+  }).sort(function(a,b){return b.score - a.score;});
+
+  // Top pool
+  var pool = scored.slice(0, Math.max(25, Math.floor(scored.length * 0.3)));
+  var used = {};
+  var names = [];
+  var attempts = 0;
+
+  while(names.length < 4 && attempts < 200){
+    attempts++;
+    var r = Math.random();
+    var nameObj = null;
+    // 根据名字派别调整生成模式（regenStyle 可覆盖 nameStyle）
+    var ns = profile.nameStyle;
+    // regenStyle 映射到等效的 nameStyle 用于 pattern 选择
+    if(regenStyle === 'repeat') ns = '叠词派';
+    else if(regenStyle === 'appearance') ns = '外貌派';
+    else if(regenStyle === 'pop') ns = '潮流派';
+    else if(regenStyle === 'literary') ns = '文艺派';
+    else if(regenStyle === 'food') ns = '食物派';
+    else if(regenStyle === 'lucky') ns = '人设派';
+    var forcePattern = null;
+    if(ns === '叠词派'){
+      // 叠词派：前3个叠字，第4个小字辈
+      if(names.length <= 2) forcePattern = '叠字';
+      else forcePattern = '小字辈';
+    } else if(ns === '外貌派'){
+      // 外貌派：前2个双字（含颜色词），第3个小字辈，第4个叠字
+      if(names.length <= 1) forcePattern = 'double';
+      else if(names.length === 2) forcePattern = '小字辈';
+      else forcePattern = '叠字';
+    } else if(ns === '人设派'){
+      // 人设派：前2个双字（人设词），第3个双字，第4个小字辈
+      if(names.length <= 2) forcePattern = 'double';
+      else forcePattern = '小字辈';
+    } else if(ns === '文艺派'){
+      // 文艺派：全部双字
+      forcePattern = 'double';
+    } else if(ns === '潮流派'){
+      // 潮流派：前2个双字，第3个双字，第4个叠字
+      if(names.length <= 2) forcePattern = 'double';
+      else forcePattern = '叠字';
+    } else {
+      // 默认：前2个双字，后2个叠字+小字辈
+      if(names.length === 0) forcePattern = 'double';
+      else if(names.length === 1) forcePattern = 'double';
+      else if(names.length === 2) forcePattern = '叠字';
+      else forcePattern = '小字辈';
+    }
+
+    if(forcePattern === 'double'){
+      var pickA = weightedRandom(pool);
+      if(pickA){
+        if(pickA.charObj.char.length >= 2){
+          nameObj = {
+            name: pickA.charObj.char,
+            pinyin: pickA.charObj.py,
+            oneLine: pickA.charObj.m,
+            explanation: generateCatExplanation(pickA.charObj, profile, '双字'),
+            keywords: pickA.charObj.tags.slice(0,3),
+            posterLines: generateCatPosterLines(pickA.charObj, profile)
+          };
+        } else {
+          var pickB = weightedRandom(pool);
+          if(pickB && pickB.charObj.char !== pickA.charObj.char && pickB.charObj.char.length === 1){
+            var combo = pickA.charObj.char + pickB.charObj.char;
+            if(!used[combo]){
+              nameObj = {
+                name: combo,
+                pinyin: pickA.charObj.py + ' ' + pickB.charObj.py,
+                oneLine: pickA.charObj.m + '，' + pickB.charObj.m,
+                explanation: generateCatExplanation(pickA.charObj, profile, '组合', pickB.charObj),
+                keywords: uniqueTags(pickA.charObj.tags, pickB.charObj.tags).slice(0,3),
+                posterLines: generateCatPosterLines(pickA.charObj, profile)
+              };
+            }
+          }
+        }
+      }
+    } else if(forcePattern === '叠字'){
+      var pick = weightedRandom(pool);
+      if(pick && pick.charObj.char.length === 1){
+        var repeatChar = pick.charObj.char;
+        var name = repeatChar + repeatChar;
+        if(!used[name]){
+          nameObj = {
+            name: name,
+            pinyin: pick.charObj.py + ' ' + pick.charObj.py,
+            oneLine: '叠字叫起来更亲，' + pick.charObj.m,
+            explanation: generateCatExplanation(pick.charObj, profile, '叠字'),
+            keywords: pick.charObj.tags.slice(0,3),
+            posterLines: generateCatPosterLines(pick.charObj, profile)
+          };
+        }
+      }
+    } else if(forcePattern === '小字辈'){
+      var pickA = weightedRandom(pool);
+      if(pickA){
+        if(pickA.charObj.char.length === 2){
+          var combo = '小' + pickA.charObj.char;
+          if(!used[combo]){
+            nameObj = {
+              name: combo,
+              pinyin: 'xiǎo ' + pickA.charObj.py,
+              oneLine: '小小一只' + pickA.charObj.char + '，' + pickA.charObj.m,
+              explanation: generateCatExplanation(pickA.charObj, profile, '小字辈'),
+              keywords: pickA.charObj.tags.slice(0,3),
+              posterLines: generateCatPosterLines(pickA.charObj, profile)
+            };
+          }
+        } else if(pickA.charObj.char.length === 1){
+          var combo = '小' + pickA.charObj.char;
+          if(!used[combo]){
+            nameObj = {
+              name: combo,
+              pinyin: 'xiǎo ' + pickA.charObj.py,
+              oneLine: '小小的' + pickA.charObj.char + '，' + pickA.charObj.m,
+              explanation: generateCatExplanation(pickA.charObj, profile, '小字辈'),
+              keywords: pickA.charObj.tags.slice(0,3),
+              posterLines: generateCatPosterLines(pickA.charObj, profile)
+            };
+          }
+        }
+      }
+    }
+
+    if(nameObj && nameObj.name && !used[nameObj.name] && nameObj.name.length <= 4){
+      used[nameObj.name] = true;
+      names.push(nameObj);
+    }
+  }
+
+  // Fallback: if not enough, fill with safe cute names
+  var fallbacks = [
+    {name:'团子',pinyin:'tuán zi',oneLine:'毛茸茸的一团',explanation:'团子是最不容易出错的选择，软糯圆润，适合大多数猫咪。',keywords:['萌系','圆润','可爱'],posterLines:['一团软乎乎的治愈']},
+    {name:'豆豆',pinyin:'dòu dou',oneLine:'一颗小甜豆',explanation:'简单好记，带着一点俏皮和亲昵。',keywords:['萌系','小巧','可爱'],posterLines:['小小豆子，大大可爱']},
+    {name:'布丁',pinyin:'bù dīng',oneLine:'Q弹软糯',explanation:'像布丁一样软嫩，让人想捧在手心。',keywords:['萌系','食物','软糯'],posterLines:['今日份甜度超标']},
+    {name:'福宝',pinyin:'fú bǎo',oneLine:'福气满满的小宝贝',explanation:'吉祥如意，简单直白的好名字。',keywords:['中式招财','宝贝','可爱'],posterLines:['招财进宝，喵运亨通']}
+  ];
+  while(names.length < 4){
+    var fb = fallbacks[names.length % fallbacks.length];
+    if(!used[fb.name]){
+      used[fb.name] = true;
+      names.push(fb);
+    }
+  }
+
+  return names.slice(0,4);
+}
+
+function weightedRandom(pool){
+  // Simple weighted random from top portion
+  var idx = Math.floor(Math.pow(Math.random(), 1.5) * pool.length);
+  return pool[idx];
+}
+
+function uniqueTags(a, b){
+  var all = (a || []).concat(b || []);
+  var seen = {};
+  return all.filter(function(t){ if(seen[t]) return false; seen[t]=true; return true; });
+}
+
+function generateCatExplanation(charObj, profile, pattern, charObjB){
+  var parts = [];
+  var colorHint = profile.colorHint || {};
+  var eyeHint = profile.eyeHint || {};
+
+  parts.push('这个名字带着「' + charObj.tags.slice(0,2).join(' · ') + '」的气质。');
+
+  if(pattern === '叠字'){
+    parts.push('叠字叫起来更顺口，也更有宠溺感。');
+  } else if(pattern === '小字辈'){
+    parts.push('「小」字开头，自带娇小可爱的滤镜。');
+  } else if(pattern === '小叠字'){
+    parts.push('「小」字加叠字，奶凶奶凶的，很减龄。');
+  } else if(pattern === '组合' && charObjB){
+    parts.push(charObj.char + '和' + charObjB.char + '搭在一起，既有' + charObj.tags[0] + '又有' + charObjB.tags[0] + '。');
+  }
+
+  if(colorHint.words && colorHint.words.indexOf(charObj.char) >= 0){
+    parts.push('而且和' + profile.colorType + '毛色很配。');
+  }
+  if(eyeHint.words && eyeHint.words.indexOf(charObj.char) >= 0){
+    parts.push('配上它' + profile.eyeType + '的眼神，刚刚好。');
+  }
+
+  return parts.join('');
+}
+
+function generateCatPosterLines(charObj, profile){
+  var lines = CAT_POSTER_LINES.slice();
+  lines.push('主子大名：' + charObj.char);
+  lines.push('一只' + profile.topTag + '的小猫咪');
+  lines.push('今日份可爱，请查收');
+  return lines;
 }
 
 // ===================== INIT =====================
